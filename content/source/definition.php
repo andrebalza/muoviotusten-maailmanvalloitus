@@ -1,0 +1,921 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+	'meta' => [
+		'contentVersion' => '2026-04-18',
+		'sourceSheetUrl' => 'https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing',
+	],
+	'settings' => [
+		'domain' => 'https://otus.muoviamo.fi',
+		'storageKey' => 'muoviotukset.v1',
+		'maxTips' => 5,
+	],
+	'tracks' => [
+		[
+			'id' => 1,
+			'dice' => 1,
+			'mainBox' => ['fi' => 'PET', 'en' => 'PET'],
+			'faction' => ['fi' => 'petpetit', 'en' => 'petpetit'],
+		],
+		[
+			'id' => 2,
+			'dice' => 2,
+			'mainBox' => ['fi' => 'HDPE / LDPE', 'en' => 'HDPE / LDPE'],
+			'faction' => ['fi' => 'petenkeetit', 'en' => 'petenkeetit'],
+		],
+		[
+			'id' => 3,
+			'dice' => 3,
+			'mainBox' => ['fi' => 'PP5', 'en' => 'PP5'],
+			'faction' => ['fi' => 'propellukset', 'en' => 'propellukset'],
+		],
+		[
+			'id' => 4,
+			'dice' => 4,
+			'mainBox' => ['fi' => 'PS6', 'en' => 'PS6'],
+			'faction' => ['fi' => 'styrintit', 'en' => 'styrintit'],
+		],
+		[
+			'id' => 5,
+			'dice' => 5,
+			'mainBox' => ['fi' => 'Other 7', 'en' => 'Other 7'],
+			'faction' => ['fi' => 'zekazotkuzet', 'en' => 'zekazotkuzet'],
+		],
+	],
+	'mutations' => [
+		'hypervintti' => [
+			'slug' => 'hypervintti',
+			'name' => ['fi' => 'Hypervintti', 'en' => 'Hypervintti'],
+			'activeBox' => ['fi' => 'Hypervintti', 'en' => 'Hypervintti'],
+			'description' => [
+				'fi' => 'Tästä eteenpäin käytätte erillistä Hypervintti-laatikkoa, jossa on 7 / Other -merkityt muovit.',
+				'en' => 'From now on, use the separate Hypervintti box with plastics marked 7 / Other.',
+			],
+		],
+		'mysteerio' => [
+			'slug' => 'mysteerio',
+			'name' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
+			'activeBox' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
+			'description' => [
+				'fi' => 'Tästä eteenpäin valitsette vain Mysteeriö-laatikon merkitsemättömiä muoveja.',
+				'en' => 'From now on, choose only unmarked plastics from the Mysteeriö box.',
+			],
+		],
+	],
+	'parts' => [
+		[
+			'id' => 'sensory-cells',
+			'name' => ['fi' => 'tuntosolut', 'en' => 'sensory cells'],
+			'unlockText' => [
+				'fi' => 'Otuksesi alkaa aistia ympäristöään. Voitte valita myöhemmin 1–3 tuntosolua.',
+				'en' => 'Your creature begins to sense its surroundings. You may later choose 1–3 sensory cells.',
+			],
+		],
+		[
+			'id' => 'sensory-hairs',
+			'name' => ['fi' => 'tuntokarvat', 'en' => 'sensory hairs'],
+			'unlockText' => [
+				'fi' => 'Ympäristön aistiminen tarkentuu. Voitte valita tuntokarvat.',
+				'en' => 'Environmental sensing becomes more precise. You may choose sensory hairs later.',
+			],
+		],
+		[
+			'id' => 'sensory-scales',
+			'name' => ['fi' => 'tuntosuomut', 'en' => 'sensory scales'],
+			'unlockText' => [
+				'fi' => 'Kosketusaisti kehittyy. Voitte valita kolme tuntosuomua.',
+				'en' => 'The sense of touch develops. You may later choose three sensory scales.',
+			],
+		],
+		[
+			'id' => 'head',
+			'name' => ['fi' => 'pää', 'en' => 'head'],
+			'unlockText' => [
+				'fi' => 'Otukselle muodostuu pää. Voitte valita pään myöhemmin.',
+				'en' => 'A head begins to form. You may choose a head later.',
+			],
+		],
+		[
+			'id' => 'mouth',
+			'name' => ['fi' => 'suu', 'en' => 'mouth'],
+			'unlockText' => [
+				'fi' => 'Otus alkaa syödä. Voitte valita suun myöhemmin.',
+				'en' => 'Your creature begins to eat. You may choose a mouth later.',
+			],
+		],
+		[
+			'id' => 'fin',
+			'name' => ['fi' => 'evä', 'en' => 'fin'],
+			'unlockText' => [
+				'fi' => 'Liikkumiskyky kehittyy. Voitte valita evän myöhemmin.',
+				'en' => 'Mobility develops. You may choose a fin later.',
+			],
+		],
+		[
+			'id' => 'tail',
+			'name' => ['fi' => 'häntä', 'en' => 'tail'],
+			'unlockText' => [
+				'fi' => 'Liikkuminen tehostuu. Voitte valita hännän myöhemmin.',
+				'en' => 'Movement becomes more efficient. You may choose a tail later.',
+			],
+		],
+		[
+			'id' => 'grasping-appendage',
+			'name' => ['fi' => 'tarttumisuloke', 'en' => 'grasping appendage'],
+			'unlockText' => [
+				'fi' => 'Tarttumiskyky kehittyy. Voitte valita tarttumisulokkeen myöhemmin.',
+				'en' => 'Grasping ability develops. You may choose a grasping appendage later.',
+			],
+		],
+		[
+			'id' => 'eyes',
+			'name' => ['fi' => 'silmät', 'en' => 'eyes'],
+			'unlockText' => [
+				'fi' => 'Näköaisti kehittyy. Voitte valita silmät myöhemmin.',
+				'en' => 'Vision develops. You may choose eyes later.',
+			],
+		],
+		[
+			'id' => 'ears',
+			'name' => ['fi' => 'korvat', 'en' => 'ears'],
+			'unlockText' => [
+				'fi' => 'Kuuloaisti kehittyy. Voitte valita korvat myöhemmin.',
+				'en' => 'Hearing develops. You may choose ears later.',
+			],
+		],
+		[
+			'id' => 'brain',
+			'name' => ['fi' => 'aivot', 'en' => 'brain'],
+			'unlockText' => [
+				'fi' => 'Otus alkaa ohjata toimintaansa. Voitte valita aivot myöhemmin.',
+				'en' => 'Your creature begins to control its actions. You may choose a brain later.',
+			],
+		],
+		[
+			'id' => 'limbs',
+			'name' => ['fi' => 'raajat', 'en' => 'limbs'],
+			'unlockText' => [
+				'fi' => 'Otus alkaa liikkua myös maalla. Voitte valita kaksi raajaa myöhemmin.',
+				'en' => 'Your creature begins to move on land. You may choose two limbs later.',
+			],
+		],
+		[
+			'id' => 'wings',
+			'name' => ['fi' => 'siivet', 'en' => 'wings'],
+			'unlockText' => [
+				'fi' => 'Otus pystyy liikkumaan ilmassa. Voitte valita siivet myöhemmin.',
+				'en' => 'Your creature can move in the air. You may choose wings later.',
+			],
+		],
+	],
+	'tiles' => [
+		['number' => 1, 'type' => 'story'],
+		['number' => 2, 'type' => 'question', 'setId' => 1],
+		['number' => 3, 'type' => 'story'],
+		['number' => 4, 'type' => 'question', 'setId' => 2],
+		['number' => 5, 'type' => 'question', 'setId' => 3],
+		['number' => 6, 'type' => 'story'],
+		['number' => 7, 'type' => 'question', 'setId' => 4],
+		['number' => 8, 'type' => 'question', 'setId' => 5],
+		['number' => 9, 'type' => 'story'],
+		['number' => 10, 'type' => 'question', 'setId' => 6],
+		['number' => 11, 'type' => 'question', 'setId' => 7],
+		['number' => 12, 'type' => 'story'],
+		['number' => 13, 'type' => 'question', 'setId' => 8],
+		['number' => 14, 'type' => 'mutation', 'mutation' => 'hypervintti'],
+		['number' => 15, 'type' => 'story'],
+		['number' => 16, 'type' => 'question', 'setId' => 9],
+		['number' => 17, 'type' => 'mutation', 'mutation' => 'mysteerio'],
+		['number' => 18, 'type' => 'story'],
+		['number' => 19, 'type' => 'question', 'setId' => 10],
+		['number' => 20, 'type' => 'story'],
+		['number' => 21, 'type' => 'question', 'setId' => 11],
+		['number' => 22, 'type' => 'story'],
+		['number' => 23, 'type' => 'story'],
+		['number' => 24, 'type' => 'question', 'setId' => 12],
+		['number' => 25, 'type' => 'question', 'setId' => 13],
+		['number' => 26, 'type' => 'story'],
+		['number' => 27, 'type' => 'story'],
+		['number' => 28, 'type' => 'finish'],
+	],
+	'questions' => [
+		'1' => [
+			'setId' => 1,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-1-easy-bottle-fragments',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tapahtuu muovipullolle, jos sen viskaa metsään?',
+							'en' => 'What happens to a plastic bottle if you throw it into the forest?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Se tulee surulliseksi', 'en' => 'It becomes sad']],
+							['id' => 'b', 'text' => ['fi' => 'Metsän eläimet tekevät siitä kaukoputken', 'en' => 'Forest animals turn it into a telescope']],
+							['id' => 'c', 'text' => ['fi' => 'Se hajoaa itsestään muutamassa päivässä', 'en' => 'It breaks down by itself in a few days']],
+							['id' => 'd', 'text' => ['fi' => 'Se pilkkoutuu hiljalleen yhä pienemmiksi palasiksi', 'en' => 'It slowly breaks into smaller and smaller pieces']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Se pilkkoutuu hiljalleen yhä pienemmiksi palasiksi.', 'en' => 'It slowly breaks into smaller and smaller pieces.'],
+						'tip' => [
+							'fi' => 'Kuvittele, että muovilelusi jää ulos vuosiksi. Mitä sille tapahtuu?',
+							'en' => 'Imagine that a plastic toy stays outside for years. What happens to it?',
+						],
+						'explanation' => [
+							'fi' => 'Muovi ei katoa luonnosta, vaan pilkkoutuu ajan myötä auringon, kulumisen ja ympäristön vaikutuksesta yhä pienemmiksi hiukkasiksi.',
+							'en' => 'Plastic does not disappear from nature. Over time, sunlight, wear, and the environment break it into smaller and smaller particles.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-1-hard-decomposition-time',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Kuinka kauan aikaa muovipullon hajoaminen luonnossa kestää?',
+							'en' => 'How long does it take for a plastic bottle to break down in nature?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Kaksi kuukautta', 'en' => 'Two months']],
+							['id' => 'b', 'text' => ['fi' => 'Muovipullo ei hajoa kokonaan, vaan pilkkoutuu yhä pienemmiksi hiukkasiksi', 'en' => 'A plastic bottle never fully disappears. It keeps fragmenting into smaller and smaller particles']],
+							['id' => 'c', 'text' => ['fi' => '450 vuotta', 'en' => '450 years']],
+							['id' => 'd', 'text' => ['fi' => '10 vuotta', 'en' => '10 years']],
+						],
+						'correctOptionId' => 'b',
+						'answerSummary' => ['fi' => 'Muovipullo ei hajoa kokonaan, vaan pilkkoutuu yhä pienemmiksi hiukkasiksi.', 'en' => 'A plastic bottle never fully disappears. It keeps fragmenting into smaller and smaller particles.'],
+						'tip' => [
+							'fi' => 'Mieti aineen säilymistä: jos pilkot jotakin aina pienemmäksi, lakkaako aine olemasta?',
+							'en' => 'Think about conservation of matter: if you keep breaking something into smaller pieces, does the material stop existing?',
+						],
+						'explanation' => [
+							'fi' => 'Muovipulloa kuvataan usein luvulla 450 vuotta, mutta se tarkoittaa vain aikaa, jossa pullo murenee tunnistamattomaksi. Muovimateriaali ei katoa, vaan jatkaa ympäristössä mikromuovina.',
+							'en' => 'People often mention 450 years, but that only describes how long it takes for a bottle to crumble into unrecognizable fragments. The plastic itself does not disappear and continues in the environment as microplastic.',
+						],
+					],
+				],
+			],
+		],
+		'2' => [
+			'setId' => 2,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-2-easy-microplastic',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tarkoittaa mikromuovi?',
+							'en' => 'What does microplastic mean?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Mikroaaltouunissa valmistettua muovia', 'en' => 'Plastic made in a microwave oven']],
+							['id' => 'b', 'text' => ['fi' => 'Muovia, josta tehdään pieniä muoviesineitä', 'en' => 'Plastic used to make tiny plastic objects']],
+							['id' => 'c', 'text' => ['fi' => 'Muovia, jota käytetään mikroskooppien valmistukseen', 'en' => 'Plastic used for making microscopes']],
+							['id' => 'd', 'text' => ['fi' => 'Pienenpieniä muovihiukkasia', 'en' => 'Very tiny plastic particles']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Pienenpieniä muovihiukkasia.', 'en' => 'Very tiny plastic particles.'],
+						'tip' => [
+							'fi' => 'Mikromuovin näkemiseen tarvitaan usein mikroskooppi.',
+							'en' => 'You often need a microscope to see microplastics.',
+						],
+						'explanation' => [
+							'fi' => 'Mikromuovi tarkoittaa hyvin pieniä muovin palasia, joita syntyy esimerkiksi silloin, kun suuremmat muoviesineet kuluvat ja hajoavat ympäristössä.',
+							'en' => 'Microplastic means very small pieces of plastic. They can form when larger plastic objects wear down and break apart in the environment.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-2-hard-microplastic-size',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tarkoittaa mikromuovi?',
+							'en' => 'What does microplastic mean?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Mikroaaltouunissa valmistettua muovia', 'en' => 'Plastic made in a microwave oven']],
+							['id' => 'b', 'text' => ['fi' => 'Muovia, josta tehdään pieniä muoviesineitä', 'en' => 'Plastic used to make tiny plastic objects']],
+							['id' => 'c', 'text' => ['fi' => 'Muovia, jota käytetään mikroskooppien valmistukseen', 'en' => 'Plastic used for making microscopes']],
+							['id' => 'd', 'text' => ['fi' => 'Alle 5 millimetrin kokoisia muovihiukkasia', 'en' => 'Plastic particles smaller than 5 millimetres']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Alle 5 millimetrin kokoisia muovihiukkasia.', 'en' => 'Plastic particles smaller than 5 millimetres.'],
+						'tip' => [
+							'fi' => 'Mikromuovin näkemiseen tarvitaan usein mikroskooppi.',
+							'en' => 'You often need a microscope to see microplastics.',
+						],
+						'explanation' => [
+							'fi' => 'Tieteessä mikromuovilla tarkoitetaan yleensä alle 5 millimetrin kokoisia muovihiukkasia. Niitä löytyy nykyään lähes kaikkialta ympäristöstä.',
+							'en' => 'In science, microplastic usually means plastic particles smaller than 5 millimetres. Today they can be found almost everywhere in the environment.',
+						],
+					],
+				],
+			],
+		],
+		'3' => [
+			'setId' => 3,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-3-easy-garbage-patch',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mikä näistä on maailman suurin ja tunnetuin alue, jonne merivirrat ovat kuljettaneet valtavasti muoviroskaa?',
+							'en' => 'Which of these is the largest and best-known area where ocean currents have gathered huge amounts of plastic waste?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Pyörremeren roska-allas', 'en' => 'The Swirling Sea trash basin']],
+							['id' => 'b', 'text' => ['fi' => 'Leudonmeren muovilinko', 'en' => 'The Mild Sea plastic sling']],
+							['id' => 'c', 'text' => ['fi' => 'Tyynenmeren jätepyörre', 'en' => 'The Great Pacific Garbage Patch']],
+							['id' => 'd', 'text' => ['fi' => 'Myrskymeren roskakierre', 'en' => 'The Storm Sea rubbish spiral']],
+						],
+						'correctOptionId' => 'c',
+						'answerSummary' => ['fi' => 'Tyynenmeren jätepyörre.', 'en' => 'The Great Pacific Garbage Patch.'],
+						'tip' => [
+							'fi' => 'Mikä on myrskyisen vastakohta?',
+							'en' => 'What is the opposite of stormy?',
+						],
+						'explanation' => [
+							'fi' => 'Valtamerissä kulkee suuria pyöriviä virtauksia, jotka keräävät muoviroskaa yhteen. Tunnetuin tällainen kertymä on Tyynenmeren jätepyörre.',
+							'en' => 'Huge rotating currents move through the oceans and gather plastic waste together. The best-known accumulation area is the Great Pacific Garbage Patch.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-3-hard-garbage-patch-name',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mikä on nimeltään maailman suurin tunnettu muoviroskien kertymäalue merissä?',
+							'en' => 'What is the name of the world’s largest known accumulation of marine plastic waste?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Mustanmeren roska-allas', 'en' => 'The Black Sea trash basin']],
+							['id' => 'b', 'text' => ['fi' => 'Pohjanmeren muovilinko', 'en' => 'The North Sea plastic sling']],
+							['id' => 'c', 'text' => ['fi' => 'Tyynenmeren jätepyörre', 'en' => 'The Great Pacific Garbage Patch']],
+							['id' => 'd', 'text' => ['fi' => 'Itämeren roskatasanko', 'en' => 'The Baltic rubbish plain']],
+						],
+						'correctOptionId' => 'c',
+						'answerSummary' => ['fi' => 'Tyynenmeren jätepyörre.', 'en' => 'The Great Pacific Garbage Patch.'],
+						'tip' => [
+							'fi' => 'Tieteessä tällaisesta paikasta käytetään sanaa gyre.',
+							'en' => 'In science, a place like this is called a gyre.',
+						],
+						'explanation' => [
+							'fi' => 'Kun merivirrat kiertävät suurissa ympyröissä, ne voivat kerätä muoviroskaa samaan paikkaan. Tunnetuin tällainen alue on Tyynenmeren jätepyörre.',
+							'en' => 'When ocean currents circulate in large loops, they can trap plastic waste in the same area. The best-known example is the Great Pacific Garbage Patch.',
+						],
+					],
+				],
+			],
+		],
+		'4' => [
+			'setId' => 4,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-4-easy-ideonella',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Kuvakysymys: mikä otus syö PET-muovia?',
+							'en' => 'Image question: which organism can eat PET plastic?',
+						],
+						'note' => [
+							'fi' => 'Kirjoita lajin nimi. Nykyinen sisältösheet merkitsee tämän kuvakysymykseksi.',
+							'en' => 'Write the species name. The current content sheet marks this as an image question.',
+						],
+						'acceptedAnswers' => ['ideonella sakaiensis', 'i sakaiensis'],
+						'answerSummary' => ['fi' => 'Ideonella sakaiensis.', 'en' => 'Ideonella sakaiensis.'],
+						'tip' => [
+							'fi' => 'Kyseessä on bakteeri, joka löydettiin Japanista.',
+							'en' => 'It is a bacterium discovered in Japan.',
+						],
+						'explanation' => [
+							'fi' => 'Vuonna 2016 tutkijat löysivät Japanista bakteerin nimeltä Ideonella sakaiensis. Se pystyy hajottamaan PET-muovia ja käyttämään sitä ravinnokseen.',
+							'en' => 'In 2016, researchers in Japan found a bacterium called Ideonella sakaiensis. It can break down PET plastic and use it as food.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-4-hard-ideonella',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Kuvakysymys: mikä otus syö PET-muovia?',
+							'en' => 'Image question: which organism can eat PET plastic?',
+						],
+						'note' => [
+							'fi' => 'Kirjoita lajin nimi. Nykyinen sisältösheet merkitsee tämän kuvakysymykseksi.',
+							'en' => 'Write the species name. The current content sheet marks this as an image question.',
+						],
+						'acceptedAnswers' => ['ideonella sakaiensis', 'i sakaiensis'],
+						'answerSummary' => ['fi' => 'Ideonella sakaiensis.', 'en' => 'Ideonella sakaiensis.'],
+						'tip' => [
+							'fi' => 'Kyseessä on bakteeri, joka löydettiin Japanista.',
+							'en' => 'It is a bacterium discovered in Japan.',
+						],
+						'explanation' => [
+							'fi' => 'Pitkään ajateltiin, ettei mikään eliö voisi käyttää muovia ravintonaan. Ideonella sakaiensis osoitti, että evoluutio voi tuottaa myös tällaisia yllätyksiä.',
+							'en' => 'For a long time, scientists thought no living thing could use plastic as food. Ideonella sakaiensis showed that evolution can still produce surprising adaptations.',
+						],
+					],
+				],
+			],
+		],
+		'5' => [
+			'setId' => 5,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-5-easy-evolution',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tarkoittaa evoluutio?',
+							'en' => 'What does evolution mean?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Elävät olennot muuttuvat pikkuhiljaa ajan myötä', 'en' => 'Living things change gradually over time']],
+							['id' => 'b', 'text' => ['fi' => 'Muovin kykyä käyttää kasveja ravinnokseen', 'en' => 'Plastic learning to use plants as food']],
+							['id' => 'c', 'text' => ['fi' => 'Kun katkennut luu parantuu itsestään', 'en' => 'When a broken bone heals by itself']],
+							['id' => 'd', 'text' => ['fi' => 'Muovien kykyä lisääntyä ihmisten tavoin', 'en' => 'Plastic being able to reproduce like humans']],
+						],
+						'correctOptionId' => 'a',
+						'answerSummary' => ['fi' => 'Elävät olennot muuttuvat pikkuhiljaa ajan myötä.', 'en' => 'Living things change gradually over time.'],
+						'tip' => [
+							'fi' => 'Ajattele hyvin pitkiä aikajaksoja ja monta sukupolvea.',
+							'en' => 'Think about very long time periods and many generations.',
+						],
+						'explanation' => [
+							'fi' => 'Evoluutio tarkoittaa sitä, että elävät olennot muuttuvat sukupolvien aikana. Muutokset voivat auttaa niitä selviytymään paremmin ympäristössään.',
+							'en' => 'Evolution means that living things change across generations. Those changes can help them survive better in their environment.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-5-hard-evolution-plastic',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Miten evoluutio ja muovit liittyvät toisiinsa?',
+							'en' => 'How are evolution and plastics connected?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Evoluution myötä jotkut bakteerit ovat oppineet käyttämään muovia ravinnokseen', 'en' => 'Through evolution, some bacteria have learned to use plastic as food']],
+							['id' => 'b', 'text' => ['fi' => 'Evoluutio tarkoittaa muovin kykyä käyttää kasveja ravinnokseen', 'en' => 'Evolution means that plastic can use plants as food']],
+							['id' => 'c', 'text' => ['fi' => 'Muovi on elollinen materiaali, joka kehittyy itsestään luonnossa', 'en' => 'Plastic is a living material that develops by itself in nature']],
+							['id' => 'd', 'text' => ['fi' => 'Muovit voivat lisääntyä ja levitä ympäristöön samalla tavalla kuin eläinlajit', 'en' => 'Plastics can reproduce and spread like animal species']],
+						],
+						'correctOptionId' => 'a',
+						'answerSummary' => ['fi' => 'Jotkut bakteerit ovat oppineet evoluution myötä käyttämään muovia ravinnokseen.', 'en' => 'Some bacteria have evolved to use plastic as food.'],
+						'tip' => [
+							'fi' => 'Muovi ei itse ole elävää, mutta eliöt voivat muuttua.',
+							'en' => 'Plastic itself is not alive, but living things can change.',
+						],
+						'explanation' => [
+							'fi' => 'Muovi ei kehity itsestään, mutta jotkut bakteerit ovat evoluution kautta oppineet hajottamaan muovia ja saamaan siitä energiaa.',
+							'en' => 'Plastic does not evolve by itself, but some bacteria have evolved ways to break plastic down and get energy from it.',
+						],
+					],
+				],
+			],
+		],
+		'6' => [
+			'setId' => 6,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-6-easy-ivory',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Mitä arvokasta materiaalia biljardipalloihin käytettiin ennen muovin keksimistä?',
+							'en' => 'What valuable material was used for billiard balls before plastic was invented?',
+						],
+						'acceptedAnswers' => ['norsunluuta', 'norsun luuta', 'ivory'],
+						'answerSummary' => ['fi' => 'Norsunluuta.', 'en' => 'Ivory.'],
+						'tip' => [
+							'fi' => 'Materiaali saatiin norsujen syöksyhampaista.',
+							'en' => 'This material came from elephant tusks.',
+						],
+						'explanation' => [
+							'fi' => 'Ennen muovia biljardipalloja tehtiin norsunluusta. Selluloidia kehitettiin osittain siksi, että se voisi korvata tämän kalliin ja eläimille haitallisen materiaalin.',
+							'en' => 'Before plastic, billiard balls were made from ivory. Celluloid was developed partly to replace this expensive material that was harmful to elephants.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-6-hard-celluloid-ivory',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => '1860-luvulla kehitetty selluloidi oli yksi ensimmäisistä muovimateriaaleista. Mitä arvokasta materiaalia sillä pyrittiin korvaamaan?',
+							'en' => 'Celluloid, developed in the 1860s, was one of the first plastics. What valuable material was it meant to replace?',
+						],
+						'acceptedAnswers' => ['norsunluuta', 'norsun luuta', 'ivory'],
+						'answerSummary' => ['fi' => 'Norsunluuta.', 'en' => 'Ivory.'],
+						'tip' => [
+							'fi' => 'Materiaali liittyy norsun syöksyhampaisiin.',
+							'en' => 'The material comes from elephant tusks.',
+						],
+						'explanation' => [
+							'fi' => 'Monet kalliit koriste-esineet tehtiin ennen norsunluusta. Selluloidi tarjosi teolliselle maailmalle tavan tehdä samanlaisia tuotteita ilman tätä luonnonmateriaalia.',
+							'en' => 'Many expensive decorative objects used to be made from ivory. Celluloid gave industrial society a way to make similar products without relying on that natural material.',
+						],
+					],
+				],
+			],
+		],
+		'7' => [
+			'setId' => 7,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-7-easy-not-material',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mikä näistä ei ole materiaali?',
+							'en' => 'Which of these is not a material?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Muovi', 'en' => 'Plastic']],
+							['id' => 'b', 'text' => ['fi' => 'Puu', 'en' => 'Wood']],
+							['id' => 'c', 'text' => ['fi' => 'Metalli', 'en' => 'Metal']],
+							['id' => 'd', 'text' => ['fi' => 'Kuu', 'en' => 'The Moon']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Kuu.', 'en' => 'The Moon.'],
+						'tip' => [
+							'fi' => 'Materiaali on sitä tavaraa, josta esineet tehdään.',
+							'en' => 'A material is the stuff objects are made from.',
+						],
+						'explanation' => [
+							'fi' => 'Materiaali on ainetta, josta jokin esine voidaan valmistaa. Muovi, puu ja metalli ovat materiaaleja, mutta Kuu ei ole materiaalin nimi.',
+							'en' => 'A material is a substance from which an object can be made. Plastic, wood, and metal are materials, but the Moon is not the name of a material.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-7-hard-synthetic-material',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tarkoittaa synteettinen materiaali?',
+							'en' => 'What does synthetic material mean?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Muovia, jota valmistetaan käytettyjen syntetisaattoreiden kuorista', 'en' => 'Plastic made from the shells of used synthesizers']],
+							['id' => 'b', 'text' => ['fi' => 'Ihmisen keinotekoisesti valmistamaa materiaalia', 'en' => 'A material made artificially by humans']],
+							['id' => 'c', 'text' => ['fi' => 'Materiaalia, joka syntyy syntetisaattorin soidessa taustalla', 'en' => 'Material created while a synthesizer plays in the background']],
+							['id' => 'd', 'text' => ['fi' => 'Ainetta, joka on päätynyt Maahan meteoriitin mukana', 'en' => 'A substance that reached Earth on a meteorite']],
+						],
+						'correctOptionId' => 'b',
+						'answerSummary' => ['fi' => 'Ihmisen keinotekoisesti valmistamaa materiaalia.', 'en' => 'A material made artificially by humans.'],
+						'tip' => [
+							'fi' => 'Ajattele vastakohtaa luonnonmateriaalille.',
+							'en' => 'Think about the opposite of a natural material.',
+						],
+						'explanation' => [
+							'fi' => 'Synteettinen tarkoittaa ihmisen tekemää eli keinotekoista. Muovi on tunnetuin synteettinen materiaali.',
+							'en' => 'Synthetic means human-made or artificial. Plastic is one of the best-known synthetic materials.',
+						],
+					],
+					[
+						'id' => 'set-7-hard-raw-material',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mikä seuraavista on raaka-aine?',
+							'en' => 'Which of the following is a raw material?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Paine', 'en' => 'Pressure']],
+							['id' => 'b', 'text' => ['fi' => 'Öljy', 'en' => 'Oil']],
+							['id' => 'c', 'text' => ['fi' => 'Lämpö', 'en' => 'Heat']],
+							['id' => 'd', 'text' => ['fi' => 'Aika', 'en' => 'Time']],
+						],
+						'correctOptionId' => 'b',
+						'answerSummary' => ['fi' => 'Öljy.', 'en' => 'Oil.'],
+						'tip' => [
+							'fi' => 'Raaka-aine on luonnosta saatavaa ainetta, josta valmistetaan jotain muuta.',
+							'en' => 'A raw material is a substance from nature that is turned into something else.',
+						],
+						'explanation' => [
+							'fi' => 'Öljy on raaka-aine, josta voidaan valmistaa muovia. Paine, lämpö ja aika voivat vaikuttaa luonnossa, mutta ne eivät itse ole raaka-aineita.',
+							'en' => 'Oil is a raw material from which plastic can be made. Pressure, heat, and time can matter in nature, but they are not raw materials themselves.',
+						],
+					],
+				],
+			],
+		],
+		'8' => [
+			'setId' => 8,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-8-easy-sea-harm',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Mitä tapahtuu, jos muoviroskia päätyy mereen?',
+							'en' => 'What happens if plastic litter ends up in the sea?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Kalat käyttävät muovipusseja makuupusseina', 'en' => 'Fish use plastic bags as sleeping bags']],
+							['id' => 'b', 'text' => ['fi' => 'Merenneidot vievät ne kierrätykseen', 'en' => 'Mermaids collect them for recycling']],
+							['id' => 'c', 'text' => ['fi' => 'Muoviroskat sulavat suolaisessa vedessä', 'en' => 'Plastic litter melts in salty seawater']],
+							['id' => 'd', 'text' => ['fi' => 'Merenelävät voivat vahingoittua', 'en' => 'Marine animals can be harmed']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Merenelävät voivat vahingoittua.', 'en' => 'Marine animals can be harmed.'],
+						'tip' => [
+							'fi' => 'Muovi ei katoa mereen, vaan jää sinne pitkäksi aikaa.',
+							'en' => 'Plastic does not disappear in the sea. It stays there for a long time.',
+						],
+						'explanation' => [
+							'fi' => 'Muoviroska ei sula meressä pois, vaan hajoaa pienemmiksi paloiksi. Eläimet voivat syödä sitä vahingossa tai jäädä siihen kiinni.',
+							'en' => 'Plastic litter does not dissolve away in the ocean. It breaks into smaller pieces, and animals can eat it by mistake or become entangled in it.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-8-hard-evolution-impact',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Miten muoviroska vaikuttaa merenelävien evoluutioon?',
+							'en' => 'How does plastic litter affect the evolution of marine life?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Kun muovi peittää meren pinnan, kalat muuttuvat vaaleammiksi', 'en' => 'When plastic covers the sea surface, fish become paler']],
+							['id' => 'b', 'text' => ['fi' => 'Muovijäte on niin ravintorikasta, että eläimet kasvavat suuremmiksi', 'en' => 'Plastic waste is so nutritious that sea animals grow bigger']],
+							['id' => 'c', 'text' => ['fi' => 'Muoviroska ei vaikuta evoluutioon', 'en' => 'Plastic litter does not affect evolution']],
+							['id' => 'd', 'text' => ['fi' => 'Jotkut lajit voivat sopeutua saastuneeseen ympäristöön, kun taas toiset kärsivät tai häviävät', 'en' => 'Some species may adapt to polluted conditions while others suffer or disappear']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Jotkut lajit voivat sopeutua, kun taas toiset kärsivät tai häviävät.', 'en' => 'Some species may adapt while others suffer or disappear.'],
+						'tip' => [
+							'fi' => 'Ympäristön muutos voi suosia osaa lajeista ja vahingoittaa toisia.',
+							'en' => 'Environmental change can benefit some species and harm others.',
+						],
+						'explanation' => [
+							'fi' => 'Evoluutio liittyy siihen, miten lajit sopeutuvat ympäristöönsä ajan kuluessa. Muoviroska muuttaa meriympäristöä niin nopeasti, että osa lajeista pärjää paremmin ja osa huonommin.',
+							'en' => 'Evolution is about how species adapt to their environment over time. Plastic pollution changes marine environments so quickly that some species may cope better while others do worse.',
+						],
+					],
+				],
+			],
+		],
+		'9' => [
+			'setId' => 9,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-9-easy-light-packaging',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Millä tavoin muovi voi säästää luontoa?',
+							'en' => 'How can plastic sometimes help save nature?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Pienet kalat käyttävät muovipulloja turvapaikkoina', 'en' => 'Small fish use plastic bottles as shelters']],
+							['id' => 'b', 'text' => ['fi' => 'Eläimet rakentavat meressä kelluvista muoveista lauttoja', 'en' => 'Animals build rafts out of floating plastic']],
+							['id' => 'c', 'text' => ['fi' => 'Muovipakkaukset ovat kevyitä, joten kuljetus vie vähemmän polttoainetta', 'en' => 'Plastic packaging is light, so transport needs less fuel']],
+							['id' => 'd', 'text' => ['fi' => 'Muovin polttaminen puhdistaa ilmaa', 'en' => 'Burning plastic cleans the air']],
+						],
+						'correctOptionId' => 'c',
+						'answerSummary' => ['fi' => 'Muovipakkaukset ovat kevyitä, joten kuljetus vie vähemmän polttoainetta.', 'en' => 'Plastic packaging is light, so transport needs less fuel.'],
+						'tip' => [
+							'fi' => 'Ajattele, mikä vaihtoehto vähentää kuljetusten energiankulutusta.',
+							'en' => 'Think about which option reduces the energy used for transport.',
+						],
+						'explanation' => [
+							'fi' => 'Kevyt pakkaus voi pienentää kuljetusten polttoaineenkulutusta ja päästöjä. Siksi muovilla voi joskus olla myös hyödyllinen puoli.',
+							'en' => 'Light packaging can reduce fuel use and emissions in transport. That is one reason plastic can sometimes have a useful side as well.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-9-hard-light-packaging',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Millä tavoin muovi voi säästää luontoa?',
+							'en' => 'How can plastic sometimes help save nature?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Muovipullot tarjoavat eläimille koteja', 'en' => 'Plastic bottles provide homes for animals']],
+							['id' => 'b', 'text' => ['fi' => 'Muovin heittäminen mereen lisää monimuotoisuutta', 'en' => 'Throwing plastic into the sea increases biodiversity']],
+							['id' => 'c', 'text' => ['fi' => 'Muovi on kevyt pakkausmateriaali, mikä vähentää kuljetusten energiankulutusta', 'en' => 'Plastic is a light packaging material, which can reduce transport energy use']],
+							['id' => 'd', 'text' => ['fi' => 'Muovin polttaminen parantaa ilmanlaatua', 'en' => 'Burning plastic improves air quality']],
+						],
+						'correctOptionId' => 'c',
+						'answerSummary' => ['fi' => 'Muovi on kevyt pakkausmateriaali, mikä vähentää kuljetusten energiankulutusta.', 'en' => 'Plastic is a light packaging material, which can reduce transport energy use.'],
+						'tip' => [
+							'fi' => 'Ajattele, mikä vaihtoehto vähentää kuljetusten energiankulutusta.',
+							'en' => 'Think about which option reduces the energy used for transport.',
+						],
+						'explanation' => [
+							'fi' => 'Kun pakkaus on kevyt, tavaroiden kuljetukseen tarvitaan usein vähemmän energiaa. Se ei poista muovin haittoja, mutta selittää, miksi muovia käytetään joissakin tilanteissa.',
+							'en' => 'When packaging is light, moving goods often needs less energy. That does not erase plastic’s problems, but it explains why plastic is used in some situations.',
+						],
+					],
+				],
+			],
+		],
+		'10' => [
+			'setId' => 10,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-10-easy-film',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Minkä taiteenmuodon läpimurron muovi mahdollisti?',
+							'en' => 'Which art form did plastic help make possible on a breakthrough scale?',
+						],
+						'acceptedAnswers' => ['elokuvan', 'elokuva', 'film', 'cinema', 'movies'],
+						'answerSummary' => ['fi' => 'Elokuvan.', 'en' => 'Film.'],
+						'tip' => [
+							'fi' => 'Ajattele liikkuvaa kuvaa.',
+							'en' => 'Think about moving images.',
+						],
+						'explanation' => [
+							'fi' => 'Ensimmäiset elokuvat tallennettiin selluloidille, joka on eräänlaista muovia. Siksi muovilla oli tärkeä rooli elokuvan historiassa.',
+							'en' => 'The first films were recorded on celluloid, which is a kind of plastic. That gave plastic an important role in the history of film.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-10-hard-celluloid-film',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Minkä taiteenmuodon läpimurron mahdollisti selluloidimuovi?',
+							'en' => 'Which art form had its breakthrough enabled by celluloid plastic?',
+						],
+						'acceptedAnswers' => ['elokuvan', 'elokuva', 'film', 'cinema', 'movies'],
+						'answerSummary' => ['fi' => 'Elokuvan.', 'en' => 'Film.'],
+						'tip' => [
+							'fi' => 'Ajattele varhaista kuvallista viihdettä.',
+							'en' => 'Think about early visual entertainment.',
+						],
+						'explanation' => [
+							'fi' => 'Selluloidi oli taipuisaa ja läpinäkyvää materiaalia, jolle voitiin tallentaa kuvia. Siksi se mahdollisti varhaisen elokuvatekniikan kehityksen.',
+							'en' => 'Celluloid was a flexible, transparent material that could hold images. That made early film technology possible.',
+						],
+					],
+				],
+			],
+		],
+		'11' => [
+			'setId' => 11,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-11-easy-not-used',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Missä muovia ei käytetä?',
+							'en' => 'Where is plastic not used?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Vaatteissa', 'en' => 'In clothes']],
+							['id' => 'b', 'text' => ['fi' => 'Sitkeissä hedelmäkarkeissa', 'en' => 'In chewy fruit candy']],
+							['id' => 'c', 'text' => ['fi' => 'Kuumemittarissa', 'en' => 'In a thermometer']],
+							['id' => 'd', 'text' => ['fi' => 'Purukumissa', 'en' => 'In chewing gum']],
+							['id' => 'e', 'text' => ['fi' => 'Vesiputkissa', 'en' => 'In water pipes']],
+						],
+						'correctOptionId' => 'b',
+						'answerSummary' => ['fi' => 'Sitkeissä hedelmäkarkeissa.', 'en' => 'In chewy fruit candy.'],
+						'tip' => [
+							'fi' => 'Mieti, mikä vaihtoehdoista on tarkoitettu kokonaan syötäväksi.',
+							'en' => 'Think about which option is meant to be completely eaten.',
+						],
+						'explanation' => [
+							'fi' => 'Muovia käytetään monissa arkisissa tuotteissa, mutta sitä ei käytetä sitkeissä hedelmäkarkeissa, vaikka niiden rakenne voi tuntua muoviselta.',
+							'en' => 'Plastic is used in many everyday products, but not in chewy fruit candy, even if the texture may feel a bit plastic-like.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-11-hard-not-used',
+						'type' => 'multiple_choice',
+						'prompt' => [
+							'fi' => 'Missä muovia ei käytetä?',
+							'en' => 'Where is plastic not used?',
+						],
+						'options' => [
+							['id' => 'a', 'text' => ['fi' => 'Vaatteissa', 'en' => 'In clothes']],
+							['id' => 'b', 'text' => ['fi' => 'Purukumissa', 'en' => 'In chewing gum']],
+							['id' => 'c', 'text' => ['fi' => 'Sairaaloiden laitteissa', 'en' => 'In hospital devices']],
+							['id' => 'd', 'text' => ['fi' => 'Parantavana lääkkeenä', 'en' => 'As a healing medicine']],
+							['id' => 'e', 'text' => ['fi' => 'Sydänimplanteissa ja tekonivelissä', 'en' => 'In heart implants and artificial joints']],
+							['id' => 'f', 'text' => ['fi' => 'Vesiputkissa', 'en' => 'In water pipes']],
+						],
+						'correctOptionId' => 'd',
+						'answerSummary' => ['fi' => 'Parantavana lääkkeenä.', 'en' => 'As a healing medicine.'],
+						'tip' => [
+							'fi' => 'Mieti, mikä vaihtoehdoista ei ole esine tai rakenne vaan lääke.',
+							'en' => 'Think about which option is not an object or structure but a medicine.',
+						],
+						'explanation' => [
+							'fi' => 'Muovia käytetään laajasti esimerkiksi vaatteissa, laitteissa, vesiputkissa ja implanteissa. Se ei kuitenkaan ole parantava lääkeaine.',
+							'en' => 'Plastic is widely used in things like clothes, devices, pipes, and implants. It is not, however, a healing medicine.',
+						],
+					],
+				],
+			],
+		],
+		'12' => [
+			'setId' => 12,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-12-easy-bioplastic-corn',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Mistä kasvista voidaan valmistaa biomuovia?',
+							'en' => 'From which plant can bioplastic be made?',
+						],
+						'acceptedAnswers' => ['maissista', 'maissi', 'corn'],
+						'answerSummary' => ['fi' => 'Maissista.', 'en' => 'Corn.'],
+						'tip' => [
+							'fi' => 'Kyseessä on yleinen keltainen viljelykasvi.',
+							'en' => 'It is a common yellow crop plant.',
+						],
+						'explanation' => [
+							'fi' => 'Suurin osa muovista tehdään öljystä, mutta biomuoveja voidaan valmistaa myös kasvipohjaisista raaka-aineista kuten maissista.',
+							'en' => 'Most plastic is made from oil, but bioplastics can also be made from plant-based raw materials such as corn.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-12-hard-bioplastic-corn',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Mistä kasvista voidaan valmistaa biomuovia?',
+							'en' => 'From which plant can bioplastic be made?',
+						],
+						'acceptedAnswers' => ['maissista', 'maissi', 'corn'],
+						'answerSummary' => ['fi' => 'Maissista.', 'en' => 'Corn.'],
+						'tip' => [
+							'fi' => 'Kyseessä on yleinen keltainen viljelykasvi.',
+							'en' => 'It is a common yellow crop plant.',
+						],
+						'explanation' => [
+							'fi' => 'Biomuovi ei tarkoita automaattisesti vaaratonta muovia, mutta se kertoo, että raaka-aine voi tulla myös kasveista. Yksi tavallisimmista esimerkeistä on maissi.',
+							'en' => 'Bioplastic does not automatically mean harmless plastic, but it does mean that the raw material can come from plants. One common example is corn.',
+						],
+					],
+				],
+			],
+		],
+		'13' => [
+			'setId' => 13,
+			'questions' => [
+				'easy' => [
+					[
+						'id' => 'set-13-easy-plastiglomerate',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin?',
+							'en' => 'What is the phenomenon called when plastic has fused with rock and other natural materials?',
+						],
+						'acceptedAnswers' => ['plastiglomerate', 'plastiglomeraatti'],
+						'answerSummary' => ['fi' => 'Plastiglomerate.', 'en' => 'Plastiglomerate.'],
+						'tip' => [
+							'fi' => 'Sanan alkuosa viittaa muoviin.',
+							'en' => 'The beginning of the word points to plastic.',
+						],
+						'explanation' => [
+							'fi' => 'Kun muoviroska sulaa ja tarttuu hiekkaan, kiviin tai simpukankuoriin, voi syntyä kivenkova seos. Tällaista muodostumaa kutsutaan plastiglomerateksi.',
+							'en' => 'When plastic waste melts and sticks to sand, stones, or shells, it can form a rock-hard mixture. That kind of formation is called plastiglomerate.',
+						],
+					],
+				],
+				'hard' => [
+					[
+						'id' => 'set-13-hard-plastiglomerate',
+						'type' => 'text',
+						'prompt' => [
+							'fi' => 'Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin?',
+							'en' => 'What is the phenomenon called when plastic has fused with rock and other natural materials?',
+						],
+						'acceptedAnswers' => ['plastiglomerate', 'plastiglomeraatti'],
+						'answerSummary' => ['fi' => 'Plastiglomerate.', 'en' => 'Plastiglomerate.'],
+						'tip' => [
+							'fi' => 'Sanan alkuosa viittaa muoviin.',
+							'en' => 'The beginning of the word points to plastic.',
+						],
+						'explanation' => [
+							'fi' => 'Rannoilta on löydetty uudenlaisia möykkyjä, joissa sulanut muovi on sekoittunut luonnonmateriaaleihin. Näitä kutsutaan plastiglomerateiksi.',
+							'en' => 'Researchers have found strange lumps on beaches where melted plastic has mixed with natural materials. These are called plastiglomerates.',
+						],
+					],
+				],
+			],
+		],
+	],
+];
