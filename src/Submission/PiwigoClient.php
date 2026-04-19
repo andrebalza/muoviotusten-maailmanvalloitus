@@ -9,10 +9,15 @@ final class PiwigoClient{
 	public function __construct(private readonly array $config){}
 
 	public function isConfigured(): bool{
-		return $this->config['base_url'] !== null
-			&& $this->config['username'] !== null
-			&& $this->config['password'] !== null
-			&& $this->config['category_id'] !== null;
+		foreach(['base_url', 'username', 'password', 'category_id'] as $key){
+			$value = $this->config[$key] ?? null;
+
+			if(!is_string($value) || trim($value) === ''){
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public function uploadSubmission(array $submission, array $photo): array{
