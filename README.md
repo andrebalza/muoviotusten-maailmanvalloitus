@@ -75,6 +75,8 @@ Notes:
 
 The finish form posts to `/api/submissions`, and the server forwards the payload and uploaded photo to Piwigo through `ws.php`.
 
+For the planned WordOps deployment, keep Piwigo inside the same site root as this app and expose it at `/gallery`. See [docs/piwigo-wordops-rollout.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/docs/piwigo-wordops-rollout.md).
+
 Copy `.env.example` to `.env` and set:
 
 - `PIWIGO_BASE_URL`

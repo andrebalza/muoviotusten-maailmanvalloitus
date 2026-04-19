@@ -51,6 +51,20 @@ php_server_running() {
   return 0
 }
 
+wait_for_local_health() {
+  local attempts="${1:-20}"
+  local i
+
+  for ((i = 1; i <= attempts; i++)); do
+    if curl -fsS "http://${HOST}:${PORT}/health" >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 0.5
+  done
+
+  return 1
+}
+
 current_funnel_info() {
   require_tailscale
 
@@ -126,6 +140,8 @@ start_php() {
     return 0
   fi
 
+  rm -f "${LOG_FILE}"
+
   (
     cd "${ROOT}"
     nohup env APP_BASE_URL="${APP_BASE_URL:-http://${HOST}:${PORT}}" \
@@ -133,10 +149,9 @@ start_php() {
     echo $! >"${PID_FILE}"
   )
 
-  sleep 1
-
-  if ! php_server_running; then
-    printf 'PHP server failed to start. Check %s\n' "${LOG_FILE}" >&2
+  if ! wait_for_local_health 20; then
+    rm -f "${PID_FILE}"
+    printf 'PHP server failed to pass health checks at http://%s:%s/health. Check %s\n' "${HOST}" "${PORT}" "${LOG_FILE}" >&2
     exit 1
   fi
 }
