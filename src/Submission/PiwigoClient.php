@@ -110,7 +110,8 @@ final class PiwigoClient{
 
 	private function request(array $payload, string $cookieFile, bool $expectJson): array{
 
-		$ch = curl_init(rtrim((string) $this->config['base_url'], '/').'/ws.php');
+		// Piwigo returns JSON consistently when the format is set in the query string.
+		$ch = curl_init(rtrim((string) $this->config['base_url'], '/').'/ws.php?format=json');
 
 		if($ch === false){
 			throw new \RuntimeException('Could not initialize the Piwigo request.');
@@ -154,6 +155,8 @@ final class PiwigoClient{
 			throw new \RuntimeException('Piwigo error: '.$message);
 		}
 
-		return $decoded['result'] ?? $decoded;
+		$result = $decoded['result'] ?? $decoded;
+
+		return is_array($result) ? $result : ['result' => $result];
 	}
 }

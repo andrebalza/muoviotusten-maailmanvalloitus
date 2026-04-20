@@ -75,7 +75,7 @@ Notes:
 
 The finish form posts to `/api/submissions`, and the server forwards the payload and uploaded photo to Piwigo through `ws.php`.
 
-For the planned WordOps deployment, keep Piwigo inside the same site root as this app and expose it at `/gallery`. See [docs/piwigo-wordops-rollout.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/docs/piwigo-wordops-rollout.md).
+In production, Piwigo is installed inside the same WordOps site at `/gallery`. Keep that layout if you redeploy or rebuild the gallery. See [docs/piwigo-wordops-rollout.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/docs/piwigo-wordops-rollout.md).
 
 Copy `.env.example` to `.env` and set:
 
@@ -86,6 +86,12 @@ Copy `.env.example` to `.env` and set:
 - optional `PIWIGO_TAGS`
 
 Without those values, the app keeps working for gameplay, but submission returns a clear `502` JSON error explaining that Piwigo is not configured yet.
+
+Notes:
+
+- The live site uses a dedicated uploader account plus a dedicated Piwigo album for game submissions.
+- [src/Submission/PiwigoClient.php](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/src/Submission/PiwigoClient.php) forces `format=json` in the `ws.php` query string because the live Piwigo install does not reliably return JSON when that flag is sent only in the POST body.
+- If you rotate Piwigo credentials or recreate the target album, update the app `.env` on the server as part of the same change.
 
 ## Content Workflow
 
@@ -102,4 +108,13 @@ php bin/build-content.php
 php bin/generate-qr.php
 php -S 127.0.0.1:8090 index.php
 curl http://127.0.0.1:8090/health
+```
+
+If you change the Piwigo bridge or production submission wiring, also verify:
+
+```bash
+curl -I https://otus.muoviamo.fi/gallery/
+curl -I https://otus.muoviamo.fi/gallery/install.php
+curl -I https://otus.muoviamo.fi/gallery/local/config/database.inc.php
+curl -I https://otus.muoviamo.fi/gallery/_data/
 ```
