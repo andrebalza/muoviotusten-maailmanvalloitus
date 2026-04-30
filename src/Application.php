@@ -35,6 +35,11 @@ final class Application{
 					'allowedPaths' => ['/question', '/mutation', '/finish'],
 				],
 			]),
+			['GET', '/about'] => $this->renderPage('about', [
+				'page' => 'about',
+				'title' => 'About',
+				'app' => $this->contentRepository->clientConfig(),
+			]),
 			['GET', '/question'] => $this->handleQuestionPage($request),
 			['GET', '/mutation'] => $this->handleMutationPage($request),
 			['GET', '/finish'] => $this->renderPage('finish', [

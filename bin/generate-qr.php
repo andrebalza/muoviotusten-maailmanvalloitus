@@ -67,6 +67,7 @@ function buildTargets(string $baseUrl): array{
 
 	$targets = [
 		['file' => 'start.svg', 'label' => 'Start game', 'url' => $baseUrl.'/'],
+		['file' => 'about.svg', 'label' => 'About and instructions', 'url' => $baseUrl.'/about'],
 		['file' => 'finish.svg', 'label' => 'Finish', 'url' => $baseUrl.'/finish'],
 		['file' => 'gallery.svg', 'label' => 'Gallery', 'url' => $baseUrl.'/gallery'],
 	];
@@ -218,6 +219,7 @@ function cleanupLegacyRootQrFiles(string $outputRoot): void{
 
 	$legacyFiles = [
 		'start.svg',
+		'about.svg',
 		'finish.svg',
 		'gallery.svg',
 		'mutation-hypervintti.svg',

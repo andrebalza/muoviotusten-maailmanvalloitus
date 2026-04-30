@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 $title = $meta['title'] ?? 'Muoviotukset';
+$assetVersion = static function(string $path): string{
+	$fullPath = dirname(__DIR__, 2).$path;
+
+	return is_file($fullPath) ? '?v='.(string) filemtime($fullPath) : '';
+};
 ?>
 <!DOCTYPE html>
 <html lang="fi">
@@ -10,7 +15,7 @@ $title = $meta['title'] ?? 'Muoviotukset';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
-  <link rel="stylesheet" href="/assets/app.css">
+  <link rel="stylesheet" href="/assets/app.css<?= $assetVersion('/assets/app.css') ?>">
 </head>
 <body>
   <div class="page-shell">
@@ -18,6 +23,7 @@ $title = $meta['title'] ?? 'Muoviotukset';
       <a class="brand" href="/">Muoviotukset</a>
       <nav class="topnav">
         <a href="/scan" id="nav-scan">Scan</a>
+        <a href="/about" id="nav-about">About</a>
         <a href="/gallery" id="nav-gallery">Gallery</a>
       </nav>
     </header>
@@ -50,6 +56,6 @@ $title = $meta['title'] ?? 'Muoviotukset';
     window.__APP_BOOT__ = <?= json_encode($boot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
   </script>
   <script src="/assets/vendor/jsqr.js"></script>
-  <script src="/assets/app.js"></script>
+  <script src="/assets/app.js<?= $assetVersion('/assets/app.js') ?>"></script>
 </body>
 </html>

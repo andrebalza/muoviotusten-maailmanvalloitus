@@ -10,6 +10,7 @@
   const copy = {
     fi: {
       navScan: 'Skannaa',
+      navAbout: 'Peliohje',
       navGallery: 'Galleria',
       trackLabel: 'Rata',
       activeBoxLabel: 'Aktiivinen laatikko',
@@ -83,9 +84,26 @@
       activeBoxSummary: 'Aktiivinen laatikko: {box}',
       difficultySummary: 'Vaikeustaso: {difficulty}',
       selectedTrackSummary: 'Valittu rata: {track}',
+      aboutEyebrow: 'Tietoa pelistä',
+      aboutTitle: 'Ohjeet ja yhteystiedot',
+      aboutLead: 'Tälle sivulle kootaan pelin ohjeet, tukitiedot ja projektin yhteystiedot.',
+      aboutInstructionsTitle: 'Ohjeet',
+      aboutInstructionsCopy: 'Sisältö tarkentuu myöhemmin.',
+      aboutInstructionsStep1: 'Aloita peli aloitus-QR-koodista.',
+      aboutInstructionsStep2: 'Yksi laite tarkoittaa yhtä ryhmää.',
+      aboutInstructionsStep3: 'Skannaa kysymys-, mutaatio- ja maali-QR-koodit tämän sovelluksen sisällä.',
+      aboutContactsTitle: 'Yhteystiedot',
+      aboutContactsCopy: 'Yhteystiedot lisätään myöhemmin.',
+      aboutContactSupportTitle: 'Pelin tuki',
+      aboutContactSupportCopy: 'TBD',
+      aboutContactProjectTitle: 'Projektin yhteyshenkilö',
+      aboutContactProjectCopy: 'TBD',
+      aboutPracticalTitle: 'Käytännön tiedot',
+      aboutPracticalCopy: 'Tähän voidaan koota saavutettavuus-, turvallisuus-, tietosuoja- ja galleriatiedot.',
     },
     en: {
       navScan: 'Scan',
+      navAbout: 'About',
       navGallery: 'Gallery',
       trackLabel: 'Track',
       activeBoxLabel: 'Active box',
@@ -159,6 +177,22 @@
       activeBoxSummary: 'Active box: {box}',
       difficultySummary: 'Difficulty: {difficulty}',
       selectedTrackSummary: 'Selected track: {track}',
+      aboutEyebrow: 'About the game',
+      aboutTitle: 'Instructions and contacts',
+      aboutLead: 'This page will collect game instructions, support details, and project contacts.',
+      aboutInstructionsTitle: 'Instructions',
+      aboutInstructionsCopy: 'Content to be added.',
+      aboutInstructionsStep1: 'Start the game from the begin-game QR code.',
+      aboutInstructionsStep2: 'One device equals one group.',
+      aboutInstructionsStep3: 'Scan question, mutation, and finish QR codes inside this app.',
+      aboutContactsTitle: 'Contacts',
+      aboutContactsCopy: 'Contact details will be added later.',
+      aboutContactSupportTitle: 'Game support',
+      aboutContactSupportCopy: 'TBD',
+      aboutContactProjectTitle: 'Project contact',
+      aboutContactProjectCopy: 'TBD',
+      aboutPracticalTitle: 'Practical notes',
+      aboutPracticalCopy: 'Accessibility, safety, privacy, and gallery notes can be collected here.',
     },
   };
 
@@ -181,6 +215,9 @@
     }
     else if(boot.page === 'finish'){
       initFinishPage(state);
+    }
+    else if(boot.page === 'about'){
+      initAboutPage(state);
     }
   });
 
@@ -225,6 +262,7 @@
       setText('start-button', t.startGame);
       setText('gallery-button', t.openGallery);
       setText('nav-scan', t.navScan);
+      setText('nav-about', t.navAbout);
       setText('nav-gallery', t.navGallery);
       populateTrackSelector(nextLanguage);
     }
@@ -409,6 +447,29 @@
     else{
       status.textContent = t.scannerNoCamera;
     }
+  }
+
+  function initAboutPage(state){
+    const lang = currentLanguage(state);
+    const t = ui(lang);
+    setText('about-eyebrow', t.aboutEyebrow);
+    setText('about-title', t.aboutTitle);
+    setText('about-lead', t.aboutLead);
+    setText('about-instructions-title', t.aboutInstructionsTitle);
+    setText('about-instructions-copy', t.aboutInstructionsCopy);
+    setText('about-instructions-step-1', t.aboutInstructionsStep1);
+    setText('about-instructions-step-2', t.aboutInstructionsStep2);
+    setText('about-instructions-step-3', t.aboutInstructionsStep3);
+    setText('about-contacts-title', t.aboutContactsTitle);
+    setText('about-contacts-copy', t.aboutContactsCopy);
+    setText('about-contact-support-title', t.aboutContactSupportTitle);
+    setText('about-contact-support-copy', t.aboutContactSupportCopy);
+    setText('about-contact-project-title', t.aboutContactProjectTitle);
+    setText('about-contact-project-copy', t.aboutContactProjectCopy);
+    setText('about-practical-title', t.aboutPracticalTitle);
+    setText('about-practical-copy', t.aboutPracticalCopy);
+    setText('about-scan-button', t.navScan);
+    setText('about-gallery-button', t.navGallery);
   }
 
   function initQuestionPage(state){
@@ -728,6 +789,7 @@
     const lang = currentLanguage(state);
     const t = ui(lang);
     setText('nav-scan', t.navScan);
+    setText('nav-about', t.navAbout);
     setText('nav-gallery', t.navGallery);
   }
 
