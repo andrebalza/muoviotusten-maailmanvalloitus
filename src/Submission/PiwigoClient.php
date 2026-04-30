@@ -51,6 +51,8 @@ final class PiwigoClient{
 				),
 			], $cookieFile);
 
+			$this->postForm('pwg.images.emptyLounge', [], $cookieFile);
+
 			$this->postForm('pwg.session.logout', [], $cookieFile, false);
 
 			return $result;
@@ -68,7 +70,6 @@ final class PiwigoClient{
 		$parts = implode(', ', $state['unlockedPartNames'] ?? []);
 
 		$lines = array_filter([
-			'Submitted via otus.muoviamo.fi',
 			'Special ability: '.$submission['specialAbility'],
 			'Faction: '.($state['faction'] ?? ''),
 			'Track: '.($state['trackId'] ?? ''),

@@ -30,7 +30,7 @@
 
     <div class="button-row">
       <button class="button button-primary" type="submit" id="finish-submit">Submit creature</button>
-      <a class="button button-secondary" href="/gallery" id="finish-gallery-link">Open gallery</a>
+      <a class="button button-secondary" href="/gallery/index.php?/category/1" id="finish-gallery-link">Open gallery</a>
     </div>
   </form>
 </section>

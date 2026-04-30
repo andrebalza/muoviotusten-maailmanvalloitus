@@ -16,23 +16,18 @@
       activeBoxLabel: 'Aktiivinen laatikko',
       partsLabel: 'Osat',
       tipsLabel: 'Vinkit',
-      homeEyebrow: 'QR-avusteinen lattiapeli',
-      homeTitle: 'Aloita uusi kierros',
-      homeLead: 'Skannaa aloitus-QR, heitä noppaa, valitse vaikeustaso ja jatka kaikkia kysymys-, mutaatio- ja maali-QR-skannauksia tässä sovelluksessa.',
       resumeTitle: 'Nykyinen peli',
       continueScanning: 'Jatka skannausta',
       restart: 'Aloita alusta',
-      startTitle: 'Aloita peli',
-      startCopy: 'Yksi laite tarkoittaa yhtä ryhmää. Heitot 1–5 valitsevat radan suoraan. Heitto 6 antaa valita minkä tahansa vapaan radan fyysisesti.',
-      language: 'Kieli',
-      difficulty: 'Vaikeustaso',
+      stepLanguage: 'Valitse kieli',
+      stepAge: 'Minkä ikäinen olet?',
+      ageOver: 'Yli 9-vuotias',
+      ageUnder: 'Alle 9-vuotias',
+      stepRoll: 'Minkä numeron heitit?',
+      stepTrack: 'Valitse rata',
+      back: 'Takaisin',
       easy: 'Helppo',
       hard: 'Vaikea',
-      roll: 'Heitetty nopan silmäluku',
-      choose: 'Valitse…',
-      chosenTrack: 'Valittu rata heiton 6 jälkeen',
-      chooseFreeTrack: 'Valitse vapaa rata…',
-      startGame: 'Aloita peli',
       openGallery: 'Avaa galleria',
       scannerEyebrow: 'Sovelluksen sisäinen skanneri',
       scannerTitle: 'Skannaa seuraava QR',
@@ -109,23 +104,18 @@
       activeBoxLabel: 'Active box',
       partsLabel: 'Parts',
       tipsLabel: 'Tips',
-      homeEyebrow: 'QR-assisted floor game',
-      homeTitle: 'Start a new run',
-      homeLead: 'Scan the begin-game QR, roll the die, choose difficulty, and continue all question, mutation, and finish scans inside this app.',
       resumeTitle: 'Current session',
       continueScanning: 'Continue scanning',
       restart: 'Start over',
-      startTitle: 'Begin game',
-      startCopy: 'One device equals one group. Rolls 1–5 select a track directly. A roll of 6 lets the group choose any free track physically.',
-      language: 'Language',
-      difficulty: 'Difficulty',
+      stepLanguage: 'Choose language',
+      stepAge: 'How old are you?',
+      ageOver: 'Over 9 years',
+      ageUnder: 'Under 9 years',
+      stepRoll: 'What did you roll?',
+      stepTrack: 'Choose your track',
+      back: 'Back',
       easy: 'Easy',
       hard: 'Hard',
-      roll: 'Rolled die number',
-      choose: 'Choose…',
-      chosenTrack: 'Chosen track after rolling 6',
-      chooseFreeTrack: 'Choose a free track…',
-      startGame: 'Start game',
       openGallery: 'Open gallery',
       scannerEyebrow: 'In-app scanner',
       scannerTitle: 'Scan the next QR',
@@ -222,115 +212,125 @@
   });
 
   function initHome(state){
-    let lang = currentLanguage(state);
-    let t = ui(lang);
-
-    const form = document.getElementById('start-form');
-    const rollInputs = Array.from(form.querySelectorAll('input[name="roll"]'));
-    const trackField = document.getElementById('track-choice-field');
-    const trackChoice = document.getElementById('track-choice');
-    const restartButton = document.getElementById('restart-button');
     const resumePanel = document.getElementById('resume-panel');
     const resumeSummary = document.getElementById('resume-summary');
+    const startFlow = document.getElementById('start-flow');
+    const restartButton = document.getElementById('restart-button');
 
     if(state){
+      const lang = currentLanguage(state);
+      const t = ui(lang);
+      document.body.classList.remove('start-flow-active');
       resumePanel.hidden = false;
+      startFlow.hidden = true;
+      setText('resume-title', t.resumeTitle);
+      setText('resume-scan-button', t.continueScanning);
+      setText('restart-button', t.restart);
       resumeSummary.innerHTML = [
         `<div class="card">${escapeHtml(format(t.trackSummary, {track: state.trackId, faction: getTrack(state.trackId).faction[lang]}))}</div>`,
         `<div class="card">${escapeHtml(format(t.activeBoxSummary, {box: activeBoxLabel(state, lang)}))}</div>`,
         `<div class="card">${escapeHtml(format(t.difficultySummary, {difficulty: state.difficulty === 'hard' ? t.hard : t.easy}))}</div>`,
       ].join('');
+
+      if(restartButton){
+        restartButton.addEventListener('click', function(){
+          clearState();
+          window.location.assign('/');
+        });
+      }
+      return;
     }
 
-    function applyHomeCopy(nextLanguage){
-      lang = nextLanguage;
-      t = ui(lang);
-      setText('home-eyebrow', t.homeEyebrow);
-      setText('home-title', t.homeTitle);
-      setText('home-lead', t.homeLead);
-      setText('resume-title', t.resumeTitle);
-      setText('resume-scan-button', t.continueScanning);
-      setText('restart-button', t.restart);
-      setText('start-title', t.startTitle);
-      setText('start-copy', t.startCopy);
-      setText('language-label', t.language);
-      setText('difficulty-label', t.difficulty);
-      setText('difficulty-easy-label', t.easy);
-      setText('difficulty-hard-label', t.hard);
-      setText('roll-label', t.roll);
-      setText('track-choice-label', t.chosenTrack);
-      setText('start-button', t.startGame);
-      setText('gallery-button', t.openGallery);
-      setText('nav-scan', t.navScan);
-      setText('nav-about', t.navAbout);
-      setText('nav-gallery', t.navGallery);
-      populateTrackSelector(nextLanguage);
+    document.body.classList.add('start-flow-active');
+    resumePanel.hidden = true;
+    startFlow.hidden = false;
+
+    const choices = {language: 'fi', difficulty: null, roll: null, trackId: null};
+    const order = ['language', 'age', 'roll', 'track'];
+    const steps = {};
+    order.forEach(function(name){
+      steps[name] = startFlow.querySelector('[data-step="'+name+'"]');
+    });
+
+    function showStep(name){
+      order.forEach(function(other){
+        steps[other].hidden = (other !== name);
+      });
+      applyStartCopy();
     }
 
-    applyHomeCopy(lang);
+    function applyStartCopy(){
+      const t = ui(choices.language);
+      setText('step-language-title', t.stepLanguage);
+      setText('step-age-title', t.stepAge);
+      setText('age-over-button', t.ageOver);
+      setText('age-under-button', t.ageUnder);
+      setText('step-roll-title', t.stepRoll);
+      setText('step-track-title', t.stepTrack);
+      setText('age-back', t.back);
+      setText('roll-back', t.back);
+      setText('track-back', t.back);
+    }
 
-    form.querySelectorAll('input[name="language"]').forEach(function(input){
-      input.addEventListener('change', function(){
-        if(input.checked){
-          applyHomeCopy(input.value === 'en' ? 'en' : 'fi');
-        }
+    steps.language.querySelectorAll('[data-language]').forEach(function(button){
+      button.addEventListener('click', function(){
+        choices.language = button.getAttribute('data-language') === 'en' ? 'en' : 'fi';
+        applyStartCopy();
+        applyGlobalCopy({language: choices.language});
+        showStep('age');
       });
     });
 
-    function syncRollSelection(){
-      const selectedRoll = rollInputs.find(function(input){
-        return input.checked;
+    steps.age.querySelectorAll('[data-age]').forEach(function(button){
+      button.addEventListener('click', function(){
+        choices.difficulty = button.getAttribute('data-age');
+        showStep('roll');
       });
-      const selectedValue = selectedRoll ? selectedRoll.value : '';
-
-      rollInputs.forEach(function(input){
-        const button = input.closest('.die-button');
-        if(button){
-          button.classList.toggle('die-button--selected', input.checked);
-        }
-      });
-
-      trackField.hidden = selectedValue !== '6';
-      if(trackField.hidden){
-        trackChoice.value = '';
-      }
-    }
-
-    rollInputs.forEach(function(input){
-      input.addEventListener('change', syncRollSelection);
     });
 
-    syncRollSelection();
+    steps.roll.querySelectorAll('[data-roll]').forEach(function(button){
+      button.addEventListener('click', function(){
+        const roll = Number(button.getAttribute('data-roll'));
+        choices.roll = roll;
+        if(roll === 6){
+          renderTrackButtons();
+          showStep('track');
+          return;
+        }
+        choices.trackId = roll;
+        finishStart();
+      });
+    });
 
-    form.addEventListener('submit', function(event){
-      event.preventDefault();
-      const data = new FormData(form);
-      const language = String(data.get('language') || 'fi');
-      const difficulty = String(data.get('difficulty') || 'easy');
-      const roll = Number(data.get('roll'));
-      const chosenTrack = Number(data.get('track_choice') || 0);
+    function renderTrackButtons(){
+      const lang = choices.language;
+      const container = document.getElementById('track-buttons');
+      container.innerHTML = (app.tracks || []).map(function(track){
+        return '<button class="big-button" type="button" data-track="'+track.id+'">'
+          +'<span class="big-button__title">'+escapeHtml(track.faction[lang])+'</span>'
+          +'<span class="big-button__sub">'+escapeHtml(track.mainBox[lang])+'</span>'
+          +'</button>';
+      }).join('');
+      container.querySelectorAll('[data-track]').forEach(function(button){
+        button.addEventListener('click', function(){
+          choices.trackId = Number(button.getAttribute('data-track'));
+          finishStart();
+        });
+      });
+    }
 
-      if(!roll){
-        return;
-      }
+    startFlow.querySelectorAll('[data-back]').forEach(function(button){
+      button.addEventListener('click', function(){
+        showStep(button.getAttribute('data-back'));
+      });
+    });
 
-      const trackId = roll === 6 ? chosenTrack : roll;
-
-      if(trackId < 1 || trackId > 5){
-        alert(t.chooseFreeTrack);
-        return;
-      }
-
-      saveState(newSession(language, difficulty, trackId));
+    function finishStart(){
+      saveState(newSession(choices.language, choices.difficulty || 'easy', choices.trackId));
       window.location.assign('/scan');
-    });
-
-    if(restartButton){
-      restartButton.addEventListener('click', function(){
-        clearState();
-        window.location.assign('/');
-      });
     }
+
+    showStep('language');
   }
 
   function initScanPage(state){
@@ -645,7 +645,7 @@
           throw new Error(payload.error || t.submissionFailed);
         }
 
-        message.innerHTML = renderNotice('feedback feedback-success', t.submissionSuccess, `<a class="button button-primary" href="/gallery">${escapeHtml(t.openGallery)}</a>`);
+        message.innerHTML = renderNotice('feedback feedback-success', t.submissionSuccess, `<a class="button button-primary" href="/gallery/index.php?/category/1">${escapeHtml(t.openGallery)}</a>`);
       }
       catch(error){
         message.innerHTML = renderNotice('feedback feedback-error', t.submissionFailed, `<p>${escapeHtml(error.message || t.submissionFailed)}</p>`);

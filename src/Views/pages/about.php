@@ -40,6 +40,6 @@
   </div>
   <div class="button-row">
     <a class="button button-primary" href="/scan" id="about-scan-button">Scan</a>
-    <a class="button button-secondary" href="/gallery" id="about-gallery-button">Gallery</a>
+    <a class="button button-secondary" href="/gallery/index.php?/category/1" id="about-gallery-button">Gallery</a>
   </div>
 </section>
