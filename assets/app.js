@@ -33,6 +33,8 @@
       scannerEyebrow: 'Sovelluksen sisäinen skanneri',
       scannerTitle: 'Skannaa seuraava QR',
       scannerLead: 'Kysymys-, mutaatio- ja maali-QR-koodit skannataan tämän sovelluksen sisällä. Vain saman verkkotunnuksen pelilinkit hyväksytään.',
+      scannerIdle: 'Avaa kamera napauttamalla "Skannaa koodi".',
+      scannerStart: 'Skannaa koodi',
       scannerWaiting: 'Odotetaan kameran käyttöoikeutta…',
       scannerReady: 'Suuntaa kamera QR-koodiin.',
       scannerRetry: 'Yritä kameraa uudelleen',
@@ -122,6 +124,8 @@
       scannerEyebrow: 'In-app scanner',
       scannerTitle: 'Scan the next QR',
       scannerLead: 'Question, mutation, and finish QR codes are scanned inside this web app. Only same-origin gameplay links are accepted.',
+      scannerIdle: 'Tap "Scan code" to open the camera.',
+      scannerStart: 'Scan code',
       scannerWaiting: 'Waiting for camera access…',
       scannerReady: 'Point the camera at a QR code.',
       scannerRetry: 'Retry camera',
@@ -348,17 +352,26 @@
     setText('scan-eyebrow', t.scannerEyebrow);
     setText('scan-title', t.scannerTitle);
     setText('scan-lead', t.scannerLead);
-    setText('scanner-status', t.scannerWaiting);
+    setText('scanner-status', t.scannerIdle);
+    setText('scanner-start', t.scannerStart);
     setText('scanner-retry', t.scannerRetry);
+
+    const panel = document.querySelector('[data-scanner-state]');
+    const frame = document.getElementById('scanner-frame');
+    const video = document.getElementById('scanner-video');
+    const status = document.getElementById('scanner-status');
+    const startButton = document.getElementById('scanner-start');
+    const retry = document.getElementById('scanner-retry');
 
     if(!state){
       setText('scanner-status', t.noSession);
+      setState('idle');
+      if(startButton){
+        startButton.hidden = true;
+      }
       return;
     }
 
-    const video = document.getElementById('scanner-video');
-    const status = document.getElementById('scanner-status');
-    const retry = document.getElementById('scanner-retry');
     let stream = null;
     let frameTimer = null;
     let detecting = false;
@@ -368,8 +381,46 @@
       ? new window.BarcodeDetector({formats: ['qr_code']})
       : null;
 
+    function setState(next){
+      if(panel){
+        panel.dataset.scannerState = next;
+      }
+
+      if(next === 'idle'){
+        if(frame){ frame.hidden = true; }
+        if(startButton){ startButton.hidden = false; }
+        if(retry){ retry.hidden = true; }
+        status.textContent = t.scannerIdle;
+      }
+      else if(next === 'requesting'){
+        if(frame){ frame.hidden = false; }
+        if(startButton){ startButton.hidden = true; }
+        if(retry){ retry.hidden = true; }
+        status.textContent = t.scannerWaiting;
+      }
+      else if(next === 'active'){
+        if(frame){ frame.hidden = false; }
+        if(startButton){ startButton.hidden = true; }
+        if(retry){ retry.hidden = true; }
+        status.textContent = t.scannerReady;
+      }
+      else if(next === 'error'){
+        if(frame){ frame.hidden = true; }
+        if(startButton){ startButton.hidden = true; }
+        if(retry){ retry.hidden = false; }
+        status.textContent = t.scannerNoCamera;
+      }
+    }
+
     async function start(){
       stop();
+
+      if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+        setState('error');
+        return;
+      }
+
+      setState('requesting');
 
       try{
         stream = await navigator.mediaDevices.getUserMedia({
@@ -381,7 +432,7 @@
 
         video.srcObject = stream;
         await video.play();
-        status.textContent = t.scannerReady;
+        setState('active');
 
         frameTimer = window.setInterval(async function(){
           if(detecting || video.readyState < 2 || !context){
@@ -420,7 +471,8 @@
             }
           }
           catch(error){
-            status.textContent = t.scannerNoCamera;
+            setState('error');
+            stop();
           }
           finally{
             detecting = false;
@@ -428,7 +480,7 @@
         }, 350);
       }
       catch(error){
-        status.textContent = t.scannerNoCamera;
+        setState('error');
       }
     }
 
@@ -444,18 +496,27 @@
         });
         stream = null;
       }
+
+      if(video){
+        video.srcObject = null;
+      }
     }
 
-    retry.addEventListener('click', function(){
-      start();
-    });
+    if(startButton){
+      startButton.addEventListener('click', function(){
+        start();
+      });
+    }
 
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-      start();
+    if(retry){
+      retry.addEventListener('click', function(){
+        start();
+      });
     }
-    else{
-      status.textContent = t.scannerNoCamera;
-    }
+
+    window.addEventListener('pagehide', stop);
+
+    setState('idle');
   }
 
   function initAboutPage(state){
