@@ -33,15 +33,20 @@
       <button class="start-step__back" type="button" data-back="language" id="age-back">Back</button>
     </div>
 
-    <div class="start-step" data-step="roll" hidden>
-      <h2 class="start-step__title" id="step-roll-title">What did you roll?</h2>
-      <div class="die-grid" id="roll-grid">
-        <button class="die-cell" type="button" data-roll="1">1</button>
-        <button class="die-cell" type="button" data-roll="2">2</button>
-        <button class="die-cell" type="button" data-roll="3">3</button>
-        <button class="die-cell" type="button" data-roll="4">4</button>
-        <button class="die-cell" type="button" data-roll="5">5</button>
-        <button class="die-cell" type="button" data-roll="6">6</button>
+    <div class="start-step start-step--roll" data-step="roll" hidden>
+      <img class="roll-screen__logo" src="/public/assets/textlogo_500x97.png" alt="Muoviotuspeli">
+      <h2 class="start-step__title start-step__title--display" id="step-roll-title">Roll the dice</h2>
+      <img class="roll-screen__dice" src="/public/assets/dice_blue_500x536.png" alt="">
+      <div class="roll-card">
+        <h3 class="roll-card__title" id="step-roll-prompt">What number did you get?</h3>
+        <div class="die-grid" id="roll-grid">
+          <button class="die-cell" type="button" data-roll="1">1</button>
+          <button class="die-cell" type="button" data-roll="2">2</button>
+          <button class="die-cell" type="button" data-roll="3">3</button>
+          <button class="die-cell" type="button" data-roll="4">4</button>
+          <button class="die-cell" type="button" data-roll="5">5</button>
+          <button class="die-cell" type="button" data-roll="6">6</button>
+        </div>
       </div>
       <button class="start-step__back" type="button" data-back="age" id="roll-back">Back</button>
     </div>

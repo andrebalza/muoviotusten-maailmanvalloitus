@@ -23,7 +23,9 @@ $assetVersion = static function(string $path): string{
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <a class="brand" href="/">Muoviotukset</a>
+      <a class="brand" href="/" aria-label="Muoviotukset">
+        <img src="/public/assets/textlogo_500x97.png" alt="Muoviotukset">
+      </a>
       <nav class="topnav">
         <a href="/scan" id="nav-scan">Scan</a>
         <a href="/about" id="nav-about">About</a>

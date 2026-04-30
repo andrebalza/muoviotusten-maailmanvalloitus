@@ -23,11 +23,11 @@
   </div>
   <div class="info-grid">
     <div class="card stack">
-      <strong id="about-contact-support-title">Game support</strong>
+      <h3 id="about-contact-support-title">Game support</h3>
       <p class="muted" id="about-contact-support-copy">TBD</p>
     </div>
     <div class="card stack">
-      <strong id="about-contact-project-title">Project contact</strong>
+      <h3 id="about-contact-project-title">Project contact</h3>
       <p class="muted" id="about-contact-project-copy">TBD</p>
     </div>
   </div>

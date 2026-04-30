@@ -62,12 +62,16 @@ a{
 }
 
 .brand{
-  font-family: "Baloo 2", var(--font-body);
-  font-size: 1.35rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: 0.02em;
   color: var(--dark-blue);
+}
+
+.brand img{
+  display: block;
+  height: 2rem;
+  width: auto;
 }
 
 .topnav{
@@ -142,6 +146,22 @@ a{
 
 .hero-panel{
   background: #fff;
+  position: relative;
+  padding-top: 1.5rem;
+  overflow: hidden;
+}
+
+.hero-panel::before{
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--turquoise), var(--green) 55%, var(--coral));
+}
+
+.hero-panel h1{
+  font-family: "Baloo 2", var(--font-body);
+  font-weight: 700;
 }
 
 .eyebrow{
@@ -301,16 +321,21 @@ h3{
 .scanner-mask{
   position: absolute;
   inset: 0;
-  border: 1.4rem solid rgba(9, 15, 12, 0.35);
+  border: 1.4rem solid rgba(15, 58, 71, 0.45);
 }
 
 .scanner-mask::after{
   content: "";
   position: absolute;
   inset: 18% 12%;
-  border: 4px solid rgba(235, 247, 240, 0.9);
-  border-radius: 24px;
-  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.18);
+  border: 4px solid rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  box-shadow: 0 0 0 999px rgba(15, 58, 71, 0.25);
+}
+
+#scanner-status{
+  text-align: center;
+  font-weight: 500;
 }
 
 .pill{
@@ -557,6 +582,55 @@ body.start-flow-active .page-content{
 
 .start-step__back:hover{
   color: #fff;
+}
+
+.start-flow--roll{
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+}
+
+.start-step--roll{
+  align-items: center;
+  gap: 1rem;
+}
+
+.roll-screen__logo{
+  display: block;
+  width: min(60%, 14rem);
+  height: auto;
+}
+
+.start-step__title--display{
+  font-family: "Baloo 2", var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3rem);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.roll-screen__dice{
+  display: block;
+  width: min(55%, 13rem);
+  height: auto;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.roll-card{
+  width: 100%;
+  background: #E6E6E6;
+  border-radius: 24px;
+  padding: 1.5rem 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.roll-card__title{
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--dark-blue);
+  font-size: clamp(1.2rem, 4.5vw, 1.5rem);
 }
 
 .die-grid{

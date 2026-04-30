@@ -23,7 +23,8 @@
       stepAge: 'Minkä ikäinen olet?',
       ageOver: 'Yli 9-vuotias',
       ageUnder: 'Alle 9-vuotias',
-      stepRoll: 'Minkä numeron heitit?',
+      stepRoll: 'Heitä noppaa',
+      stepRollPrompt: 'Minkä luvun sait?',
       stepTrack: 'Valitse rata',
       back: 'Takaisin',
       easy: 'Helppo',
@@ -111,7 +112,8 @@
       stepAge: 'How old are you?',
       ageOver: 'Over 9 years',
       ageUnder: 'Under 9 years',
-      stepRoll: 'What did you roll?',
+      stepRoll: 'Roll the dice',
+      stepRollPrompt: 'What number did you get?',
       stepTrack: 'Choose your track',
       back: 'Back',
       easy: 'Easy',
@@ -252,10 +254,16 @@
       steps[name] = startFlow.querySelector('[data-step="'+name+'"]');
     });
 
+    const heroEl = startFlow.querySelector('.start-flow__hero');
+
     function showStep(name){
       order.forEach(function(other){
         steps[other].hidden = (other !== name);
       });
+      if(heroEl){
+        heroEl.hidden = (name === 'roll');
+      }
+      startFlow.classList.toggle('start-flow--roll', name === 'roll');
       applyStartCopy();
     }
 
@@ -266,6 +274,7 @@
       setText('age-over-button', t.ageOver);
       setText('age-under-button', t.ageUnder);
       setText('step-roll-title', t.stepRoll);
+      setText('step-roll-prompt', t.stepRollPrompt);
       setText('step-track-title', t.stepTrack);
       setText('age-back', t.back);
       setText('roll-back', t.back);
