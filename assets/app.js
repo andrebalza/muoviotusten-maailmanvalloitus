@@ -33,8 +33,10 @@
       scannerEyebrow: 'Sovelluksen sisäinen skanneri',
       scannerTitle: 'Skannaa seuraava QR',
       scannerLead: 'Kysymys-, mutaatio- ja maali-QR-koodit skannataan tämän sovelluksen sisällä. Vain saman verkkotunnuksen pelilinkit hyväksytään.',
-      scannerIdle: 'Avaa kamera napauttamalla "Skannaa koodi".',
-      scannerStart: 'Skannaa koodi',
+      scannerIdle: 'Avaa kamera napauttamalla "Skannaa".',
+      scannerStart: 'Skannaa',
+      scannerIntro1: 'Heitä noppaa ja siirry seuraavaan ruutuun.',
+      scannerIntro2: 'Jos ruudussa on QR-koodi, skannaa se.',
       scannerWaiting: 'Odotetaan kameran käyttöoikeutta…',
       scannerReady: 'Suuntaa kamera QR-koodiin.',
       scannerRetry: 'Yritä kameraa uudelleen',
@@ -43,14 +45,17 @@
       questionEyebrow: 'Kysymyssarja',
       questionLead: 'Vastaa kysymykseen nähdäksesi, avaako otuksesi seuraavan ruumiinosan.',
       alreadyPassedTitle: 'Tämä kysymys on jo ohitettu',
-      alreadyPassedBody: 'Tälle ruudulle on jo vastattu. Heittäkää noppaa ja skannatkaa seuraava uusi QR-koodi.',
+      alreadyPassedBody: 'Tälle ruudulle on jo vastattu.',
       useTip: 'Käytä vinkki',
       tipUsed: 'Vinkki käytetty',
+      tipsRemaining: 'Olet käyttänyt {used} vinkkiä, sinulla on {remaining} vinkkiä jäljellä',
+      tipTitle: 'Vinkki',
       answer: 'Vastaa',
       textAnswerLabel: 'Kirjoita vastauksesi',
       correct: 'Oikein!',
-      wrong: 'Väärin tällä kertaa',
+      wrong: 'Väärin!',
       nextScan: 'Skannaa seuraava QR',
+      continueAction: 'Jatka',
       correctAnswer: 'Oikea vastaus',
       explanation: 'Selitys',
       unlockedPart: 'Avasitte ruumiinosan',
@@ -67,6 +72,8 @@
       specialAbility: 'Erikoiskyky',
       photo: 'Otuksen kuva',
       photoHelp: 'Kuvassa pitäisi näkyä vain otus, ei ihmisiä.',
+      photoTake: 'Ota kuva',
+      photoRetake: 'Ota uusi kuva',
       submitCreature: 'Lähetä otus',
       finishSummaryTitle: 'Avaamanne osat',
       noUnlockedParts: 'Ette avanneet yhtään osaa, mutta voitte silti lähettää otuksenne.',
@@ -124,8 +131,10 @@
       scannerEyebrow: 'In-app scanner',
       scannerTitle: 'Scan the next QR',
       scannerLead: 'Question, mutation, and finish QR codes are scanned inside this web app. Only same-origin gameplay links are accepted.',
-      scannerIdle: 'Tap "Scan code" to open the camera.',
-      scannerStart: 'Scan code',
+      scannerIdle: 'Tap "Scan" to open the camera.',
+      scannerStart: 'Scan',
+      scannerIntro1: 'Roll the die and move to the next tile.',
+      scannerIntro2: 'If the tile has a QR code, scan it.',
       scannerWaiting: 'Waiting for camera access…',
       scannerReady: 'Point the camera at a QR code.',
       scannerRetry: 'Retry camera',
@@ -134,14 +143,17 @@
       questionEyebrow: 'Question set',
       questionLead: 'Answer the question to see whether your creature unlocks the next body part.',
       alreadyPassedTitle: 'This question was already passed',
-      alreadyPassedBody: 'This tile was already answered. Roll the die and scan the next new QR code.',
+      alreadyPassedBody: 'This tile was already answered.',
       useTip: 'Use tip',
       tipUsed: 'Tip used',
+      tipsRemaining: 'You have used {used} tip, you have {remaining} tips left',
+      tipTitle: 'Tip',
       answer: 'Answer',
       textAnswerLabel: 'Type your answer',
       correct: 'Correct!',
-      wrong: 'Not this time',
+      wrong: 'Wrong!',
       nextScan: 'Scan the next QR',
+      continueAction: 'Continue',
       correctAnswer: 'Correct answer',
       explanation: 'Explanation',
       unlockedPart: 'You unlocked a body part',
@@ -158,6 +170,8 @@
       specialAbility: 'Special ability',
       photo: 'Creature photo',
       photoHelp: 'The photo should show only the creature, not people.',
+      photoTake: 'Take photo',
+      photoRetake: 'Retake photo',
       submitCreature: 'Submit creature',
       finishSummaryTitle: 'Unlocked parts',
       noUnlockedParts: 'You did not unlock any parts, but you can still submit your creature.',
@@ -353,8 +367,10 @@
     setText('scan-title', t.scannerTitle);
     setText('scan-lead', t.scannerLead);
     setText('scanner-status', t.scannerIdle);
-    setText('scanner-start', t.scannerStart);
+    setText('scanner-start-label', t.scannerStart);
     setText('scanner-retry', t.scannerRetry);
+    setText('scan-intro-line1', t.scannerIntro1);
+    setText('scan-intro-line2', t.scannerIntro2);
 
     const panel = document.querySelector('[data-scanner-state]');
     const frame = document.getElementById('scanner-frame');
@@ -369,6 +385,8 @@
       if(startButton){
         startButton.hidden = true;
       }
+      const intro = document.getElementById('scanner-intro');
+      if(intro){ intro.hidden = true; }
       return;
     }
 
@@ -560,7 +578,14 @@
     const setKey = String(questionSet.setId);
 
     if(state.answeredSets[setKey]){
-      panel.innerHTML = renderNotice('feedback', t.alreadyPassedTitle, `<p>${escapeHtml(t.alreadyPassedBody)}</p><a class="button button-primary" href="/scan">${escapeHtml(t.nextScan)}</a>`);
+      panel.innerHTML = `
+        <div class="card stack">
+          <h2>${escapeHtml(t.alreadyPassedBody)}</h2>
+        </div>
+        <div class="button-row">
+          <a class="button button-primary" href="/scan">${escapeHtml(t.continueAction)}</a>
+        </div>
+      `;
       return;
     }
 
@@ -602,7 +627,7 @@
         renderSessionStrip(state);
         tipContainer.hidden = false;
         tipButton.disabled = true;
-        tipButton.textContent = t.tipUsed;
+        tipButton.textContent = format(t.tipsRemaining, {used: state.usedTips, remaining: Math.max(0, MAX_TIPS - state.usedTips)});
       });
     }
 
@@ -675,8 +700,34 @@
     setText('ability-label', t.specialAbility);
     setText('photo-label', t.photo);
     setText('photo-help', t.photoHelp);
+    setText('photo-trigger-label', t.photoTake);
     setText('finish-submit', t.submitCreature);
     setText('finish-gallery-link', t.openGallery);
+
+    const photoInput = document.getElementById('photo');
+    const photoPreview = document.getElementById('photo-preview');
+    const photoPreviewImg = document.getElementById('photo-preview-img');
+    const photoPreviewName = document.getElementById('photo-preview-name');
+    const photoTriggerLabel = document.getElementById('photo-trigger-label');
+
+    if(photoInput){
+      photoInput.addEventListener('change', function(){
+        const file = photoInput.files && photoInput.files[0];
+        if(!file){
+          if(photoPreview){ photoPreview.hidden = true; }
+          if(photoTriggerLabel){ photoTriggerLabel.textContent = t.photoTake; }
+          return;
+        }
+        if(photoPreviewName){ photoPreviewName.textContent = file.name; }
+        if(photoPreviewImg){
+          const url = URL.createObjectURL(file);
+          photoPreviewImg.src = url;
+          photoPreviewImg.onload = function(){ URL.revokeObjectURL(url); };
+        }
+        if(photoPreview){ photoPreview.hidden = false; }
+        if(photoTriggerLabel){ photoTriggerLabel.textContent = t.photoRetake; }
+      });
+    }
 
     if(!state){
       summary.innerHTML = renderNotice('feedback feedback-error', t.noSession, `<a class="button button-primary" href="/">${escapeHtml(t.continueHome)}</a>`);
@@ -733,8 +784,8 @@
           <label class="field-label" for="text-answer">${escapeHtml(t.textAnswerLabel)}</label>
           <input class="input" type="text" id="text-answer" name="text_answer" autocomplete="off" required>
         </div>`
-      : `<div class="question-options">${question.options.map(function(option){
-          return `<label class="option-button"><input type="radio" name="option" value="${escapeHtml(option.id)}" required><span>${escapeHtml(localized(option.text, lang))}</span></label>`;
+      : `<div class="question-options">${question.options.map(function(option, index){
+          return `<label class="option-button"><input type="radio" name="option" value="${escapeHtml(option.id)}" required><span class="option-number">${String.fromCharCode(65 + index)}</span><span class="option-text">${escapeHtml(localized(option.text, lang))}</span></label>`;
         }).join('')}</div>`;
 
     return `
@@ -746,13 +797,11 @@
       <form id="question-form" class="stack">
         ${inputMarkup}
         ${question.tip ? `
-          <div class="card stack">
-            <div class="button-row">
-              <button class="button button-secondary" id="tip-button" type="button" ${tipAvailable ? '' : 'disabled'}>${escapeHtml(tipAvailable ? t.useTip : t.tipUsed)}</button>
-              <span class="pill">${escapeHtml(format(t.tipsCount, {used: state.usedTips, max: MAX_TIPS}))}</span>
-            </div>
-            <div id="tip-container" ${state.tipUsage[setKey] ? '' : 'hidden'}>
-              <p class="muted">${escapeHtml(localized(question.tip, lang))}</p>
+          <div class="tip-block stack">
+            <button class="button button-secondary tip-button" id="tip-button" type="button" ${tipAvailable ? '' : 'disabled'}>${escapeHtml(tipAvailable ? t.useTip : format(t.tipsRemaining, {used: state.usedTips, remaining: Math.max(0, MAX_TIPS - state.usedTips)}))}</button>
+            <div id="tip-container" class="tip-card" ${state.tipUsage[setKey] ? '' : 'hidden'}>
+              <p class="tip-card__title">${escapeHtml(t.tipTitle)}</p>
+              <p class="tip-card__body">${escapeHtml(localized(question.tip, lang))}</p>
             </div>
           </div>
         ` : ''}
@@ -765,42 +814,56 @@
 
   function renderQuestionResult(question, result, part, lang){
     const t = ui(lang);
-    const answerMarkup = question.type === 'text'
-      ? `<div class="card"><strong>${escapeHtml(t.correctAnswer)}:</strong> ${escapeHtml(localized(question.answerSummary, lang))}</div>`
-      : `<div class="question-options">${question.options.map(function(option){
-          const classes = ['option-button'];
-          if(option.id === question.correctOptionId){
-            classes.push('option-correct');
-          }
-          else if(option.id === result.submittedValue){
-            classes.push('option-wrong');
-          }
-          return `<div class="${classes.join(' ')}"><span>${escapeHtml(localized(option.text, lang))}</span></div>`;
-        }).join('')}</div>`;
+    const isText = question.type === 'text';
+    let correctLetter = '';
+    let correctText = '';
+
+    if(isText){
+      correctText = localized(question.answerSummary, lang);
+    }
+    else{
+      const idx = (question.options || []).findIndex(function(option){
+        return option.id === question.correctOptionId;
+      });
+      if(idx >= 0){
+        correctLetter = String.fromCharCode(65 + idx);
+        correctText = localized(question.options[idx].text, lang);
+      }
+      else{
+        correctText = localized(question.answerSummary, lang);
+      }
+    }
 
     const outcomeTitle = result.correct ? t.correct : t.wrong;
-    const outcomeClass = result.correct ? 'feedback feedback-success' : 'feedback feedback-error';
-    const partCopy = part
-      ? `<div class="card">
-          <strong>${escapeHtml(result.correct ? t.unlockedPart : t.missedPart)}:</strong>
-          ${escapeHtml(localized(part.name, lang))}
-          <p class="muted">${escapeHtml(localized(part.unlockText, lang))}</p>
-        </div>`
+    const resultModifier = result.correct ? 'result--correct' : 'result--wrong';
+    const cardModifier = result.correct ? 'is-correct' : 'is-wrong';
+
+    const partLine = (part && result.correct)
+      ? `<p class="result-subtitle">${escapeHtml(t.unlockedPart)}: ${escapeHtml(localized(part.name, lang))}</p>`
+      : '';
+
+    const answerBlock = !result.correct
+      ? `<div class="result-section">
+          <h3 class="result-section__title">${escapeHtml(t.correctAnswer)}:${correctLetter ? ` <span class="result-letter">${escapeHtml(correctLetter)}</span>` : ''}</h3>
+          <p class="result-section__body">${escapeHtml(correctText)}</p>
+        </div>
+        <hr class="result-divider">`
       : '';
 
     return `
-      <div class="${outcomeClass}">
-        <h2>${escapeHtml(outcomeTitle)}</h2>
-        ${result.correct ? '' : `<p>${escapeHtml(localized(question.answerSummary, lang))}</p>`}
+      <div class="result ${resultModifier}">
+        <h2 class="result-title">${escapeHtml(outcomeTitle)}</h2>
+        ${partLine}
       </div>
-      ${answerMarkup}
-      <div class="card stack">
-        <strong>${escapeHtml(t.explanation)}</strong>
-        <p class="muted">${escapeHtml(localized(question.explanation, lang))}</p>
+      <div class="result-card ${cardModifier}">
+        ${answerBlock}
+        <div class="result-section">
+          <h3 class="result-section__title result-section__title--accent">${escapeHtml(t.explanation)}:</h3>
+          <p class="result-section__body">${escapeHtml(localized(question.explanation, lang))}</p>
+        </div>
       </div>
-      ${partCopy}
       <div class="button-row">
-        <a class="button button-primary" href="/scan">${escapeHtml(t.nextScan)}</a>
+        <a class="button button-primary" href="/scan">${escapeHtml(t.continueAction)}</a>
       </div>
     `;
   }
@@ -849,8 +912,12 @@
     setText('status-box-label', t.activeBoxLabel);
     setText('status-parts-label', t.partsLabel);
     setText('status-tips-label', t.tipsLabel);
-    setText('status-track', track ? `#${track.id} · ${track.faction[lang]}` : '-');
-    setText('status-box', activeBoxLabel(state, lang));
+    setText('status-track', track ? String(track.id) : '-');
+    const boxBase = activeBoxLabel(state, lang);
+    const boxDisplay = (!state.mutation && track)
+      ? `${(track.faction[lang] || '').toUpperCase()} (${boxBase})`
+      : boxBase;
+    setText('status-box', boxDisplay);
     setText('status-parts', format(t.partsCount, {count: state.unlockedPartIds.length, total: app.parts.length}));
     setText('status-tips', format(t.tipsCount, {used: state.usedTips, max: MAX_TIPS}));
   }

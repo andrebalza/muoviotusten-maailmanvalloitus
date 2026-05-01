@@ -8,6 +8,9 @@ $assetVersion = static function(string $path): string{
 
 	return is_file($fullPath) ? '?v='.(string) filemtime($fullPath) : '';
 };
+$page = $boot['page'] ?? '';
+$gamePages = ['scan', 'question', 'mutation', 'finish'];
+$bodyClass = in_array($page, $gamePages, true) ? 'game-active' : '';
 ?>
 <!DOCTYPE html>
 <html lang="fi">
@@ -20,7 +23,7 @@ $assetVersion = static function(string $path): string{
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/app.css<?= $assetVersion('/assets/app.css') ?>">
 </head>
-<body>
+<body<?= $bodyClass ? ' class="'.$bodyClass.'"' : '' ?>>
   <div class="page-shell">
     <header class="topbar">
       <a class="brand" href="/" aria-label="Muoviotukset">
@@ -35,20 +38,32 @@ $assetVersion = static function(string $path): string{
 
     <section class="session-strip" id="session-strip" hidden>
       <div class="session-stat">
-        <span class="session-label" id="status-track-label">Track</span>
-        <strong id="status-track">-</strong>
-      </div>
-      <div class="session-stat session-stat--active">
-        <span class="session-label" id="status-box-label">Active box</span>
-        <strong id="status-box">-</strong>
-      </div>
-      <div class="session-stat">
-        <span class="session-label" id="status-parts-label">Parts</span>
-        <strong id="status-parts">-</strong>
+        <img class="session-icon" src="/assets/icons/dice.svg" alt="">
+        <div class="session-stat__body">
+          <span class="session-label" id="status-track-label">Track</span>
+          <strong id="status-track">-</strong>
+        </div>
       </div>
       <div class="session-stat">
-        <span class="session-label" id="status-tips-label">Tips</span>
-        <strong id="status-tips">-</strong>
+        <img class="session-icon" src="/assets/icons/box.svg" alt="">
+        <div class="session-stat__body">
+          <span class="session-label" id="status-box-label">Active box</span>
+          <strong id="status-box">-</strong>
+        </div>
+      </div>
+      <div class="session-stat">
+        <img class="session-icon" src="/assets/icons/puzzle.svg" alt="">
+        <div class="session-stat__body">
+          <span class="session-label" id="status-parts-label">Parts</span>
+          <strong id="status-parts">-</strong>
+        </div>
+      </div>
+      <div class="session-stat">
+        <img class="session-icon" src="/assets/icons/bulb.svg" alt="">
+        <div class="session-stat__body">
+          <span class="session-label" id="status-tips-label">Tips</span>
+          <strong id="status-tips">-</strong>
+        </div>
       </div>
     </section>
 
