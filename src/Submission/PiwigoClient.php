@@ -70,6 +70,7 @@ final class PiwigoClient{
 		$parts = implode(', ', $state['unlockedPartNames'] ?? []);
 
 		$lines = array_filter([
+			$this->localizedCreatureNameLine((string) $submission['name']),
 			'Special ability: '.$submission['specialAbility'],
 			'Faction: '.($state['faction'] ?? ''),
 			'Track: '.($state['trackId'] ?? ''),
@@ -79,6 +80,14 @@ final class PiwigoClient{
 		]);
 
 		return implode("\n", $lines);
+	}
+
+	private function localizedCreatureNameLine(string $name): string{
+
+		$escapedName = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+
+		return '<span class="mm-comment-en" lang="en">Creature name: '.$escapedName.'</span>'
+			.'<span class="mm-comment-fi" lang="fi">Otuksen nimi: '.$escapedName.'</span>';
 	}
 
 	private function buildTags(array $submission): array{
