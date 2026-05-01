@@ -792,9 +792,11 @@ body.game-active .session-stat{
   flex: 1 1 0;
   min-width: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.6rem;
+  text-align: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.35rem;
   background: transparent;
   border: none;
   border-radius: 0;
@@ -804,52 +806,63 @@ body.game-active .session-stat{
 }
 
 body.game-active .session-stat:nth-child(1){
-  flex: 0 0 15%;
+  flex: 0 0 18%;
 }
 
 body.game-active .session-stat:nth-child(2){
-  flex: 0 0 40%;
+  flex: 0 0 36%;
 }
 
 body.game-active .session-stat:nth-child(3){
-  flex: 0 0 25%;
+  flex: 0 0 23%;
 }
 
 body.game-active .session-stat:nth-child(4){
-  flex: 0 0 20%;
+  flex: 0 0 23%;
 }
 
 body.game-active .session-stat + .session-stat::before{
   content: "";
   position: absolute;
   left: 0;
-  top: 12%;
-  bottom: 12%;
+  top: 15%;
+  bottom: 15%;
   width: 1px;
   background: rgba(255, 255, 255, 0.18);
 }
 
 body.game-active .session-icon{
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+}
+
+body.game-active .session-stat__body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
 }
 
 body.game-active .session-label{
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.05rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1rem;
   text-transform: none;
   font-weight: 500;
+  line-height: 1.15;
 }
 
 body.game-active .session-stat strong{
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: #fff;
-  line-height: 1.15;
-  word-break: break-word;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 100%;
 }
 
 body.game-active .panel,
