@@ -67,21 +67,35 @@ final class PiwigoClient{
 	private function buildComment(array $submission): string{
 
 		$state = $submission['gameState'];
-		$parts = implode(', ', $state['unlockedPartNames'] ?? []);
+		$partNames = is_array($state['unlockedPartNames'] ?? null) ? $state['unlockedPartNames'] : [];
+		$parts = implode(', ', $partNames);
+		$partCount = count($partNames);
+		$score = SubmissionScore::evaluate($submission);
 
-		$lines = array_filter([
+		$lines = [
 			$this->localizedCreatureNameLine((string) $submission['name']),
-			'Special ability: '.$submission['specialAbility'],
-			'Parts on creature: '.($submission['partsCount'] ?? ''),
-			'Rubber bands: '.($submission['rubberBands'] ?? ''),
-			'Cable ties: '.($submission['cableTies'] ?? ''),
-			'Tape (cm): '.($submission['tapeCm'] ?? ''),
-			'Faction: '.($state['faction'] ?? ''),
-			'Track: '.($state['trackId'] ?? ''),
-			'Difficulty: '.($state['difficulty'] ?? ''),
-			'Box: '.($state['activeBoxLabel'] ?? ''),
-			'Unlocked parts: '.$parts,
-		]);
+			$this->localizedLine('Special ability', 'Erikoiskyky', (string) $submission['specialAbility']),
+			$this->localizedContextLine($state),
+			$this->localizedLine(
+				'Difficulty',
+				'Vaikeustaso',
+				(string) ($state['difficulty'] ?? ''),
+				$this->localizedDifficulty((string) ($state['difficulty'] ?? ''))
+			),
+			'',
+			$this->localizedLine('Unlocked parts', 'Avatut osat', $partCount.' - '.$parts),
+			$this->localizedLine('Parts on creature', 'Osia otuksessa', (string) ($submission['partsCount'] ?? '')),
+			$this->localizedLine('Rubber bands', 'Kuminauhat', (string) ($submission['rubberBands'] ?? '')),
+			$this->localizedMaterialsLine($submission),
+			$this->localizedLine(
+				'Efficiency judgement',
+				'Tehokkuusarvio',
+				$score['efficiencyJudgement'],
+				$this->localizedEfficiencyJudgement($score['efficiencyJudgement'])
+			),
+			'',
+			$this->localizedStrongLine('Final score', 'Loppupisteet', $score['finalScore'].' / 100'),
+		];
 
 		return implode("\n", $lines);
 	}
@@ -92,6 +106,73 @@ final class PiwigoClient{
 
 		return '<span class="mm-comment-en" lang="en">Creature name: '.$escapedName.'</span>'
 			.'<span class="mm-comment-fi" lang="fi">Otuksen nimi: '.$escapedName.'</span>';
+	}
+
+	private function localizedLine(string $englishLabel, string $finnishLabel, string $englishValue, ?string $finnishValue = null): string{
+
+		return $this->localizedText(
+			$englishLabel.': '.$englishValue,
+			$finnishLabel.': '.($finnishValue ?? $englishValue)
+		);
+	}
+
+	private function localizedStrongLine(string $englishLabel, string $finnishLabel, string $value): string{
+
+		return '<strong>'.$this->localizedLine($englishLabel, $finnishLabel, $value).'</strong>';
+	}
+
+	private function localizedContextLine(array $state): string{
+
+		$faction = (string) ($state['faction'] ?? '');
+		$box = (string) ($state['activeBoxLabel'] ?? '');
+		$track = (string) ($state['trackId'] ?? '');
+
+		return $this->localizedText(
+			'Faction: '.$faction.' Box: '.$box.' Track: '.$track,
+			'Heimo: '.$faction.' Laatikko: '.$box.' Rata: '.$track
+		);
+	}
+
+	private function localizedMaterialsLine(array $submission): string{
+
+		$cableTies = (string) ($submission['cableTies'] ?? '');
+		$tapeCm = (string) ($submission['tapeCm'] ?? '');
+
+		return $this->localizedText(
+			'Cable ties: '.$cableTies.' Tape (cm): '.$tapeCm,
+			'Nippusiteet: '.$cableTies.' Teippi (cm): '.$tapeCm
+		);
+	}
+
+	private function localizedText(string $english, string $finnish): string{
+
+		return '<span class="mm-comment-en" lang="en">'.$this->escape($english).'</span>'
+			.'<span class="mm-comment-fi" lang="fi">'.$this->escape($finnish).'</span>';
+	}
+
+	private function localizedDifficulty(string $difficulty): string{
+
+		return match($difficulty){
+			'hard' => 'Vaikea',
+			'easy' => 'Helppo',
+			default => $difficulty,
+		};
+	}
+
+	private function localizedEfficiencyJudgement(string $judgement): string{
+
+		return match($judgement){
+			'Efficient' => 'Tehokas',
+			'Balanced' => 'Tasapainoinen',
+			'Resource-heavy' => 'Materiaalia kuluttava',
+			'No parts used' => 'Ei käytettyjä osia',
+			default => $judgement,
+		};
+	}
+
+	private function escape(string $value): string{
+
+		return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 	}
 
 	private function buildTags(array $submission): array{

@@ -1148,6 +1148,7 @@
         return localized(findPart(partId).name, lang);
       }),
       answeredSets: state.answeredSets,
+      usedTips: state.usedTips,
     };
   }
 
