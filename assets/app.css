@@ -239,6 +239,25 @@ h3{
   gap: 0.45rem;
 }
 
+.materials-group{
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem 1rem 1.1rem;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.materials-group__title{
+  font-weight: 700;
+  padding: 0 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+body.game-active .materials-group{
+  border-color: rgba(28, 140, 168, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+}
+
 .field-label{
   font-weight: 700;
 }

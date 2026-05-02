@@ -127,6 +127,64 @@ return [
 			],
 		],
 	],
+	'achievementByPartCount' => [
+		0 => [
+			'fi' => 'Otuksenne ei saanut yhtään ruumiinosaa, mutta voitte silti rakentaa sen mielikuvituksenne mukaan!',
+			'en' => 'Your creature didn’t gain any body parts, but you can still build it from your imagination!',
+		],
+		1 => [
+			'fi' => 'Otuksesi kehittyi vaiheeseen, jossa se aistii ympäristöään tuntosolujen avulla. Maapallolla elää yhä hyvin yksinkertaisia eliöitä, jotka toimivat pelkkien tällaisten aistien varassa.',
+			'en' => 'Your creature developed to a stage where it senses its surroundings through sensory cells. Even today, there are very simple organisms on Earth that rely only on such senses.',
+		],
+		2 => [
+			'fi' => 'Otuksesi aistit tarkentuivat tuntokarvojen avulla. Monet pienet eläimet ja hyönteiset käyttävät edelleen vastaavia rakenteita havaitakseen kosketusta ja liikettä ympärillään.',
+			'en' => 'Your creature’s senses became more precise with sensory hairs. Many small animals and insects still use similar structures to detect touch and movement around them.',
+		],
+		3 => [
+			'fi' => 'Otuksellesi kehittyi tuntosuomuja, jotka suojaavat sitä ja välittävät tietoa kosketuksesta. Suomuja esiintyy edelleen esimerkiksi kaloilla ja matelijoilla.',
+			'en' => 'Your creature developed sensory scales that protect it and transmit information about touch. Scales are still found, for example, in fish and reptiles.',
+		],
+		4 => [
+			'fi' => 'Otuksellesi muodostui pää, johon aistit ja hermosto alkavat myöhemmin keskittyä. Lähes kaikilla eläimillä on jonkinlainen pää.',
+			'en' => 'Your creature developed a head, where the senses and nervous system will later become concentrated. Almost all animals have some form of a head.',
+		],
+		5 => [
+			'fi' => 'Otuksellesi kehittyi kyky hankkia ravintoa suun avulla. Kaikki eläimet tarvitsevat energiaa, ja ravinnon saaminen on yksi elämän perusedellytyksistä.',
+			'en' => 'Your creature developed the ability to obtain food using a mouth. All animals need energy, and obtaining food is one of the basic requirements of life.',
+		],
+		6 => [
+			'fi' => 'Otuksesi sai kyvyn liikkua vedessä evien avulla. Monet kalat ja muut vesieläimet liikkuvat edelleen juuri evien avulla.',
+			'en' => 'Your creature gained the ability to move in water using fins. Many fish and other aquatic animals still move in this way.',
+		],
+		7 => [
+			'fi' => 'Otuksesi liikkuminen tehostui hännän avulla, joka auttaa tasapainossa ja suunnan hallinnassa. Häntä on edelleen yleinen rakenne monilla eläimillä.',
+			'en' => 'Your creature’s movement became more efficient with the help of a tail, which helps with balance and steering. Tails are still common in many animals.',
+		],
+		8 => [
+			'fi' => 'Otuksellesi kehittyi tarttumisuloke, jonka avulla se pystyy tarttumaan ja käsittelemään ympäristöään. Esimerkiksi hydra nappaa saaliin kiinni lonkeroillaan. Hydra on pieni vedessä elävä polttiaiseläin, joka on saanut nimensä kreikkalaisen mytologian monipäisen hirviön mukaan.',
+			'en' => 'Your creature developed a grasping appendage, allowing it to grab and interact with its surroundings. For example, a hydra catches its prey with its tentacles. The hydra is a small aquatic animal named after the multi-headed creature from Greek mythology.',
+		],
+		9 => [
+			'fi' => 'Otuksellesi kehittyi näköaisti, joka auttaa sitä havaitsemaan valoa, liikettä ja muotoja. Näkö on monille eläimille tärkeä selviytymisen kannalta.',
+			'en' => 'Your creature developed vision, helping it detect light, movement, and shapes. Vision is important for survival for many animals.',
+		],
+		10 => [
+			'fi' => 'Otuksellesi kehittyi kyky havaita ääniä ympäristöstään. Kuulo auttaa eläimiä tunnistamaan vaaroja ja muita yksilöitä.',
+			'en' => 'Your creature developed the ability to detect sounds in its environment. Hearing helps animals recognize dangers and other individuals.',
+		],
+		11 => [
+			'fi' => 'Otuksellesi kehittyi aivot, joiden avulla se pystyy yhdistämään tietoa eri aisteista ja ohjaamaan toimintaansa. Ihminen voi aivojensa avulla muistaa, tuntea, suunnitella tulevaa ja säädellä omaa käyttäytymistään tilanteen mukaan.',
+			'en' => 'Your creature developed a brain, which allows it to combine information from different senses and control its actions. Humans use their brains to remember, feel, plan ahead, and regulate their behavior depending on the situation.',
+		],
+		12 => [
+			'fi' => 'Otuksellesi kehittyivät raajat, joiden avulla se pystyy liikkumaan myös maalla. Maalle siirtyminen on ollut yksi evoluution suurista harppauksista.',
+			'en' => 'Your creature developed limbs, allowing it to move on land as well. The transition to land has been one of the major steps in evolution.',
+		],
+		13 => [
+			'fi' => 'Otuksesi oppi lentämään! Lentokyky on kehittynyt vain harvoille eliöryhmille, kuten linnuille ja hyönteisille.',
+			'en' => 'Your creature learned to fly! The ability to fly has developed only in a few groups of organisms, such as birds and insects.',
+		],
+	],
 	'parts' => [
 		[
 			'id' => 'sensory-cells',

@@ -72,6 +72,10 @@ final class PiwigoClient{
 		$lines = array_filter([
 			$this->localizedCreatureNameLine((string) $submission['name']),
 			'Special ability: '.$submission['specialAbility'],
+			'Parts on creature: '.($submission['partsCount'] ?? ''),
+			'Rubber bands: '.($submission['rubberBands'] ?? ''),
+			'Cable ties: '.($submission['cableTies'] ?? ''),
+			'Tape (cm): '.($submission['tapeCm'] ?? ''),
 			'Faction: '.($state['faction'] ?? ''),
 			'Track: '.($state['trackId'] ?? ''),
 			'Difficulty: '.($state['difficulty'] ?? ''),

@@ -71,18 +71,21 @@
       mutationEyebrow: 'Mutaatio',
       mutationTitle: 'Mutaatio aktivoitui',
       mutationLead: 'Laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
-      finishEyebrow: 'Maali',
-      finishTitle: 'Rakenna ja lähetä otuksesi',
-      finishLead: 'Katso avaamasi osat, rakenna otus fyysisesti, ota kuva ja lähetä se galleriaan.',
+      finishTitle: 'Mahtava suoritus!',
+      finishContinueBuild: 'Jatka rakentamiseen',
+      finishBuildInstructions: 'Evoluutiossa kaikki osat eivät aina säily. Vie otuksesi rakennuspisteelle ja kokoa se valitsemistasi osista. Palauta loput oikeisiin laatikoihin. Valitse osat pelissä saamiesi osien joukosta. Rakenna otus kuminauhoilla, teipillä ja nippusiteillä. Käytä materiaaleja mahdollisimman vähän.',
+      finishCreatureReady: 'Otus on valmis',
       creatureName: 'Otuksen nimi',
-      specialAbility: 'Erikoiskyky',
-      photo: 'Otuksen kuva',
-      photoHelp: 'Kuvassa pitäisi näkyä vain otus, ei ihmisiä.',
+      specialAbility: 'Otuksen kyky',
+      partsCountLabel: 'Kuinka monta osaa otuksella on? Laske kuinka monta osaa käytitte saamistanne osista.',
+      materialsLabel: 'Rakennusmateriaalit',
+      rubberBands: 'Kuminauhat',
+      cableTies: 'Nippusiteet',
+      tapeCm: 'Teippi (cm)',
+      photo: 'Ota kuva otuksesta',
       photoTake: 'Ota kuva',
       photoRetake: 'Ota uusi kuva',
-      submitCreature: 'Lähetä otus',
-      finishSummaryTitle: 'Avaamanne osat',
-      noUnlockedParts: 'Ette avanneet yhtään osaa, mutta voitte silti lähettää otuksenne.',
+      submitCreature: 'Lähetä',
       submissionSuccess: 'Otus lähetettiin onnistuneesti galleriaan.',
       submissionFailed: 'Lähetys epäonnistui.',
       requiredFields: 'Täytä kaikki kentät ja lisää kuva ennen lähetystä.',
@@ -175,18 +178,21 @@
       mutationEyebrow: 'Mutation',
       mutationTitle: 'Mutation activated',
       mutationLead: 'The box changes immediately and stays visible at the top of the app.',
-      finishEyebrow: 'Finish',
-      finishTitle: 'Build and submit your creature',
-      finishLead: 'See which parts you unlocked, build the creature physically, take a photo, and submit it to the gallery.',
+      finishTitle: 'Great achievement!',
+      finishContinueBuild: 'Continue to building',
+      finishBuildInstructions: 'In evolution, not all parts always remain. Take your creature to the building station and assemble it from the parts you choose. Return the rest to the correct boxes. Choose parts from the ones you received during the game. Build the creature using rubber bands, tape, and cable ties. Use as little material as possible.',
+      finishCreatureReady: 'Creature is ready',
       creatureName: 'Creature name',
-      specialAbility: 'Special ability',
-      photo: 'Creature photo',
-      photoHelp: 'The photo should show only the creature, not people.',
+      specialAbility: 'Creature ability',
+      partsCountLabel: 'How many parts does your creature have? Count how many parts you used from the ones you won.',
+      materialsLabel: 'Building materials',
+      rubberBands: 'Rubber bands',
+      cableTies: 'Cable ties',
+      tapeCm: 'Tape (cm)',
+      photo: 'Take a photo of the creature',
       photoTake: 'Take photo',
       photoRetake: 'Retake photo',
-      submitCreature: 'Submit creature',
-      finishSummaryTitle: 'Unlocked parts',
-      noUnlockedParts: 'You did not unlock any parts, but you can still submit your creature.',
+      submitCreature: 'Submit',
       submissionSuccess: 'The creature was submitted successfully.',
       submissionFailed: 'Submission failed.',
       requiredFields: 'Fill in all fields and add a photo before submitting.',
@@ -772,20 +778,60 @@
   function initFinishPage(state){
     const lang = currentLanguage(state);
     const t = ui(lang);
-    const summary = document.getElementById('finish-summary');
+    const stepAchievement = document.getElementById('finish-step-achievement');
+    const stepBuild = document.getElementById('finish-step-build');
+    const stepForm = document.getElementById('finish-step-form');
     const form = document.getElementById('finish-form');
     const message = document.getElementById('finish-message');
+    const continueBuildButton = document.getElementById('finish-continue-build');
+    const creatureReadyButton = document.getElementById('finish-creature-ready');
 
-    setText('finish-eyebrow', t.finishEyebrow);
     setText('finish-title', t.finishTitle);
-    setText('finish-lead', t.finishLead);
+    setText('finish-continue-build', t.finishContinueBuild);
+    setText('finish-build-instructions', t.finishBuildInstructions);
+    setText('finish-creature-ready', t.finishCreatureReady);
     setText('creature-name-label', t.creatureName);
     setText('ability-label', t.specialAbility);
+    setText('parts-count-label', t.partsCountLabel);
+    setText('materials-label', t.materialsLabel);
+    setText('rubber-bands-label', t.rubberBands);
+    setText('cable-ties-label', t.cableTies);
+    setText('tape-cm-label', t.tapeCm);
     setText('photo-label', t.photo);
-    setText('photo-help', t.photoHelp);
     setText('photo-trigger-label', t.photoTake);
     setText('finish-submit', t.submitCreature);
     setText('finish-gallery-link', t.openGallery);
+
+    if(!state){
+      if(stepAchievement){
+        stepAchievement.innerHTML = renderNotice('feedback feedback-error', t.noSession, `<a class="button button-primary" href="/">${escapeHtml(t.continueHome)}</a>`);
+      }
+      return;
+    }
+
+    const partCount = (state.unlockedPartIds || []).length;
+    setText('finish-achievement-text', achievementText(partCount, lang));
+
+    const partsCountInput = document.getElementById('parts_count');
+    if(partsCountInput && partsCountInput.value === ''){
+      partsCountInput.value = String(partCount);
+    }
+
+    if(continueBuildButton && stepBuild){
+      continueBuildButton.addEventListener('click', function(){
+        stepBuild.hidden = false;
+        if(stepAchievement){ stepAchievement.hidden = true; }
+        stepBuild.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    }
+
+    if(creatureReadyButton && stepForm){
+      creatureReadyButton.addEventListener('click', function(){
+        stepForm.hidden = false;
+        if(stepBuild){ stepBuild.hidden = true; }
+        stepForm.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    }
 
     const photoInput = document.getElementById('photo');
     const photoPreview = document.getElementById('photo-preview');
@@ -812,13 +858,9 @@
       });
     }
 
-    if(!state){
-      summary.innerHTML = renderNotice('feedback feedback-error', t.noSession, `<a class="button button-primary" href="/">${escapeHtml(t.continueHome)}</a>`);
-      form.hidden = true;
+    if(!form){
       return;
     }
-
-    summary.innerHTML = renderFinishSummary(state, lang);
 
     form.addEventListener('submit', async function(event){
       event.preventDefault();
@@ -829,12 +871,27 @@
 
       const formData = new FormData(form);
       const photo = formData.get('photo');
+      const integerFields = ['parts_count', 'rubber_bands', 'cable_ties', 'tape_cm'];
 
-      if(!formData.get('creature_name') || !formData.get('special_ability') || !(photo instanceof File) || photo.size === 0){
+      const missingText = !formData.get('creature_name') || !formData.get('special_ability');
+      const missingPhoto = !(photo instanceof File) || photo.size === 0;
+      const missingNumbers = integerFields.some(function(field){
+        const raw = formData.get(field);
+        if(raw === null || String(raw).trim() === ''){
+          return true;
+        }
+        const num = Number(raw);
+        return !Number.isFinite(num) || num < 0 || !Number.isInteger(num);
+      });
+
+      if(missingText || missingPhoto || missingNumbers){
         message.innerHTML = renderNotice('feedback feedback-error', t.submissionFailed, `<p>${escapeHtml(t.requiredFields)}</p>`);
         return;
       }
 
+      integerFields.forEach(function(field){
+        formData.set(field, String(parseInt(String(formData.get(field)), 10)));
+      });
       formData.append('game_state', JSON.stringify(submissionState(state, lang)));
 
       try{
@@ -855,6 +912,12 @@
         message.innerHTML = renderNotice('feedback feedback-error', t.submissionFailed, `<p>${escapeHtml(error.message || t.submissionFailed)}</p>`);
       }
     });
+  }
+
+  function achievementText(partCount, lang){
+    const map = (app && app.achievementByPartCount) || {};
+    const entry = map[partCount] || map[String(partCount)] || map[0] || map['0'];
+    return entry ? localized(entry, lang) : '';
   }
 
   function renderQuestion(question, state, lang){
@@ -958,30 +1021,6 @@
     return format(template, {
       BoxName: activeBoxLabel(state, lang),
     });
-  }
-
-  function renderFinishSummary(state, lang){
-    const t = ui(lang);
-    const unlockedParts = state.unlockedPartIds.map(function(partId){
-      return findPart(partId);
-    }).filter(Boolean);
-
-    const partMarkup = unlockedParts.length
-      ? `<ul class="list">${unlockedParts.map(function(part){
-          return `<li>${escapeHtml(localized(part.name, lang))}</li>`;
-        }).join('')}</ul>`
-      : `<p class="muted">${escapeHtml(t.noUnlockedParts)}</p>`;
-
-    return `
-      <div class="summary-grid">
-        <div class="card">
-          <strong>${escapeHtml(t.finishSummaryTitle)}</strong>
-          ${partMarkup}
-        </div>
-        <div class="card">${escapeHtml(format(t.trackSummary, {track: state.trackId, faction: getTrack(state.trackId).faction[lang]}))}</div>
-        <div class="card">${escapeHtml(format(t.activeBoxSummary, {box: activeBoxLabel(state, lang)}))}</div>
-      </div>
-    `;
   }
 
   function renderSessionStrip(state){

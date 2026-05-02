@@ -32,6 +32,7 @@ final class ContentRepository{
 			'parts' => $this->content['parts'] ?? [],
 			'mutations' => $this->content['mutations'] ?? [],
 			'tiles' => $this->content['tiles'] ?? [],
+			'achievementByPartCount' => $this->content['achievementByPartCount'] ?? [],
 		];
 	}
 

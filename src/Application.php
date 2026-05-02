@@ -123,6 +123,26 @@ final class Application{
 			], 422);
 		}
 
+		$integerFields = [
+			'parts_count' => 'partsCount',
+			'rubber_bands' => 'rubberBands',
+			'cable_ties' => 'cableTies',
+			'tape_cm' => 'tapeCm',
+		];
+		$integerValues = [];
+
+		foreach($integerFields as $postKey => $payloadKey){
+			$raw = (string) $request->post($postKey, '');
+
+			if($raw === '' || !preg_match('/^\d+$/', $raw)){
+				return Response::json([
+					'error' => 'Parts count and material counts must be non-negative integers.',
+				], 422);
+			}
+
+			$integerValues[$payloadKey] = (int) $raw;
+		}
+
 		if(($photo['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK){
 			return Response::json(['error' => 'Photo upload failed.'], 422);
 		}
@@ -143,6 +163,10 @@ final class Application{
 			$result = $this->piwigoClient->uploadSubmission([
 				'name' => $creatureName,
 				'specialAbility' => $specialAbility,
+				'partsCount' => $integerValues['partsCount'],
+				'rubberBands' => $integerValues['rubberBands'],
+				'cableTies' => $integerValues['cableTies'],
+				'tapeCm' => $integerValues['tapeCm'],
 				'gameState' => $gameState,
 			], $photo);
 		}
