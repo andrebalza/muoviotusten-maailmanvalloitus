@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <title>Light bulb icon</title>
+  <g stroke="#43C987" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer circle -->
+    <circle cx="256" cy="256" r="217"/>
+
+    <!-- Light bulb glass -->
+    <path d="M256 193c-43 0-78 35-78 78 0 25 12 47 31 62 13 10 19 25 19 41v12h56v-12c0-16 7-31 19-41 19-15 31-37 31-62 0-43-35-78-78-78z"/>
+
+    <!-- Highlight on bulb -->
+    <path d="M279 216c17 8 30 23 36 41"/>
+
+    <!-- Filament/supports -->
+    <path d="M225 349v-38"/>
+    <path d="M287 349v-38"/>
+    <path d="M225 311c8-18 23-18 31 0 8-18 23-18 31 0"/>
+
+    <!-- Screw base -->
+    <path d="M218 387h76"/>
+    <path d="M219 401h74"/>
+    <path d="M223 415h66"/>
+    <path d="M229 429h54"/>
+    <path d="M238 442h36"/>
+
+    <!-- Rays -->
+    <path d="M256 129v25"/>
+    <path d="M158 158l18 18"/>
+    <path d="M109 256h27"/>
+    <path d="M158 354l25-25"/>
+    <path d="M354 354l-25-25"/>
+    <path d="M403 256h-27"/>
+    <path d="M354 158l-18 18"/>
+  </g>
+</svg>

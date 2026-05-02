@@ -57,5 +57,41 @@
       <button class="start-step__back" type="button" data-back="roll" id="track-back">Back</button>
     </div>
 
+    <div class="start-step start-step--confirm" data-step="confirm" hidden>
+      <p class="track-confirm__eyebrow" id="track-confirm-eyebrow">You got:</p>
+      <div class="track-confirm__burst" aria-hidden="true">
+        <span class="track-confirm__ray track-confirm__ray--green track-confirm__ray--left-top"></span>
+        <span class="track-confirm__ray track-confirm__ray--blue track-confirm__ray--left-mid"></span>
+        <span class="track-confirm__ray track-confirm__ray--red track-confirm__ray--left-low"></span>
+        <span class="track-confirm__number" id="track-confirm-number">1</span>
+        <span class="track-confirm__ray track-confirm__ray--green track-confirm__ray--right-top"></span>
+        <span class="track-confirm__ray track-confirm__ray--blue track-confirm__ray--right-mid"></span>
+        <span class="track-confirm__ray track-confirm__ray--red track-confirm__ray--right-low"></span>
+      </div>
+      <h2 class="track-confirm__title" id="track-confirm-title">Is the track free?</h2>
+      <div class="track-confirm__actions">
+        <button class="track-confirm__button track-confirm__button--yes" type="button" id="track-confirm-yes">YES</button>
+        <button class="track-confirm__button track-confirm__button--no" type="button" id="track-confirm-no">NO</button>
+      </div>
+    </div>
+
+    <div class="start-step start-step--track-intro" data-step="intro" hidden>
+      <div class="track-intro">
+        <h2 class="track-intro__title" id="track-intro-title">Track 3</h2>
+        <p class="track-intro__belongs" id="track-intro-belongs">belongs to faction</p>
+        <p class="track-intro__faction" id="track-intro-faction">Propellukset.</p>
+        <img class="track-intro__creature" id="track-intro-image" src="/public/assets/creatures-small/03_propellukset_no_bkg_760.png" alt="">
+        <div class="track-intro__info">
+          <div class="track-intro__icon-wrap" aria-hidden="true">
+            <img class="track-intro__icon" src="/assets/icons/lightbulb_transparent.svg" alt="">
+          </div>
+          <p class="track-intro__description" id="track-intro-description">Placeholder description goes here.</p>
+        </div>
+        <button class="track-intro__continue" type="button" id="track-intro-continue">
+          <span id="track-intro-continue-label">Continue</span>
+        </button>
+      </div>
+    </div>
+
   </div>
 </section>

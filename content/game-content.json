@@ -2,7 +2,7 @@
     "meta": {
         "contentVersion": "2026-04-18",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-01T06:45:53+00:00",
+        "generatedAt": "2026-05-01T09:25:12+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -21,6 +21,11 @@
             "faction": {
                 "fi": "petpetit",
                 "en": "petpetit"
+            },
+            "introImage": "/public/assets/creatures-small/01_petpet_no_bkg_760.png",
+            "introDescription": {
+                "fi": "kuvausteksti lisätään tähän.",
+                "en": "description placeholder goes here."
             }
         },
         {
@@ -33,6 +38,11 @@
             "faction": {
                 "fi": "petenkeetit",
                 "en": "petenkeetit"
+            },
+            "introImage": "/public/assets/creatures-small/02_petenkeetit_no_bkg_760.png",
+            "introDescription": {
+                "fi": "kuvausteksti lisätään tähän.",
+                "en": "description placeholder goes here."
             }
         },
         {
@@ -45,6 +55,11 @@
             "faction": {
                 "fi": "propellukset",
                 "en": "propellukset"
+            },
+            "introImage": "/public/assets/creatures-small/03_propellukset_no_bkg_760.png",
+            "introDescription": {
+                "fi": "kuvausteksti lisätään tähän.",
+                "en": "description placeholder goes here."
             }
         },
         {
@@ -57,6 +72,11 @@
             "faction": {
                 "fi": "styrintit",
                 "en": "styrintit"
+            },
+            "introImage": "/public/assets/creatures-small/04_styrintit_no_bkg_760.png",
+            "introDescription": {
+                "fi": "kuvausteksti lisätään tähän.",
+                "en": "description placeholder goes here."
             }
         },
         {
@@ -69,6 +89,11 @@
             "faction": {
                 "fi": "zekazotkuzet",
                 "en": "zekazotkuzet"
+            },
+            "introImage": "/public/assets/creatures-small/05_zekazotkuzet_no_bkg_760.png",
+            "introDescription": {
+                "fi": "kuvausteksti lisätään tähän.",
+                "en": "description placeholder goes here."
             }
         }
     ],

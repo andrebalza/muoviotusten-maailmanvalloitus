@@ -26,6 +26,13 @@
       stepRoll: 'Heitä noppaa',
       stepRollPrompt: 'Minkä luvun sait?',
       stepTrack: 'Valitse rata',
+      trackConfirmEyebrow: 'Sait:',
+      trackConfirmTitle: 'Onko rata vapaa?',
+      trackConfirmYes: 'KYLLÄ',
+      trackConfirmNo: 'EI',
+      trackIntroTitle: 'Rata {track}',
+      trackIntroBelongs: 'kuuluu lahkolle',
+      trackIntroContinue: 'JATKA',
       back: 'Takaisin',
       easy: 'Helppo',
       hard: 'Vaikea',
@@ -124,6 +131,13 @@
       stepRoll: 'Roll the dice',
       stepRollPrompt: 'What number did you get?',
       stepTrack: 'Choose your track',
+      trackConfirmEyebrow: 'You got:',
+      trackConfirmTitle: 'Is the track free?',
+      trackConfirmYes: 'YES',
+      trackConfirmNo: 'NO',
+      trackIntroTitle: 'Track {track}',
+      trackIntroBelongs: 'belongs to faction',
+      trackIntroContinue: 'CONTINUE',
       back: 'Back',
       easy: 'Easy',
       hard: 'Hard',
@@ -266,7 +280,7 @@
     startFlow.hidden = false;
 
     const choices = {language: 'fi', difficulty: null, roll: null, trackId: null};
-    const order = ['language', 'age', 'roll', 'track'];
+    const order = ['language', 'age', 'roll', 'track', 'confirm', 'intro'];
     const steps = {};
     order.forEach(function(name){
       steps[name] = startFlow.querySelector('[data-step="'+name+'"]');
@@ -279,10 +293,15 @@
         steps[other].hidden = (other !== name);
       });
       if(heroEl){
-        heroEl.hidden = (name === 'roll');
+        heroEl.hidden = (name === 'roll' || name === 'confirm' || name === 'intro');
       }
       startFlow.classList.toggle('start-flow--roll', name === 'roll');
+      startFlow.classList.toggle('start-flow--confirm', name === 'confirm');
+      startFlow.classList.toggle('start-flow--intro', name === 'intro');
       applyStartCopy();
+      if(name === 'intro'){
+        renderTrackIntro();
+      }
     }
 
     function applyStartCopy(){
@@ -294,9 +313,15 @@
       setText('step-roll-title', t.stepRoll);
       setText('step-roll-prompt', t.stepRollPrompt);
       setText('step-track-title', t.stepTrack);
+      setText('track-confirm-eyebrow', t.trackConfirmEyebrow);
+      setText('track-confirm-title', t.trackConfirmTitle);
+      setText('track-confirm-yes', t.trackConfirmYes);
+      setText('track-confirm-no', t.trackConfirmNo);
+      setText('track-intro-continue-label', t.trackIntroContinue);
       setText('age-back', t.back);
       setText('roll-back', t.back);
       setText('track-back', t.back);
+      renderTrackConfirmationNumber();
     }
 
     steps.language.querySelectorAll('[data-language]').forEach(function(button){
@@ -325,9 +350,41 @@
           return;
         }
         choices.trackId = roll;
-        finishStart();
+        showStep('confirm');
       });
     });
+
+    function renderTrackConfirmationNumber(){
+      setText('track-confirm-number', choices.trackId ? String(choices.trackId) : '');
+    }
+
+    function renderTrackIntro(){
+      const lang = choices.language;
+      const t = ui(lang);
+      const track = getTrack(choices.trackId);
+
+      if(!track){
+        return;
+      }
+
+      const faction = capitalizeFirst(localized(track.faction, lang));
+      const description = localized(track.introDescription, lang);
+      const image = document.getElementById('track-intro-image');
+      const descriptionEl = document.getElementById('track-intro-description');
+
+      setText('track-intro-title', format(t.trackIntroTitle, {track: track.id}));
+      setText('track-intro-belongs', t.trackIntroBelongs);
+      setText('track-intro-faction', faction+'.');
+
+      if(image){
+        image.src = track.introImage || '';
+        image.alt = faction;
+      }
+
+      if(descriptionEl){
+        descriptionEl.innerHTML = `<strong>${escapeHtml(faction)}</strong> ${escapeHtml(description)}`;
+      }
+    }
 
     function renderTrackButtons(){
       const lang = choices.language;
@@ -341,7 +398,7 @@
       container.querySelectorAll('[data-track]').forEach(function(button){
         button.addEventListener('click', function(){
           choices.trackId = Number(button.getAttribute('data-track'));
-          finishStart();
+          showStep('confirm');
         });
       });
     }
@@ -351,6 +408,31 @@
         showStep(button.getAttribute('data-back'));
       });
     });
+
+    const confirmYes = document.getElementById('track-confirm-yes');
+    const confirmNo = document.getElementById('track-confirm-no');
+
+    if(confirmYes){
+      confirmYes.addEventListener('click', function(){
+        showStep('intro');
+      });
+    }
+
+    if(confirmNo){
+      confirmNo.addEventListener('click', function(){
+        choices.roll = null;
+        choices.trackId = null;
+        showStep('roll');
+      });
+    }
+
+    const introContinue = document.getElementById('track-intro-continue');
+
+    if(introContinue){
+      introContinue.addEventListener('click', function(){
+        finishStart();
+      });
+    }
 
     function finishStart(){
       saveState(newSession(choices.language, choices.difficulty || 'easy', choices.trackId));
@@ -1062,6 +1144,11 @@
       return value;
     }
     return value[language] || value.fi || value.en || '';
+  }
+
+  function capitalizeFirst(value){
+    const text = String(value || '');
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
   }
 
   function getTrack(trackId){

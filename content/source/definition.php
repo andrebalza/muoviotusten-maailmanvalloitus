@@ -18,30 +18,55 @@ return [
 			'dice' => 1,
 			'mainBox' => ['fi' => 'PET', 'en' => 'PET'],
 			'faction' => ['fi' => 'petpetit', 'en' => 'petpetit'],
+			'introImage' => '/public/assets/creatures-small/01_petpet_no_bkg_760.png',
+			'introDescription' => [
+				'fi' => 'kuvausteksti lisätään tähän.',
+				'en' => 'description placeholder goes here.',
+			],
 		],
 		[
 			'id' => 2,
 			'dice' => 2,
 			'mainBox' => ['fi' => 'HDPE / LDPE', 'en' => 'HDPE / LDPE'],
 			'faction' => ['fi' => 'petenkeetit', 'en' => 'petenkeetit'],
+			'introImage' => '/public/assets/creatures-small/02_petenkeetit_no_bkg_760.png',
+			'introDescription' => [
+				'fi' => 'kuvausteksti lisätään tähän.',
+				'en' => 'description placeholder goes here.',
+			],
 		],
 		[
 			'id' => 3,
 			'dice' => 3,
 			'mainBox' => ['fi' => 'PP5', 'en' => 'PP5'],
 			'faction' => ['fi' => 'propellukset', 'en' => 'propellukset'],
+			'introImage' => '/public/assets/creatures-small/03_propellukset_no_bkg_760.png',
+			'introDescription' => [
+				'fi' => 'kuvausteksti lisätään tähän.',
+				'en' => 'description placeholder goes here.',
+			],
 		],
 		[
 			'id' => 4,
 			'dice' => 4,
 			'mainBox' => ['fi' => 'PS6', 'en' => 'PS6'],
 			'faction' => ['fi' => 'styrintit', 'en' => 'styrintit'],
+			'introImage' => '/public/assets/creatures-small/04_styrintit_no_bkg_760.png',
+			'introDescription' => [
+				'fi' => 'kuvausteksti lisätään tähän.',
+				'en' => 'description placeholder goes here.',
+			],
 		],
 		[
 			'id' => 5,
 			'dice' => 5,
 			'mainBox' => ['fi' => 'Other 7', 'en' => 'Other 7'],
 			'faction' => ['fi' => 'zekazotkuzet', 'en' => 'zekazotkuzet'],
+			'introImage' => '/public/assets/creatures-small/05_zekazotkuzet_no_bkg_760.png',
+			'introDescription' => [
+				'fi' => 'kuvausteksti lisätään tähän.',
+				'en' => 'description placeholder goes here.',
+			],
 		],
 	],
 	'mutations' => [
