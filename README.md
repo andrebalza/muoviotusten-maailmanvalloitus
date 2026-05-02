@@ -75,6 +75,17 @@ Notes:
 
 The finish form posts to `/api/submissions`, and the server forwards the payload and uploaded photo to Piwigo through `ws.php`.
 
+The multipart submission payload includes:
+
+- `creature_name`
+- `special_ability`
+- `photo`
+- `game_state`
+- `parts_count`: required integer, `0` to `99`
+- `rubber_bands`: required integer, `0` to `999`
+- `cable_ties`: required integer, `0` to `999`
+- `tape_cm`: required integer, `0` to `9999`
+
 In production, Piwigo is installed inside the same WordOps site at `/gallery`. Keep that layout if you redeploy or rebuild the gallery. See [docs/piwigo-wordops-rollout.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/docs/piwigo-wordops-rollout.md).
 
 Copy `.env.example` to `.env` and set:
@@ -91,6 +102,7 @@ Notes:
 
 - The live site uses a dedicated uploader account plus a dedicated Piwigo album for game submissions.
 - [src/Submission/PiwigoClient.php](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/src/Submission/PiwigoClient.php) forces `format=json` in the `ws.php` query string because the live Piwigo install does not reliably return JSON when that flag is sent only in the POST body.
+- The additional part and material counts are stored in the uploaded image comment sent to Piwigo, so no Piwigo schema, plugin, or admin-side field changes are required for this payload change.
 - If you rotate Piwigo credentials or recreate the target album, update the app `.env` on the server as part of the same change.
 
 ## Content Workflow

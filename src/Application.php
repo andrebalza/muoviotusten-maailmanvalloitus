@@ -124,14 +124,14 @@ final class Application{
 		}
 
 		$integerFields = [
-			'parts_count' => 'partsCount',
-			'rubber_bands' => 'rubberBands',
-			'cable_ties' => 'cableTies',
-			'tape_cm' => 'tapeCm',
+			'parts_count' => ['payloadKey' => 'partsCount', 'max' => 99],
+			'rubber_bands' => ['payloadKey' => 'rubberBands', 'max' => 999],
+			'cable_ties' => ['payloadKey' => 'cableTies', 'max' => 999],
+			'tape_cm' => ['payloadKey' => 'tapeCm', 'max' => 9999],
 		];
 		$integerValues = [];
 
-		foreach($integerFields as $postKey => $payloadKey){
+		foreach($integerFields as $postKey => $field){
 			$raw = (string) $request->post($postKey, '');
 
 			if($raw === '' || !preg_match('/^\d+$/', $raw)){
@@ -140,7 +140,15 @@ final class Application{
 				], 422);
 			}
 
-			$integerValues[$payloadKey] = (int) $raw;
+			$value = (int) $raw;
+
+			if($value > $field['max']){
+				return Response::json([
+					'error' => 'Parts count must be 0-99, rubber bands and cable ties 0-999, and tape 0-9999 cm.',
+				], 422);
+			}
+
+			$integerValues[$field['payloadKey']] = $value;
 		}
 
 		if(($photo['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK){

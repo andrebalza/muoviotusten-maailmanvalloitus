@@ -31,22 +31,22 @@
 
     <div class="field">
       <label class="field-label" for="parts_count" id="parts-count-label">How many parts does your creature have?</label>
-      <input class="input" type="number" inputmode="numeric" id="parts_count" name="parts_count" min="0" step="1" required>
+      <input class="input" type="number" inputmode="numeric" id="parts_count" name="parts_count" min="0" max="99" step="1" required>
     </div>
 
     <fieldset class="materials-group stack">
       <legend class="materials-group__title" id="materials-label">Building materials</legend>
       <div class="field">
         <label class="field-label" for="rubber_bands" id="rubber-bands-label">Rubber bands</label>
-        <input class="input" type="number" inputmode="numeric" id="rubber_bands" name="rubber_bands" min="0" step="1" required>
+        <input class="input" type="number" inputmode="numeric" id="rubber_bands" name="rubber_bands" min="0" max="999" step="1" required>
       </div>
       <div class="field">
         <label class="field-label" for="cable_ties" id="cable-ties-label">Cable ties</label>
-        <input class="input" type="number" inputmode="numeric" id="cable_ties" name="cable_ties" min="0" step="1" required>
+        <input class="input" type="number" inputmode="numeric" id="cable_ties" name="cable_ties" min="0" max="999" step="1" required>
       </div>
       <div class="field">
         <label class="field-label" for="tape_cm" id="tape-cm-label">Tape (cm)</label>
-        <input class="input" type="number" inputmode="numeric" id="tape_cm" name="tape_cm" min="0" step="1" required>
+        <input class="input" type="number" inputmode="numeric" id="tape_cm" name="tape_cm" min="0" max="9999" step="1" required>
       </div>
     </fieldset>
 
@@ -69,7 +69,15 @@
 
     <div class="button-row">
       <button class="button button-primary" type="submit" id="finish-submit">Submit</button>
-      <a class="button button-secondary" href="/gallery/index.php?/category/1" id="finish-gallery-link">Open gallery</a>
     </div>
   </form>
+</section>
+
+<section class="panel" id="finish-step-success" hidden>
+  <div class="card stack">
+    <h2 id="finish-success-title">The creature was submitted successfully.</h2>
+  </div>
+  <div class="button-row">
+    <a class="button button-primary" href="/gallery/index.php?/category/1" id="finish-success-gallery">Open gallery</a>
+  </div>
 </section>

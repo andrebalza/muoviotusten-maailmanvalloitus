@@ -88,7 +88,7 @@
       submitCreature: 'Lähetä',
       submissionSuccess: 'Otus lähetettiin onnistuneesti galleriaan.',
       submissionFailed: 'Lähetys epäonnistui.',
-      requiredFields: 'Täytä kaikki kentät ja lisää kuva ennen lähetystä.',
+      requiredFields: 'Täytä kaikki kentät ja lisää kuva. Osat 0-99, kuminauhat ja nippusiteet 0-999, teippi 0-9999 cm.',
       continueHome: 'Palaa alkuun',
       difficultyEasy: 'Helppo',
       difficultyHard: 'Vaikea',
@@ -195,7 +195,7 @@
       submitCreature: 'Submit',
       submissionSuccess: 'The creature was submitted successfully.',
       submissionFailed: 'Submission failed.',
-      requiredFields: 'Fill in all fields and add a photo before submitting.',
+      requiredFields: 'Fill in all fields and add a photo. Parts 0-99, rubber bands and cable ties 0-999, tape 0-9999 cm.',
       continueHome: 'Back to start',
       difficultyEasy: 'Easy',
       difficultyHard: 'Hard',
@@ -800,7 +800,8 @@
     setText('photo-label', t.photo);
     setText('photo-trigger-label', t.photoTake);
     setText('finish-submit', t.submitCreature);
-    setText('finish-gallery-link', t.openGallery);
+    setText('finish-success-title', t.submissionSuccess);
+    setText('finish-success-gallery', t.openGallery);
 
     if(!state){
       if(stepAchievement){
@@ -871,25 +872,32 @@
 
       const formData = new FormData(form);
       const photo = formData.get('photo');
-      const integerFields = ['parts_count', 'rubber_bands', 'cable_ties', 'tape_cm'];
+      const integerFields = {
+        parts_count: 99,
+        rubber_bands: 999,
+        cable_ties: 999,
+        tape_cm: 9999,
+      };
 
       const missingText = !formData.get('creature_name') || !formData.get('special_ability');
       const missingPhoto = !(photo instanceof File) || photo.size === 0;
-      const missingNumbers = integerFields.some(function(field){
+      const invalidNumbers = Object.entries(integerFields).some(function(entry){
+        const field = entry[0];
+        const max = entry[1];
         const raw = formData.get(field);
         if(raw === null || String(raw).trim() === ''){
           return true;
         }
         const num = Number(raw);
-        return !Number.isFinite(num) || num < 0 || !Number.isInteger(num);
+        return !Number.isFinite(num) || num < 0 || num > max || !Number.isInteger(num);
       });
 
-      if(missingText || missingPhoto || missingNumbers){
+      if(missingText || missingPhoto || invalidNumbers){
         message.innerHTML = renderNotice('feedback feedback-error', t.submissionFailed, `<p>${escapeHtml(t.requiredFields)}</p>`);
         return;
       }
 
-      integerFields.forEach(function(field){
+      Object.keys(integerFields).forEach(function(field){
         formData.set(field, String(parseInt(String(formData.get(field)), 10)));
       });
       formData.append('game_state', JSON.stringify(submissionState(state, lang)));
@@ -906,7 +914,12 @@
           throw new Error(payload.error || t.submissionFailed);
         }
 
-        message.innerHTML = renderNotice('feedback feedback-success', t.submissionSuccess, `<a class="button button-primary" href="/gallery/index.php?/category/1">${escapeHtml(t.openGallery)}</a>`);
+        const stepSuccess = document.getElementById('finish-step-success');
+        if(stepForm){ stepForm.hidden = true; }
+        if(stepSuccess){
+          stepSuccess.hidden = false;
+          stepSuccess.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
       }
       catch(error){
         message.innerHTML = renderNotice('feedback feedback-error', t.submissionFailed, `<p>${escapeHtml(error.message || t.submissionFailed)}</p>`);
