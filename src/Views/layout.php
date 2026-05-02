@@ -47,7 +47,7 @@ $bodyClass = in_array($page, $gamePages, true) ? 'game-active' : '';
       <div class="session-stat">
         <img class="session-icon" src="/assets/icons/box.svg" alt="">
         <div class="session-stat__body">
-          <span class="session-label" id="status-box-label">Active box</span>
+          <span class="session-label" id="status-box-label">Box</span>
           <strong id="status-box">-</strong>
         </div>
       </div>

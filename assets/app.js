@@ -13,7 +13,7 @@
       navAbout: 'Peliohje',
       navGallery: 'Galleria',
       trackLabel: 'Rata',
-      activeBoxLabel: 'Aktiivinen laatikko',
+      activeBoxLabel: 'Laatikko',
       partsLabel: 'Osat',
       tipsLabel: 'Vinkit',
       resumeTitle: 'Nykyinen peli',
@@ -70,8 +70,7 @@
       noSession: 'Aloita peli ensin aloitussivulta.',
       mutationEyebrow: 'Mutaatio',
       mutationTitle: 'Mutaatio aktivoitui',
-      mutationLead: 'Aktiivinen laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
-      mutationApplied: 'Aktiivinen laatikko on nyt',
+      mutationLead: 'Laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
       finishEyebrow: 'Maali',
       finishTitle: 'Rakenna ja lähetä otuksesi',
       finishLead: 'Katso avaamasi osat, rakenna otus fyysisesti, ota kuva ja lähetä se galleriaan.',
@@ -93,7 +92,7 @@
       partsCount: '{count} / {total}',
       tipsCount: '{used} / {max}',
       trackSummary: 'Rata {track}: {faction}',
-      activeBoxSummary: 'Aktiivinen laatikko: {box}',
+      activeBoxSummary: 'Laatikko: {box}',
       difficultySummary: 'Vaikeustaso: {difficulty}',
       selectedTrackSummary: 'Valittu rata: {track}',
       aboutEyebrow: 'Tietoa pelistä',
@@ -118,7 +117,7 @@
       navAbout: 'About',
       navGallery: 'Gallery',
       trackLabel: 'Track',
-      activeBoxLabel: 'Active box',
+      activeBoxLabel: 'Box',
       partsLabel: 'Parts',
       tipsLabel: 'Tips',
       resumeTitle: 'Current session',
@@ -175,8 +174,7 @@
       noSession: 'Start the game from the home page first.',
       mutationEyebrow: 'Mutation',
       mutationTitle: 'Mutation activated',
-      mutationLead: 'The active box changes immediately and stays visible at the top of the app.',
-      mutationApplied: 'The active box is now',
+      mutationLead: 'The box changes immediately and stays visible at the top of the app.',
       finishEyebrow: 'Finish',
       finishTitle: 'Build and submit your creature',
       finishLead: 'See which parts you unlocked, build the creature physically, take a photo, and submit it to the gallery.',
@@ -198,7 +196,7 @@
       partsCount: '{count} / {total}',
       tipsCount: '{used} / {max}',
       trackSummary: 'Track {track}: {faction}',
-      activeBoxSummary: 'Active box: {box}',
+      activeBoxSummary: 'Box: {box}',
       difficultySummary: 'Difficulty: {difficulty}',
       selectedTrackSummary: 'Selected track: {track}',
       aboutEyebrow: 'About the game',
@@ -368,7 +366,10 @@
       }
 
       const faction = capitalizeFirst(localized(track.faction, lang));
-      const description = localized(track.introDescription, lang);
+      const introDescription = track.introDescription || {};
+      const selectedDescription = introDescription[choices.difficulty] || introDescription;
+      const description = localized(selectedDescription, lang);
+      const descriptionBody = stripLeadingLabel(description, faction);
       const image = document.getElementById('track-intro-image');
       const descriptionEl = document.getElementById('track-intro-description');
 
@@ -382,7 +383,7 @@
       }
 
       if(descriptionEl){
-        descriptionEl.innerHTML = `<strong>${escapeHtml(faction)}</strong> ${escapeHtml(description)}`;
+        descriptionEl.innerHTML = `<strong>${escapeHtml(faction)}</strong> ${escapeHtml(descriptionBody)}`;
       }
     }
 
@@ -732,7 +733,7 @@
       saveState(state);
       renderSessionStrip(state);
 
-      panel.innerHTML = renderQuestionResult(question, result, part, lang);
+      panel.innerHTML = renderQuestionResult(question, result, part, state, lang);
     });
   }
 
@@ -755,11 +756,11 @@
     saveState(state);
     renderSessionStrip(state);
 
+    const resultTitle = localized(mutation.resultTitle, lang) || localized(mutation.name, lang);
+
     panel.innerHTML = `
       <div class="feedback feedback-success">
-        <p class="pill">${escapeHtml(localized(mutation.name, lang))}</p>
-        <h2>${escapeHtml(t.mutationApplied)}</h2>
-        <p>${escapeHtml(activeBoxLabel(state, lang))}</p>
+        <h2>${escapeHtml(resultTitle)}</h2>
         <p class="muted">${escapeHtml(localized(mutation.description, lang))}</p>
       </div>
       <div class="button-row">
@@ -894,7 +895,7 @@
     `;
   }
 
-  function renderQuestionResult(question, result, part, lang){
+  function renderQuestionResult(question, result, part, state, lang){
     const t = ui(lang);
     const isText = question.type === 'text';
     let correctLetter = '';
@@ -921,7 +922,7 @@
     const cardModifier = result.correct ? 'is-correct' : 'is-wrong';
 
     const partLine = (part && result.correct)
-      ? `<p class="result-subtitle">${escapeHtml(t.unlockedPart)}: ${escapeHtml(localized(part.name, lang))}</p>`
+      ? `<p class="result-subtitle">${escapeHtml(partUnlockText(part, state, lang))}</p>`
       : '';
 
     const answerBlock = !result.correct
@@ -948,6 +949,15 @@
         <a class="button button-primary" href="/scan">${escapeHtml(t.continueAction)}</a>
       </div>
     `;
+  }
+
+  function partUnlockText(part, state, lang){
+    const fallback = `${ui(lang).unlockedPart}: ${localized(part.name, lang)}`;
+    const template = localized(part.unlockText, lang) || fallback;
+
+    return format(template, {
+      BoxName: activeBoxLabel(state, lang),
+    });
   }
 
   function renderFinishSummary(state, lang){
@@ -1149,6 +1159,21 @@
   function capitalizeFirst(value){
     const text = String(value || '');
     return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
+  }
+
+  function stripLeadingLabel(value, label){
+    const text = String(value || '').trim();
+    const labelText = String(label || '').trim();
+
+    if(!text || !labelText){
+      return text;
+    }
+
+    if(text.toLocaleLowerCase().startsWith(labelText.toLocaleLowerCase())){
+      return text.slice(labelText.length).trim();
+    }
+
+    return text;
   }
 
   function getTrack(trackId){

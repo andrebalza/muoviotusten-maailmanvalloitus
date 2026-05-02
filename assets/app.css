@@ -708,10 +708,14 @@ body.start-flow-active .page-content{
 
 .track-confirm__burst{
   position: relative;
+  width: min(100%, 30rem);
   min-height: 15rem;
   display: grid;
   place-items: center;
   margin: -0.2rem 0 0.15rem;
+  --ray-top-high: 3.4rem;
+  --ray-top-mid: 7.05rem;
+  --ray-top-low: 11.45rem;
 }
 
 .track-confirm__number{
@@ -746,37 +750,37 @@ body.start-flow-active .page-content{
 
 .track-confirm__ray--left-top{
   left: 0.35rem;
-  top: 3.4rem;
+  top: var(--ray-top-high);
   transform: rotate(32deg);
 }
 
 .track-confirm__ray--left-mid{
   left: -0.8rem;
-  top: 7.5rem;
+  top: var(--ray-top-mid);
   transform: rotate(8deg);
 }
 
 .track-confirm__ray--left-low{
   left: 0.1rem;
-  bottom: 3rem;
+  top: var(--ray-top-low);
   transform: rotate(-28deg);
 }
 
 .track-confirm__ray--right-top{
   right: 0.35rem;
-  top: 3.4rem;
+  top: var(--ray-top-high);
   transform: rotate(-32deg);
 }
 
 .track-confirm__ray--right-mid{
   right: -0.8rem;
-  top: 7.5rem;
+  top: var(--ray-top-mid);
   transform: rotate(-8deg);
 }
 
 .track-confirm__ray--right-low{
   right: 0.1rem;
-  bottom: 3rem;
+  top: var(--ray-top-low);
   transform: rotate(28deg);
 }
 
@@ -959,6 +963,9 @@ body.start-flow-active .page-content{
 
   .track-confirm__burst{
     min-height: 12rem;
+    --ray-top-high: 2.65rem;
+    --ray-top-mid: 5.65rem;
+    --ray-top-low: 8.95rem;
   }
 
   .track-confirm__number{

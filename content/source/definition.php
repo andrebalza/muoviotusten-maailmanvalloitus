@@ -20,8 +20,14 @@ return [
 			'faction' => ['fi' => 'petpetit', 'en' => 'petpetit'],
 			'introImage' => '/public/assets/creatures-small/01_petpet_no_bkg_760.png',
 			'introDescription' => [
-				'fi' => 'kuvausteksti lisätään tähän.',
-				'en' => 'description placeholder goes here.',
+				'easy' => [
+					'fi' => 'Petpetit ovat läpikuultavia ja sileitä. Ne ovat kevyitä, nopeita ja osaavat piiloutua hyvin. Ne voivat antaa pieniä sähköiskuja!',
+					'en' => 'Petpetit ovat läpikuultavia ja sileitä. Ne ovat kevyitä, nopeita ja osaavat piiloutua hyvin. Ne voivat antaa pieniä sähköiskuja!',
+				],
+				'hard' => [
+					'fi' => 'Petpetit syntyivät PET-muovista, jota käytetään pulloissa ja pakkauksissa. Ne ovat kevyitä, nopeita ja sulautuvat ympäristöönsä. Ne keräävät staattista sähköä ja voivat antaa sähköiskuja.',
+					'en' => 'Petpetit syntyivät PET-muovista, jota käytetään pulloissa ja pakkauksissa. Ne ovat kevyitä, nopeita ja sulautuvat ympäristöönsä. Ne keräävät staattista sähköä ja voivat antaa sähköiskuja.',
+				],
 			],
 		],
 		[
@@ -31,8 +37,14 @@ return [
 			'faction' => ['fi' => 'petenkeetit', 'en' => 'petenkeetit'],
 			'introImage' => '/public/assets/creatures-small/02_petenkeetit_no_bkg_760.png',
 			'introDescription' => [
-				'fi' => 'kuvausteksti lisätään tähän.',
-				'en' => 'description placeholder goes here.',
+				'easy' => [
+					'fi' => 'Petenkeetit syntyivät muovipulloista ja -pusseista. Ne ovat sekä vahvoja että ketteriä ja mahtuvat ahtaisiinkin paikkoihin.',
+					'en' => 'Petenkeetit syntyivät muovipulloista ja -pusseista. Ne ovat sekä vahvoja että ketteriä ja mahtuvat ahtaisiinkin paikkoihin.',
+				],
+				'hard' => [
+					'fi' => 'Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE tekee niistä vahvoja, LDPE joustavia. Siksi ne selviytyvät hyvin tiheissä roskakertymissä.',
+					'en' => 'Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE tekee niistä vahvoja, LDPE joustavia. Siksi ne selviytyvät hyvin tiheissä roskakertymissä.',
+				],
 			],
 		],
 		[
@@ -42,8 +54,14 @@ return [
 			'faction' => ['fi' => 'propellukset', 'en' => 'propellukset'],
 			'introImage' => '/public/assets/creatures-small/03_propellukset_no_bkg_760.png',
 			'introDescription' => [
-				'fi' => 'kuvausteksti lisätään tähän.',
-				'en' => 'description placeholder goes here.',
+				'easy' => [
+					'fi' => 'Propellukset syntyivät ruokapakkauksista ja pilleistä. Ne ovat kevyitä ja liikkuvat nopeasti virtauksissa.',
+					'en' => 'Propellukset syntyivät ruokapakkauksista ja pilleistä. Ne ovat kevyitä ja liikkuvat nopeasti virtauksissa.',
+				],
+				'hard' => [
+					'fi' => 'Propellukset kehittyivät PP5-muoveista. Ne ovat kevyitä mutta kestäviä, joten ne liikkuvat nopeasti jätepyörteissä ja puikahtavat raoista.',
+					'en' => 'Propellukset kehittyivät PP5-muoveista. Ne ovat kevyitä mutta kestäviä, joten ne liikkuvat nopeasti jätepyörteissä ja puikahtavat raoista.',
+				],
 			],
 		],
 		[
@@ -53,8 +71,14 @@ return [
 			'faction' => ['fi' => 'styrintit', 'en' => 'styrintit'],
 			'introImage' => '/public/assets/creatures-small/04_styrintit_no_bkg_760.png',
 			'introDescription' => [
-				'fi' => 'kuvausteksti lisätään tähän.',
-				'en' => 'description placeholder goes here.',
+				'easy' => [
+					'fi' => 'Styrintit syntyivät styroksista. Ne ovat hyvin kevyitä ja kelluvat veden pinnalla.',
+					'en' => 'Styrintit syntyivät styroksista. Ne ovat hyvin kevyitä ja kelluvat veden pinnalla.',
+				],
+				'hard' => [
+					'fi' => 'Styrintit kehittyivät PS6-muoveista, kuten styroksista. Ne ovat erittäin kevyitä ja liikkuvat helposti jätepyörteiden pinnalla.',
+					'en' => 'Styrintit kehittyivät PS6-muoveista, kuten styroksista. Ne ovat erittäin kevyitä ja liikkuvat helposti jätepyörteiden pinnalla.',
+				],
 			],
 		],
 		[
@@ -64,8 +88,14 @@ return [
 			'faction' => ['fi' => 'zekazotkuzet', 'en' => 'zekazotkuzet'],
 			'introImage' => '/public/assets/creatures-small/05_zekazotkuzet_no_bkg_760.png',
 			'introDescription' => [
-				'fi' => 'kuvausteksti lisätään tähän.',
-				'en' => 'description placeholder goes here.',
+				'easy' => [
+					'fi' => 'Zekazotkuzet syntyivät harvinaisista muoveista. Ne pystyvät sopeutumaan lähes mihin tahansa.',
+					'en' => 'Zekazotkuzet syntyivät harvinaisista muoveista. Ne pystyvät sopeutumaan lähes mihin tahansa.',
+				],
+				'hard' => [
+					'fi' => 'Zekazotkuzet kehittyivät Other 7 -muoveista, kuten biomuoveista. Niiden erikoinen rakenne auttaa niitä selviytymään monenlaisissa olosuhteissa.',
+					'en' => 'Zekazotkuzet kehittyivät Other 7 -muoveista, kuten biomuoveista. Niiden erikoinen rakenne auttaa niitä selviytymään monenlaisissa olosuhteissa.',
+				],
 			],
 		],
 	],
@@ -73,19 +103,27 @@ return [
 		'hypervintti' => [
 			'slug' => 'hypervintti',
 			'name' => ['fi' => 'Hypervintti', 'en' => 'Hypervintti'],
-			'activeBox' => ['fi' => 'Hypervintti', 'en' => 'Hypervintti'],
+			'activeBox' => ['fi' => 'Mikä tahansa laatikko', 'en' => 'Any box'],
+			'resultTitle' => [
+				'fi' => 'Mutaatio! Otuksesi muuttuu Hypervintiksi.',
+				'en' => 'Mutation! Your creature transforms into a Hypervintti.',
+			],
 			'description' => [
-				'fi' => 'Tästä eteenpäin käytätte erillistä Hypervintti-laatikkoa, jossa on 7 / Other -merkityt muovit.',
-				'en' => 'From now on, use the separate Hypervintti box with plastics marked 7 / Other.',
+				'fi' => 'Voit nyt valita muovia mistä tahansa laatikosta.',
+				'en' => 'From now on, you can choose plastic from any box.',
 			],
 		],
 		'mysteerio' => [
 			'slug' => 'mysteerio',
 			'name' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
 			'activeBox' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
+			'resultTitle' => [
+				'fi' => 'Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriö.',
+				'en' => 'Mutation! Your creature’s DNA changes, and it becomes Mysteeriö.',
+			],
 			'description' => [
-				'fi' => 'Tästä eteenpäin valitsette vain Mysteeriö-laatikon merkitsemättömiä muoveja.',
-				'en' => 'From now on, choose only unmarked plastics from the Mysteeriö box.',
+				'fi' => 'Valitse tästä eteenpäin vain muovia ilman kierrätyssymbolia.',
+				'en' => 'From now on, choose only plastic without a recycling symbol.',
 			],
 		],
 	],
@@ -94,104 +132,104 @@ return [
 			'id' => 'sensory-cells',
 			'name' => ['fi' => 'tuntosolut', 'en' => 'sensory cells'],
 			'unlockText' => [
-				'fi' => 'Otuksesi alkaa aistia ympäristöään. Voitte valita myöhemmin 1–3 tuntosolua.',
-				'en' => 'Your creature begins to sense its surroundings. You may later choose 1–3 sensory cells.',
+				'fi' => 'Otuksesi alkaa aistia ympäristöään. Valitse 1–3 tuntosolua laatikosta {BoxName}',
+				'en' => 'Your creature begins to sense its surroundings. Select 1–3 sensory cells from the box {BoxName}',
 			],
 		],
 		[
 			'id' => 'sensory-hairs',
 			'name' => ['fi' => 'tuntokarvat', 'en' => 'sensory hairs'],
 			'unlockText' => [
-				'fi' => 'Ympäristön aistiminen tarkentuu. Voitte valita tuntokarvat.',
-				'en' => 'Environmental sensing becomes more precise. You may choose sensory hairs later.',
+				'fi' => 'Ympäristön aistiminen tarkentuu. Valitse tuntokarvat laatikosta {BoxName}.',
+				'en' => 'Environmental sensing becomes more precise. Select sensory hairs.',
 			],
 		],
 		[
 			'id' => 'sensory-scales',
 			'name' => ['fi' => 'tuntosuomut', 'en' => 'sensory scales'],
 			'unlockText' => [
-				'fi' => 'Kosketusaisti kehittyy. Voitte valita kolme tuntosuomua.',
-				'en' => 'The sense of touch develops. You may later choose three sensory scales.',
+				'fi' => 'Kosketusaisti kehittyy. Valitse 3 tuntosuomua laatikosta {BoxName}',
+				'en' => 'The sense of touch develops. Select 3 sensory scales.',
 			],
 		],
 		[
 			'id' => 'head',
 			'name' => ['fi' => 'pää', 'en' => 'head'],
 			'unlockText' => [
-				'fi' => 'Otukselle muodostuu pää. Voitte valita pään myöhemmin.',
-				'en' => 'A head begins to form. You may choose a head later.',
+				'fi' => 'Otukselle muodostuu pää. Valitse pää laatikosta {BoxName}',
+				'en' => 'A head begins to form. Select a head.',
 			],
 		],
 		[
 			'id' => 'mouth',
 			'name' => ['fi' => 'suu', 'en' => 'mouth'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa syödä. Voitte valita suun myöhemmin.',
-				'en' => 'Your creature begins to eat. You may choose a mouth later.',
+				'fi' => 'Otus alkaa syödä. Valitse suu laatikosta {BoxName}',
+				'en' => 'Your creature begins to eat. Select a mouth.',
 			],
 		],
 		[
 			'id' => 'fin',
 			'name' => ['fi' => 'evä', 'en' => 'fin'],
 			'unlockText' => [
-				'fi' => 'Liikkumiskyky kehittyy. Voitte valita evän myöhemmin.',
-				'en' => 'Mobility develops. You may choose a fin later.',
+				'fi' => 'Liikkumiskyky kehittyy. Valitse evä laatikosta {BoxName}',
+				'en' => 'Mobility develops. Select a fin.',
 			],
 		],
 		[
 			'id' => 'tail',
 			'name' => ['fi' => 'häntä', 'en' => 'tail'],
 			'unlockText' => [
-				'fi' => 'Liikkuminen tehostuu. Voitte valita hännän myöhemmin.',
-				'en' => 'Movement becomes more efficient. You may choose a tail later.',
+				'fi' => 'Liikkuminen tehostuu. Valitse häntä laatikosta {BoxName}',
+				'en' => 'Movement becomes more efficient. Select a tail.',
 			],
 		],
 		[
 			'id' => 'grasping-appendage',
 			'name' => ['fi' => 'tarttumisuloke', 'en' => 'grasping appendage'],
 			'unlockText' => [
-				'fi' => 'Tarttumiskyky kehittyy. Voitte valita tarttumisulokkeen myöhemmin.',
-				'en' => 'Grasping ability develops. You may choose a grasping appendage later.',
+				'fi' => 'Tarttumiskyky kehittyy. Valitse tarttumisuloke laatikosta {BoxName}',
+				'en' => 'Grasping ability develops. Select a grasping appendage.',
 			],
 		],
 		[
 			'id' => 'eyes',
 			'name' => ['fi' => 'silmät', 'en' => 'eyes'],
 			'unlockText' => [
-				'fi' => 'Näköaisti kehittyy. Voitte valita silmät myöhemmin.',
-				'en' => 'Vision develops. You may choose eyes later.',
+				'fi' => 'Näköaisti kehittyy. Valitse silmät laatikosta {BoxName}',
+				'en' => 'Vision develops. Select eyes.',
 			],
 		],
 		[
 			'id' => 'ears',
 			'name' => ['fi' => 'korvat', 'en' => 'ears'],
 			'unlockText' => [
-				'fi' => 'Kuuloaisti kehittyy. Voitte valita korvat myöhemmin.',
-				'en' => 'Hearing develops. You may choose ears later.',
+				'fi' => 'Kuuloaisti kehittyy. Valitse korvat laatikosta {BoxName}',
+				'en' => 'Hearing develops. Select ears.',
 			],
 		],
 		[
 			'id' => 'brain',
 			'name' => ['fi' => 'aivot', 'en' => 'brain'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa ohjata toimintaansa. Voitte valita aivot myöhemmin.',
-				'en' => 'Your creature begins to control its actions. You may choose a brain later.',
+				'fi' => 'Otus alkaa ohjata toimintaansa. Valitse aivot laatikosta {BoxName}',
+				'en' => 'Your creature begins to control its actions. Select a brain.',
 			],
 		],
 		[
 			'id' => 'limbs',
 			'name' => ['fi' => 'raajat', 'en' => 'limbs'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa liikkua myös maalla. Voitte valita kaksi raajaa myöhemmin.',
-				'en' => 'Your creature begins to move on land. You may choose two limbs later.',
+				'fi' => 'Otus alkaa liikkua myös maalla. Valitse kaksi raajaa laatikosta {BoxName}',
+				'en' => 'Your creature begins to move on land. Select two limbs.',
 			],
 		],
 		[
 			'id' => 'wings',
 			'name' => ['fi' => 'siivet', 'en' => 'wings'],
 			'unlockText' => [
-				'fi' => 'Otus pystyy liikkumaan ilmassa. Voitte valita siivet myöhemmin.',
-				'en' => 'Your creature can move in the air. You may choose wings later.',
+				'fi' => 'Otus pystyy liikkumaan ilmassa. Valitse siivet laatikosta {BoxName}',
+				'en' => 'Your creature can move in the air. Select wings.',
 			],
 		],
 	],

@@ -75,7 +75,7 @@ final class PiwigoClient{
 			'Faction: '.($state['faction'] ?? ''),
 			'Track: '.($state['trackId'] ?? ''),
 			'Difficulty: '.($state['difficulty'] ?? ''),
-			'Active box: '.($state['activeBoxLabel'] ?? ''),
+			'Box: '.($state['activeBoxLabel'] ?? ''),
 			'Unlocked parts: '.$parts,
 		]);
 
