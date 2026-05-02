@@ -22,11 +22,11 @@ return [
 			'introDescription' => [
 				'easy' => [
 					'fi' => 'Petpetit ovat läpikuultavia ja sileitä. Ne ovat kevyitä, nopeita ja osaavat piiloutua hyvin. Ne voivat antaa pieniä sähköiskuja!',
-					'en' => 'Petpetit ovat läpikuultavia ja sileitä. Ne ovat kevyitä, nopeita ja osaavat piiloutua hyvin. Ne voivat antaa pieniä sähköiskuja!',
+					'en' => 'Petpetit are translucent and smooth. They are light, fast, and good at hiding. They can give small electric shocks!',
 				],
 				'hard' => [
 					'fi' => 'Petpetit syntyivät PET-muovista, jota käytetään pulloissa ja pakkauksissa. Ne ovat kevyitä, nopeita ja sulautuvat ympäristöönsä. Ne keräävät staattista sähköä ja voivat antaa sähköiskuja.',
-					'en' => 'Petpetit syntyivät PET-muovista, jota käytetään pulloissa ja pakkauksissa. Ne ovat kevyitä, nopeita ja sulautuvat ympäristöönsä. Ne keräävät staattista sähköä ja voivat antaa sähköiskuja.',
+					'en' => 'Petpetit were born from PET plastic, which is used in bottles and packaging. They are light, fast, and blend into their surroundings. They collect static electricity and can give electric shocks.',
 				],
 			],
 		],
@@ -39,11 +39,11 @@ return [
 			'introDescription' => [
 				'easy' => [
 					'fi' => 'Petenkeetit syntyivät muovipulloista ja -pusseista. Ne ovat sekä vahvoja että ketteriä ja mahtuvat ahtaisiinkin paikkoihin.',
-					'en' => 'Petenkeetit syntyivät muovipulloista ja -pusseista. Ne ovat sekä vahvoja että ketteriä ja mahtuvat ahtaisiinkin paikkoihin.',
+					'en' => 'Petenkeetit were born from plastic bottles and bags. They are both strong and agile, and they can fit into tight spaces.',
 				],
 				'hard' => [
 					'fi' => 'Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE tekee niistä vahvoja, LDPE joustavia. Siksi ne selviytyvät hyvin tiheissä roskakertymissä.',
-					'en' => 'Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE tekee niistä vahvoja, LDPE joustavia. Siksi ne selviytyvät hyvin tiheissä roskakertymissä.',
+					'en' => 'Petenkeetit were born from HDPE and LDPE plastics. HDPE makes them strong, while LDPE makes them flexible. That is why they survive well in dense trash clusters.',
 				],
 			],
 		],
@@ -56,11 +56,11 @@ return [
 			'introDescription' => [
 				'easy' => [
 					'fi' => 'Propellukset syntyivät ruokapakkauksista ja pilleistä. Ne ovat kevyitä ja liikkuvat nopeasti virtauksissa.',
-					'en' => 'Propellukset syntyivät ruokapakkauksista ja pilleistä. Ne ovat kevyitä ja liikkuvat nopeasti virtauksissa.',
+					'en' => 'Propellukset were born from food packaging and straws. They are light and move quickly in currents.',
 				],
 				'hard' => [
 					'fi' => 'Propellukset kehittyivät PP5-muoveista. Ne ovat kevyitä mutta kestäviä, joten ne liikkuvat nopeasti jätepyörteissä ja puikahtavat raoista.',
-					'en' => 'Propellukset kehittyivät PP5-muoveista. Ne ovat kevyitä mutta kestäviä, joten ne liikkuvat nopeasti jätepyörteissä ja puikahtavat raoista.',
+					'en' => 'Propellukset evolved from PP5 plastics. They are light but durable, so they move quickly in garbage gyres and slip through gaps.',
 				],
 			],
 		],
@@ -73,11 +73,11 @@ return [
 			'introDescription' => [
 				'easy' => [
 					'fi' => 'Styrintit syntyivät styroksista. Ne ovat hyvin kevyitä ja kelluvat veden pinnalla.',
-					'en' => 'Styrintit syntyivät styroksista. Ne ovat hyvin kevyitä ja kelluvat veden pinnalla.',
+					'en' => 'Styrintit were born from styrofoam. They are very light and float on the water surface.',
 				],
 				'hard' => [
 					'fi' => 'Styrintit kehittyivät PS6-muoveista, kuten styroksista. Ne ovat erittäin kevyitä ja liikkuvat helposti jätepyörteiden pinnalla.',
-					'en' => 'Styrintit kehittyivät PS6-muoveista, kuten styroksista. Ne ovat erittäin kevyitä ja liikkuvat helposti jätepyörteiden pinnalla.',
+					'en' => 'Styrintit evolved from PS6 plastics, such as styrofoam. They are extremely light and move easily on the surface of garbage gyres.',
 				],
 			],
 		],
@@ -90,11 +90,11 @@ return [
 			'introDescription' => [
 				'easy' => [
 					'fi' => 'Zekazotkuzet syntyivät harvinaisista muoveista. Ne pystyvät sopeutumaan lähes mihin tahansa.',
-					'en' => 'Zekazotkuzet syntyivät harvinaisista muoveista. Ne pystyvät sopeutumaan lähes mihin tahansa.',
+					'en' => 'Zekazotkuzet were born from rare plastics. They can adapt to almost anything.',
 				],
 				'hard' => [
 					'fi' => 'Zekazotkuzet kehittyivät Other 7 -muoveista, kuten biomuoveista. Niiden erikoinen rakenne auttaa niitä selviytymään monenlaisissa olosuhteissa.',
-					'en' => 'Zekazotkuzet kehittyivät Other 7 -muoveista, kuten biomuoveista. Niiden erikoinen rakenne auttaa niitä selviytymään monenlaisissa olosuhteissa.',
+					'en' => 'Zekazotkuzet evolved from Other 7 plastics, such as bioplastics. Their unusual structure helps them survive in many kinds of conditions.',
 				],
 			],
 		],
