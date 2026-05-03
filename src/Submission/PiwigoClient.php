@@ -75,6 +75,7 @@ final class PiwigoClient{
 		$lines = [
 			$this->localizedCreatureNameLine((string) $submission['name']),
 			$this->localizedLine('Special ability', 'Erikoiskyky', (string) $submission['specialAbility']),
+			$this->localizedLine('Team name / class', 'Ryhmän nimi / luokka', (string) ($submission['teamName'] ?? '')),
 			$this->localizedContextLine($state),
 			$this->localizedLine(
 				'Difficulty',

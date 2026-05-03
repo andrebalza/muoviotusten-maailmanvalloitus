@@ -79,6 +79,7 @@ The multipart submission payload includes:
 
 - `creature_name`
 - `special_ability`
+- `team_name`
 - `photo`
 - `game_state`
 - `parts_count`: required integer, `0` to `99`

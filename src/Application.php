@@ -114,12 +114,13 @@ final class Application{
 
 		$creatureName = trim((string) $request->post('creature_name', ''));
 		$specialAbility = trim((string) $request->post('special_ability', ''));
+		$teamName = trim((string) $request->post('team_name', ''));
 		$rawState = (string) $request->post('game_state', '');
 		$photo = $request->file('photo');
 
-		if($creatureName === '' || $specialAbility === '' || $rawState === '' || $photo === null){
+		if($creatureName === '' || $specialAbility === '' || $teamName === '' || $rawState === '' || $photo === null){
 			return Response::json([
-				'error' => 'Creature name, special ability, game state, and photo are required.',
+				'error' => 'Creature name, special ability, team name / class, game state, and photo are required.',
 			], 422);
 		}
 
@@ -171,6 +172,7 @@ final class Application{
 			$result = $this->piwigoClient->uploadSubmission([
 				'name' => $creatureName,
 				'specialAbility' => $specialAbility,
+				'teamName' => $teamName,
 				'partsCount' => $integerValues['partsCount'],
 				'rubberBands' => $integerValues['rubberBands'],
 				'cableTies' => $integerValues['cableTies'],

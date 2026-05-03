@@ -258,8 +258,11 @@ body.game-active .materials-group{
   background: rgba(255, 255, 255, 0.7);
 }
 
-.field-label{
+.field-label,
+.materials-group__title{
   font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.25;
 }
 
 .input{

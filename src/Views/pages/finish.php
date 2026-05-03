@@ -30,6 +30,11 @@
     </div>
 
     <div class="field">
+      <label class="field-label" for="team_name" id="team-name-label">Your team name / class</label>
+      <input class="input" type="text" id="team_name" name="team_name" required>
+    </div>
+
+    <div class="field">
       <label class="field-label" for="parts_count" id="parts-count-label">How many parts does your creature have?</label>
       <input class="input" type="number" inputmode="numeric" id="parts_count" name="parts_count" min="0" max="99" step="1" required>
     </div>

@@ -76,9 +76,10 @@
       finishBuildInstructions: 'Evoluutiossa kaikki osat eivät aina säily. Vie otuksesi rakennuspisteelle ja kokoa se valitsemistasi osista. Palauta loput oikeisiin laatikoihin. Valitse osat pelissä saamiesi osien joukosta. Rakenna otus kuminauhoilla, teipillä ja nippusiteillä. Käytä materiaaleja mahdollisimman vähän.',
       finishCreatureReady: 'Otus on valmis',
       creatureName: 'Otuksen nimi',
-      specialAbility: 'Otuksen kyky',
-      partsCountLabel: 'Kuinka monta osaa otuksella on? Laske kuinka monta osaa käytitte saamistanne osista.',
-      materialsLabel: 'Rakennusmateriaalit',
+      specialAbility: '🇫🇮 Millainen erikoiskyky otuksellasi on? Keksi itse! / 🇬🇧 What special ability does your creature have? Make it up!!',
+      teamName: '🇫🇮 Ryhmänne nimi / luokka / 🇬🇧 Your team name / class',
+      partsCountLabel: '🇫🇮 Kuinka monta otuksen osaa käytitte? Kirjoita numero. / 🇬🇧 How many parts did you use? Enter a number.',
+      materialsLabel: '🇫🇮 Kuinka paljon kiinnitysmateriaaleja käytitte? Kirjoita määrä numeroin. / 🇬🇧 How much fastening material did you use? Enter the amount.',
       rubberBands: 'Kuminauhat',
       cableTies: 'Nippusiteet',
       tapeCm: 'Teippi (cm)',
@@ -186,9 +187,10 @@
       finishBuildInstructions: 'In evolution, not all parts always remain. Take your creature to the building station and assemble it from the parts you choose. Return the rest to the correct boxes. Choose parts from the ones you received during the game. Build the creature using rubber bands, tape, and cable ties. Use as little material as possible.',
       finishCreatureReady: 'Creature is ready',
       creatureName: 'Creature name',
-      specialAbility: 'Creature ability',
-      partsCountLabel: 'How many parts does your creature have? Count how many parts you used from the ones you won.',
-      materialsLabel: 'Building materials',
+      specialAbility: '🇫🇮 Millainen erikoiskyky otuksellasi on? Keksi itse! / 🇬🇧 What special ability does your creature have? Make it up!!',
+      teamName: '🇫🇮 Ryhmänne nimi / luokka / 🇬🇧 Your team name / class',
+      partsCountLabel: '🇫🇮 Kuinka monta otuksen osaa käytitte? Kirjoita numero. / 🇬🇧 How many parts did you use? Enter a number.',
+      materialsLabel: '🇫🇮 Kuinka paljon kiinnitysmateriaaleja käytitte? Kirjoita määrä numeroin. / 🇬🇧 How much fastening material did you use? Enter the amount.',
       rubberBands: 'Rubber bands',
       cableTies: 'Cable ties',
       tapeCm: 'Tape (cm)',
@@ -820,6 +822,7 @@
     setText('finish-creature-ready', t.finishCreatureReady);
     setText('creature-name-label', t.creatureName);
     setText('ability-label', t.specialAbility);
+    setText('team-name-label', t.teamName);
     setText('parts-count-label', t.partsCountLabel);
     setText('materials-label', t.materialsLabel);
     setText('rubber-bands-label', t.rubberBands);
@@ -908,7 +911,7 @@
         tape_cm: 9999,
       };
 
-      const missingText = !formData.get('creature_name') || !formData.get('special_ability');
+      const missingText = !formData.get('creature_name') || !formData.get('special_ability') || !formData.get('team_name');
       const missingPhoto = !(photo instanceof File) || photo.size === 0;
       const invalidNumbers = Object.entries(integerFields).some(function(entry){
         const field = entry[0];
