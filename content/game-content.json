@@ -1,8 +1,8 @@
 {
     "meta": {
-        "contentVersion": "2026-05-02",
+        "contentVersion": "2026-05-03",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-02T15:23:15+00:00",
+        "generatedAt": "2026-05-03T09:53:46+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -25,12 +25,12 @@
             "introImage": "/public/assets/creatures-small/01_petpet_no_bkg_760.png",
             "introDescription": {
                 "easy": {
-                    "fi": "Petpetit ovat läpikuultavia ja sileitä. Ne ovat kevyitä, nopeita ja osaavat piiloutua hyvin. Ne voivat antaa pieniä sähköiskuja!",
-                    "en": "Petpetit are translucent and smooth. They are light, fast, and good at hiding. They can give small electric shocks!"
+                    "fi": "Petpetit syntyivät PET-muovista. PET-muovia käytetään juomapulloissa, ruokapakkauksissa ja vaatekuiduissa.",
+                    "en": "Petpetit were born from PET plastic. PET plastic is used in drink bottles, food packaging, and clothing fibers."
                 },
                 "hard": {
-                    "fi": "Petpetit syntyivät PET-muovista, jota käytetään pulloissa ja pakkauksissa. Ne ovat kevyitä, nopeita ja sulautuvat ympäristöönsä. Ne keräävät staattista sähköä ja voivat antaa sähköiskuja.",
-                    "en": "Petpetit were born from PET plastic, which is used in bottles and packaging. They are light, fast, and blend into their surroundings. They collect static electricity and can give electric shocks."
+                    "fi": "Petpetit syntyivät PET-muovista. PET-muovia käytetään juomapulloissa, ruokapakkauksissa ja vaatekuiduissa.",
+                    "en": "Petpetit were born from PET plastic. PET plastic is used in drink bottles, food packaging, and clothing fibers."
                 }
             }
         },
@@ -48,12 +48,12 @@
             "introImage": "/public/assets/creatures-small/02_petenkeetit_no_bkg_760.png",
             "introDescription": {
                 "easy": {
-                    "fi": "Petenkeetit syntyivät muovipulloista ja -pusseista. Ne ovat sekä vahvoja että ketteriä ja mahtuvat ahtaisiinkin paikkoihin.",
-                    "en": "Petenkeetit were born from plastic bottles and bags. They are both strong and agile, and they can fit into tight spaces."
+                    "fi": "Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE- ja LDPE-muoveja käytetään esimerkiksi pulloissa, pusseissa, kalvoissa ja kääreissä. HDPE on yleensä vahvempaa ja jäykempää, kun taas LDPE on pehmeämpää ja joustavampaa.",
+                    "en": "Petenkeetit were born from HDPE and LDPE plastics. HDPE and LDPE plastics are used, for example, in bottles, bags, films, and wrappers. HDPE is usually stronger and more rigid, while LDPE is softer and more flexible."
                 },
                 "hard": {
-                    "fi": "Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE tekee niistä vahvoja, LDPE joustavia. Siksi ne selviytyvät hyvin tiheissä roskakertymissä.",
-                    "en": "Petenkeetit were born from HDPE and LDPE plastics. HDPE makes them strong, while LDPE makes them flexible. That is why they survive well in dense trash clusters."
+                    "fi": "Petenkeetit syntyivät HDPE- ja LDPE-muoveista. HDPE- ja LDPE-muoveja käytetään esimerkiksi pulloissa, pusseissa, kalvoissa ja kääreissä. HDPE on yleensä vahvempaa ja jäykempää, kun taas LDPE on pehmeämpää ja joustavampaa.",
+                    "en": "Petenkeetit were born from HDPE and LDPE plastics. HDPE and LDPE plastics are used, for example, in bottles, bags, films, and wrappers. HDPE is usually stronger and more rigid, while LDPE is softer and more flexible."
                 }
             }
         },
@@ -71,12 +71,12 @@
             "introImage": "/public/assets/creatures-small/03_propellukset_no_bkg_760.png",
             "introDescription": {
                 "easy": {
-                    "fi": "Propellukset syntyivät ruokapakkauksista ja pilleistä. Ne ovat kevyitä ja liikkuvat nopeasti virtauksissa.",
-                    "en": "Propellukset were born from food packaging and straws. They are light and move quickly in currents."
+                    "fi": "Propellukset syntyivät PP-muovista. PP-muovia käytetään ruokapakkauksissa, rasioissa, korkeissa, leluissa ja kalusteissa.",
+                    "en": "Propellukset were born from PP plastic. PP plastic is used in food packaging, containers, caps, toys, and furniture."
                 },
                 "hard": {
-                    "fi": "Propellukset kehittyivät PP5-muoveista. Ne ovat kevyitä mutta kestäviä, joten ne liikkuvat nopeasti jätepyörteissä ja puikahtavat raoista.",
-                    "en": "Propellukset evolved from PP5 plastics. They are light but durable, so they move quickly in garbage gyres and slip through gaps."
+                    "fi": "Propellukset syntyivät PP-muovista. PP-muovia käytetään ruokapakkauksissa, rasioissa, korkeissa, leluissa ja kalusteissa.",
+                    "en": "Propellukset were born from PP plastic. PP plastic is used in food packaging, containers, caps, toys, and furniture."
                 }
             }
         },
@@ -94,12 +94,12 @@
             "introImage": "/public/assets/creatures-small/04_styrintit_no_bkg_760.png",
             "introDescription": {
                 "easy": {
-                    "fi": "Styrintit syntyivät styroksista. Ne ovat hyvin kevyitä ja kelluvat veden pinnalla.",
-                    "en": "Styrintit were born from styrofoam. They are very light and float on the water surface."
+                    "fi": "Styrintit syntyivät PS-muovista. PS-muovia käytetään styroksipakkauksissa, kertakäyttöastioissa, eristeissä ja suojapakkauksissa.",
+                    "en": "Styrintit were born from PS plastic. PS plastic is used in styrofoam packaging, disposable tableware, insulation, and protective packaging."
                 },
                 "hard": {
-                    "fi": "Styrintit kehittyivät PS6-muoveista, kuten styroksista. Ne ovat erittäin kevyitä ja liikkuvat helposti jätepyörteiden pinnalla.",
-                    "en": "Styrintit evolved from PS6 plastics, such as styrofoam. They are extremely light and move easily on the surface of garbage gyres."
+                    "fi": "Styrintit syntyivät PS-muovista. PS-muovia käytetään styroksipakkauksissa, kertakäyttöastioissa, eristeissä ja suojapakkauksissa.",
+                    "en": "Styrintit were born from PS plastic. PS plastic is used in styrofoam packaging, disposable tableware, insulation, and protective packaging."
                 }
             }
         },
@@ -117,12 +117,12 @@
             "introImage": "/public/assets/creatures-small/05_zekazotkuzet_no_bkg_760.png",
             "introDescription": {
                 "easy": {
-                    "fi": "Zekazotkuzet syntyivät harvinaisista muoveista. Ne pystyvät sopeutumaan lähes mihin tahansa.",
-                    "en": "Zekazotkuzet were born from rare plastics. They can adapt to almost anything."
+                    "fi": "Zekazotkuzet syntyivät muoveista, joissa on kierrätysmerkintä Other 7 (muut muovit). Tähän ryhmään kuuluu monenlaisia muoveja, joita käytetään esimerkiksi elektroniikassa, autoissa ja erilaisissa erikoistuotteissa.",
+                    "en": "Zekazotkuzet were born from plastics marked with the recycling label Other 7 (other plastics). This group includes many kinds of plastics used, for example, in electronics, cars, and various specialty products."
                 },
                 "hard": {
-                    "fi": "Zekazotkuzet kehittyivät Other 7 -muoveista, kuten biomuoveista. Niiden erikoinen rakenne auttaa niitä selviytymään monenlaisissa olosuhteissa.",
-                    "en": "Zekazotkuzet evolved from Other 7 plastics, such as bioplastics. Their unusual structure helps them survive in many kinds of conditions."
+                    "fi": "Zekazotkuzet syntyivät muoveista, joissa on kierrätysmerkintä Other 7 (muut muovit). Tähän ryhmään kuuluu monenlaisia muoveja, joita käytetään esimerkiksi elektroniikassa, autoissa ja erilaisissa erikoistuotteissa.",
+                    "en": "Zekazotkuzet were born from plastics marked with the recycling label Other 7 (other plastics). This group includes many kinds of plastics used, for example, in electronics, cars, and various specialty products."
                 }
             }
         }
