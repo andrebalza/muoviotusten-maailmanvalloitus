@@ -1,0 +1,168 @@
+.muov-vote-sort {
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+	margin: 0 auto 18px;
+	padding: 0 12px;
+}
+
+.muov-vote-sort__link {
+	align-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.34);
+	border-radius: 999px;
+	color: #f7f1dc;
+	display: inline-flex;
+	font: 700 15px/1.1 "Nunito", system-ui, sans-serif;
+	min-height: 44px;
+	padding: 0 16px;
+	text-decoration: none;
+}
+
+.muov-vote-sort__link.is-active {
+	background: #f6cf3f;
+	border-color: #f6cf3f;
+	color: #22190d;
+}
+
+.muov-vote-card {
+	align-items: center;
+	background: #f7f1dc;
+	border: 3px solid #22190d;
+	border-radius: 8px;
+	box-shadow: 0 8px 0 rgba(0, 0, 0, 0.22);
+	color: #22190d;
+	display: flex;
+	gap: 16px;
+	justify-content: space-between;
+	margin: 22px auto;
+	max-width: 760px;
+	padding: 18px;
+}
+
+.muov-vote-card h3 {
+	color: #22190d;
+	font: 800 22px/1.1 "Nunito", system-ui, sans-serif;
+	margin: 0 0 6px;
+}
+
+.muov-vote-card p {
+	color: #42351f;
+	font: 600 15px/1.35 "Nunito", system-ui, sans-serif;
+	margin: 0;
+}
+
+.muov-vote-card__actions {
+	align-items: center;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 12px;
+}
+
+.muov-vote-card__actions strong {
+	align-items: center;
+	background: #22190d;
+	border-radius: 999px;
+	color: #f7f1dc;
+	display: inline-flex;
+	font: 900 22px/1 "Nunito", system-ui, sans-serif;
+	height: 52px;
+	justify-content: center;
+	min-width: 52px;
+	padding: 0 12px;
+}
+
+.muov-vote-card button {
+	background: #e7472f;
+	border: 3px solid #22190d;
+	border-radius: 8px;
+	box-shadow: 0 4px 0 #22190d;
+	color: #fff8e6;
+	cursor: pointer;
+	font: 900 17px/1 "Nunito", system-ui, sans-serif;
+	min-height: 50px;
+	padding: 0 18px;
+}
+
+.muov-vote-card button:disabled {
+	background: #8d8676;
+	box-shadow: none;
+	cursor: not-allowed;
+	transform: translateY(4px);
+}
+
+.muov-vote-name-row {
+	color: #0d4250 !important;
+	display: block;
+	font: 700 clamp(1.08rem, 4.2vw, 1.25rem)/1.08 "Baloo 2", "Nunito", system-ui, sans-serif !important;
+	max-width: 100%;
+	overflow: visible;
+	text-align: center;
+	white-space: normal;
+	word-break: normal;
+	overflow-wrap: anywhere;
+}
+
+.muov-vote-name-row::before {
+	content: attr(data-creature-name);
+}
+
+.muov-vote-name-row .albSymbol {
+	display: inline;
+	margin-left: 6px;
+	vertical-align: baseline;
+}
+
+body.category-1 #thumbnails .muov-vote-caption {
+	align-items: center;
+	display: flex !important;
+	flex-direction: column;
+	gap: 7px;
+	justify-content: center;
+	min-height: 108px !important;
+	overflow: visible !important;
+	padding: 14px 18px 16px !important;
+	text-align: center;
+	white-space: normal !important;
+}
+
+body.category-1 #thumbnails > li > a {
+	display: block !important;
+	position: static !important;
+	width: 100% !important;
+}
+
+body.category-1 #thumbnails > li > a > img {
+	display: block !important;
+	width: 100% !important;
+}
+
+.muov-vote-badge {
+	align-items: center;
+	background: #f6cf3f;
+	border: 2px solid #22190d;
+	border-radius: 999px;
+	color: #22190d;
+	display: inline-flex;
+	font: 900 13px/1 "Nunito", system-ui, sans-serif;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: max-content;
+	padding: 5px 9px;
+}
+
+@media (max-width: 640px) {
+	.muov-vote-card {
+		align-items: stretch;
+		flex-direction: column;
+		margin-left: 12px;
+		margin-right: 12px;
+	}
+
+	.muov-vote-card__actions {
+		justify-content: space-between;
+	}
+
+	.muov-vote-card button {
+		flex: 1 1 auto;
+	}
+}
