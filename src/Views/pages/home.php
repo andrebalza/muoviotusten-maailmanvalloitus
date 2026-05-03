@@ -1,8 +1,8 @@
-<section class="panel" id="resume-panel" hidden>
+<section class="panel resume-panel" id="resume-panel" hidden>
   <div class="panel-head">
     <h2 id="resume-title">Current session</h2>
   </div>
-  <div id="resume-summary" class="stack"></div>
+  <div id="resume-summary" class="resume-status-grid"></div>
   <div class="button-row">
     <a class="button button-primary" href="/scan" id="resume-scan-button">Continue scanning</a>
     <button class="button button-secondary" id="restart-button" type="button">Start over</button>

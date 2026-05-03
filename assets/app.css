@@ -393,6 +393,56 @@ body.game-active .materials-group{
   box-shadow: var(--shadow);
 }
 
+.resume-status-grid{
+  display: grid;
+  gap: 0.75rem;
+}
+
+.resume-status-card{
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 5rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.resume-status-card__icon{
+  display: block;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 2.35rem;
+}
+
+.resume-status-card__icon--dot{
+  border-radius: 14px;
+  background: var(--turquoise);
+}
+
+.resume-status-card__body{
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.resume-status-card__label{
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resume-status-card strong{
+  color: var(--dark-blue);
+  font-size: 1.05rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
 .question-options{
   display: grid;
   gap: 0.65rem;
@@ -1575,4 +1625,62 @@ body.game-active .feedback{
 
 body.game-active .feedback h2{
   color: var(--dark-blue);
+}
+
+/* ──────────── In-game resume page ──────────── */
+
+body.resume-active .page-content{
+  gap: 1.25rem;
+}
+
+body.resume-active .resume-panel{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: #fff;
+}
+
+body.resume-active .resume-panel .panel-head{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+body.resume-active .resume-panel h2{
+  color: #fff;
+  font-size: clamp(1.8rem, 7vw, 2.55rem);
+}
+
+body.resume-active .resume-status-grid{
+  margin-bottom: 1.1rem;
+}
+
+body.resume-active .resume-status-card{
+  background: var(--light-gray);
+  border: none;
+  box-shadow: none;
+  color: var(--dark-blue);
+}
+
+body.resume-active .resume-status-card--active{
+  background: var(--turquoise);
+  color: #fff;
+}
+
+body.resume-active .resume-status-card--active .resume-status-card__label,
+body.resume-active .resume-status-card--active strong{
+  color: #fff;
+}
+
+body.resume-active .resume-status-card__icon--dot{
+  background: var(--green);
+}
+
+body.resume-active .resume-status-card--active .resume-status-card__icon{
+  filter: brightness(0) invert(1);
+}
+
+body.resume-active .resume-status-card--active .resume-status-card__icon--dot{
+  background: #fff;
+  filter: none;
 }

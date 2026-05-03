@@ -16,7 +16,7 @@
       activeBoxLabel: 'Laatikko',
       partsLabel: 'Osat',
       tipsLabel: 'Vinkit',
-      resumeTitle: 'Nykyinen peli',
+      resumeTitle: 'Nykyinen tila',
       continueScanning: 'Jatka skannausta',
       restart: 'Aloita alusta',
       stepLanguage: 'Valitse kieli',
@@ -92,12 +92,15 @@
       continueHome: 'Palaa alkuun',
       difficultyEasy: 'Helppo',
       difficultyHard: 'Vaikea',
+      difficultyLabel: 'Vaikeustaso',
       partsCount: '{count} / {total}',
       tipsCount: '{used} / {max}',
       trackSummary: 'Rata {track}: {faction}',
       activeBoxSummary: 'Laatikko: {box}',
       difficultySummary: 'Vaikeustaso: {difficulty}',
       selectedTrackSummary: 'Valittu rata: {track}',
+      progressLabel: 'Edistyminen',
+      progressSummary: 'Kysymykset: {answered} / {total}',
       aboutEyebrow: 'Tietoa pelistä',
       aboutTitle: 'Ohjeet ja yhteystiedot',
       aboutLead: 'Tälle sivulle kootaan pelin ohjeet, tukitiedot ja projektin yhteystiedot.',
@@ -123,7 +126,7 @@
       activeBoxLabel: 'Box',
       partsLabel: 'Parts',
       tipsLabel: 'Tips',
-      resumeTitle: 'Current session',
+      resumeTitle: 'Current status',
       continueScanning: 'Continue scanning',
       restart: 'Start over',
       stepLanguage: 'Choose language',
@@ -199,12 +202,15 @@
       continueHome: 'Back to start',
       difficultyEasy: 'Easy',
       difficultyHard: 'Hard',
+      difficultyLabel: 'Difficulty',
       partsCount: '{count} / {total}',
       tipsCount: '{used} / {max}',
       trackSummary: 'Track {track}: {faction}',
       activeBoxSummary: 'Box: {box}',
       difficultySummary: 'Difficulty: {difficulty}',
       selectedTrackSummary: 'Selected track: {track}',
+      progressLabel: 'Progress',
+      progressSummary: 'Questions: {answered} / {total}',
       aboutEyebrow: 'About the game',
       aboutTitle: 'Instructions and contacts',
       aboutLead: 'This page will collect game instructions, support details, and project contacts.',
@@ -259,15 +265,21 @@
       const lang = currentLanguage(state);
       const t = ui(lang);
       document.body.classList.remove('start-flow-active');
+      document.body.classList.add('game-active', 'resume-active');
       resumePanel.hidden = false;
       startFlow.hidden = true;
       setText('resume-title', t.resumeTitle);
       setText('resume-scan-button', t.continueScanning);
       setText('restart-button', t.restart);
+      const track = getTrack(state.trackId);
+      const answeredCount = Object.keys(state.answeredSets || {}).length;
       resumeSummary.innerHTML = [
-        `<div class="card">${escapeHtml(format(t.trackSummary, {track: state.trackId, faction: getTrack(state.trackId).faction[lang]}))}</div>`,
-        `<div class="card">${escapeHtml(format(t.activeBoxSummary, {box: activeBoxLabel(state, lang)}))}</div>`,
-        `<div class="card">${escapeHtml(format(t.difficultySummary, {difficulty: state.difficulty === 'hard' ? t.hard : t.easy}))}</div>`,
+        renderResumeStatusCard('/assets/icons/dice.svg', t.trackLabel, track ? `${state.trackId}: ${track.faction[lang]}` : '-'),
+        renderResumeStatusCard('/assets/icons/box.svg', t.activeBoxLabel, activeBoxLabel(state, lang), true),
+        renderResumeStatusCard('/assets/icons/puzzle.svg', t.partsLabel, format(t.partsCount, {count: state.unlockedPartIds.length, total: app.parts.length})),
+        renderResumeStatusCard('/assets/icons/bulb.svg', t.tipsLabel, format(t.tipsCount, {used: state.usedTips, max: MAX_TIPS})),
+        renderResumeStatusCard('', t.difficultyLabel, state.difficulty === 'hard' ? t.difficultyHard : t.difficultyEasy),
+        renderResumeStatusCard('', t.progressLabel, format(t.progressSummary, {answered: answeredCount, total: app.parts.length})),
       ].join('');
 
       if(restartButton){
@@ -280,6 +292,7 @@
     }
 
     document.body.classList.add('start-flow-active');
+    document.body.classList.remove('game-active', 'resume-active');
     resumePanel.hidden = true;
     startFlow.hidden = false;
 
@@ -447,6 +460,21 @@
     }
 
     showStep('language');
+  }
+
+  function renderResumeStatusCard(icon, label, value, isActive){
+    const iconMarkup = icon ? `<img class="resume-status-card__icon" src="${escapeHtml(icon)}" alt="">` : '<span class="resume-status-card__icon resume-status-card__icon--dot" aria-hidden="true"></span>';
+    const activeClass = isActive ? ' resume-status-card--active' : '';
+
+    return `
+      <div class="resume-status-card${activeClass}">
+        ${iconMarkup}
+        <div class="resume-status-card__body">
+          <span class="resume-status-card__label">${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>
+      </div>
+    `;
   }
 
   function initScanPage(state){
