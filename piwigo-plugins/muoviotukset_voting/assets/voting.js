@@ -5,6 +5,8 @@
 
 	var copy = {
 		en: {
+			abilityLabel: 'Ability',
+			survivalLabel: 'Survival style',
 			vote: 'Vote',
 			voted: 'Voted',
 			noVotes: 'All 3 votes used',
@@ -17,6 +19,8 @@
 			}
 		},
 		fi: {
+			abilityLabel: 'Erikoiskyky',
+			survivalLabel: 'Selviytymistapa',
 			vote: 'Anna ääni',
 			voted: 'Äänestetty',
 			noVotes: 'Kaikki 3 ääntä käytetty',
@@ -116,7 +120,11 @@
 				byId[id].forEach(function (link) {
 					var item = link.closest('li') || link.parentNode;
 					var legend = findOrCreateCaption(item);
-					var badge = rebuildCreatureCaption(legend, item, data.names && data.names[id] ? data.names[id] : '');
+					var detail = data.details && data.details[id] ? data.details[id] : {};
+					if (!detail.name && data.names && data.names[id]) {
+						detail.name = data.names[id];
+					}
+					var badge = rebuildCreatureCaption(legend, item, detail);
 					badge.textContent = t().count(count);
 				});
 			});
@@ -135,7 +143,39 @@
 		return legend;
 	}
 
-	function rebuildCreatureCaption(legend, item, creatureName) {
+	function localizedValue(value) {
+		if (!value) {
+			return '';
+		}
+		if (typeof value === 'string') {
+			return value;
+		}
+		var lang = language();
+		return value[lang] || value.en || value.fi || '';
+	}
+
+	function metaRow(label, value, className) {
+		var text = localizedValue(value);
+		if (!text) {
+			return null;
+		}
+
+		var row = document.createElement('span');
+		row.className = 'muov-vote-stat ' + className;
+
+		var labelNode = document.createElement('span');
+		labelNode.className = 'muov-vote-stat__label';
+		labelNode.textContent = label;
+
+		var valueNode = document.createElement('span');
+		valueNode.className = 'muov-vote-stat__value';
+		valueNode.textContent = text;
+
+		row.append(labelNode, valueNode);
+		return row;
+	}
+
+	function rebuildCreatureCaption(legend, item, detail) {
 		var badge = legend.querySelector('.muov-vote-badge') || document.createElement('span');
 		var originalName = Array.prototype.slice.call(legend.childNodes).filter(function (node) {
 			return node.nodeType === 3;
@@ -143,20 +183,36 @@
 			return node.textContent.trim();
 		}).filter(Boolean).join(' ');
 		var image = item.querySelector('img');
-		var name = creatureName || originalName || (image ? image.getAttribute('alt') || '' : '');
+		var name = detail.name || originalName || (image ? image.getAttribute('alt') || '' : '');
 		var star = legend.querySelector('.albSymbol') || item.querySelector('.albSymbol');
 		var starClone = star ? star.cloneNode(true) : null;
 
 		var row = document.createElement('span');
 		row.className = 'muov-vote-name-row';
 		row.setAttribute('data-creature-name', name);
+		row.appendChild(document.createTextNode(name));
 		if (starClone) {
 			row.appendChild(starClone);
 		}
 
+		var stats = document.createElement('span');
+		stats.className = 'muov-vote-stats';
+		[
+			metaRow(t().abilityLabel, detail.ability, 'muov-vote-stat--ability'),
+			metaRow(t().survivalLabel, detail.survival, 'muov-vote-stat--survival')
+		].forEach(function (row) {
+			if (row) {
+				stats.appendChild(row);
+			}
+		});
+
 		badge.className = 'muov-vote-badge';
 		legend.classList.add('muov-vote-caption');
-		legend.replaceChildren(row, badge);
+		if (stats.children.length > 0) {
+			legend.replaceChildren(row, stats, badge);
+		} else {
+			legend.replaceChildren(row, badge);
+		}
 
 		return badge;
 	}

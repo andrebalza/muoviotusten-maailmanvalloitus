@@ -102,10 +102,6 @@
 	overflow-wrap: anywhere;
 }
 
-.muov-vote-name-row::before {
-	content: attr(data-creature-name);
-}
-
 .muov-vote-name-row .albSymbol {
 	display: inline;
 	margin-left: 6px;
@@ -116,11 +112,11 @@ body.category-1 #thumbnails .muov-vote-caption {
 	align-items: center;
 	display: flex !important;
 	flex-direction: column;
-	gap: 7px;
+	gap: 8px;
 	justify-content: center;
-	min-height: 108px !important;
+	min-height: 188px !important;
 	overflow: visible !important;
-	padding: 14px 18px 16px !important;
+	padding: 14px 14px 16px !important;
 	text-align: center;
 	white-space: normal !important;
 }
@@ -148,6 +144,45 @@ body.category-1 #thumbnails > li > a > img {
 	margin: 0 auto;
 	max-width: max-content;
 	padding: 5px 9px;
+}
+
+.muov-vote-stats {
+	display: grid;
+	gap: 6px;
+	max-width: 100%;
+	width: 100%;
+}
+
+.muov-vote-stat {
+	color: #22190d;
+	display: grid;
+	gap: 2px;
+	min-width: 0;
+	text-align: center;
+}
+
+.muov-vote-stat__label {
+	color: #6f3429;
+	font: 900 11px/1 "Nunito", system-ui, sans-serif;
+	letter-spacing: 0;
+	text-transform: uppercase;
+}
+
+.muov-vote-stat__value {
+	color: #22190d;
+	display: -webkit-box;
+	font: 700 13px/1.18 "Nunito", system-ui, sans-serif;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	overflow-wrap: anywhere;
+}
+
+.muov-vote-stat--ability .muov-vote-stat__value {
+	-webkit-line-clamp: 2;
+}
+
+.muov-vote-stat--survival .muov-vote-stat__value {
+	-webkit-line-clamp: 1;
 }
 
 @media (max-width: 640px) {
