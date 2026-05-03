@@ -188,6 +188,8 @@ function muoviotukset_voting_api_apply_comment_line(array &$details, string $lan
 		'Otuksen nimi:' => ['name', null],
 		'Special ability:' => ['ability', 'en'],
 		'Erikoiskyky:' => ['ability', 'fi'],
+		'Survival style:' => ['survival', 'en'],
+		'Selviytymistapa:' => ['survival', 'fi'],
 		'Efficiency judgement:' => ['survival', 'en'],
 		'Tehokkuusarvio:' => ['survival', 'fi'],
 	];

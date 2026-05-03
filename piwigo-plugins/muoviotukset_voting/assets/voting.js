@@ -6,7 +6,18 @@
 	var copy = {
 		en: {
 			abilityLabel: 'Ability',
+			creatureAbilityLabel: 'Special ability',
+			collectedPartsLabel: 'Unlocked parts',
+			factionLabel: 'Faction',
+			finalScoreLabel: 'Final score',
+			materialsLabel: 'Materials used',
+			partsOnCreatureLabel: 'Parts on creature',
+			playerAgeLabel: 'Player age',
+			rubberBandsLabel: 'Rubber bands',
 			survivalLabel: 'Survival style',
+			tapeLabel: 'Tape',
+			teamNameLabel: 'Team name',
+			cableTiesLabel: 'Cable ties',
 			vote: 'Vote',
 			voted: 'Voted',
 			noVotes: 'All 3 votes used',
@@ -20,7 +31,18 @@
 		},
 		fi: {
 			abilityLabel: 'Erikoiskyky',
+			creatureAbilityLabel: 'Erikoiskyky',
+			collectedPartsLabel: 'Kerätyt osat',
+			factionLabel: 'Heimo',
+			finalScoreLabel: 'Pisteet',
+			materialsLabel: 'Käytetyt materiaalit',
+			partsOnCreatureLabel: 'Osia otuksessa',
+			playerAgeLabel: 'Pelaajan ikä',
+			rubberBandsLabel: 'Kuminauhat',
 			survivalLabel: 'Selviytymistapa',
+			tapeLabel: 'Teippi',
+			teamNameLabel: 'Ryhmän nimi',
+			cableTiesLabel: 'Nippusiteet',
 			vote: 'Anna ääni',
 			voted: 'Äänestetty',
 			noVotes: 'Kaikki 3 ääntä käytetty',
@@ -154,6 +176,261 @@
 		return value[lang] || value.en || value.fi || '';
 	}
 
+	function setLocalizedField(fields, key, lang, value) {
+		value = (value || '').trim();
+		if (!value) {
+			return;
+		}
+
+		fields[key] = fields[key] || { en: '', fi: '' };
+		fields[key][lang] = value;
+	}
+
+	function cleanCommentLine(text) {
+		return (text || '').replace(/\s+/g, ' ').trim();
+	}
+
+	function valueAfterPrefix(line, prefix) {
+		return line.slice(prefix.length).trim();
+	}
+
+	function parseContextValue(value, lang) {
+		var marker = lang === 'fi' ? /\s+Laatikko:.*$/i : /\s+Box:.*$/i;
+		return value.replace(marker, '').trim();
+	}
+
+	function parseMaterialsLine(fields, lang, line, cablePrefix, tapePrefix) {
+		var value = valueAfterPrefix(line, cablePrefix);
+		var tapeIndex = value.toLowerCase().indexOf(tapePrefix.toLowerCase());
+		if (tapeIndex === -1) {
+			setLocalizedField(fields, 'cableTies', lang, value);
+			return;
+		}
+
+		setLocalizedField(fields, 'cableTies', lang, value.slice(0, tapeIndex).trim());
+		setLocalizedField(fields, 'tapeCm', lang, value.slice(tapeIndex + tapePrefix.length).trim());
+	}
+
+	function parseCommentLine(fields, lang, line) {
+		var rules = [
+			{ prefix: 'Creature name:', key: 'name' },
+			{ prefix: 'Otuksen nimi:', key: 'name' },
+			{ prefix: 'Special ability:', key: 'ability' },
+			{ prefix: 'Erikoiskyky:', key: 'ability' },
+			{ prefix: 'Faction:', key: 'faction', context: true },
+			{ prefix: 'Heimo:', key: 'faction', context: true },
+			{ prefix: 'Survival style:', key: 'survival' },
+			{ prefix: 'Selviytymistapa:', key: 'survival' },
+			{ prefix: 'Efficiency judgement:', key: 'survival' },
+			{ prefix: 'Tehokkuusarvio:', key: 'survival' },
+			{ prefix: 'Unlocked parts:', key: 'collectedParts' },
+			{ prefix: 'Collected parts:', key: 'collectedParts' },
+			{ prefix: 'Avatut osat:', key: 'collectedParts' },
+			{ prefix: 'Kerätyt osat:', key: 'collectedParts' },
+			{ prefix: 'Parts on creature:', key: 'partsOnCreature' },
+			{ prefix: 'Osia otuksessa:', key: 'partsOnCreature' },
+			{ prefix: 'Rubber bands:', key: 'rubberBands' },
+			{ prefix: 'Kuminauhat:', key: 'rubberBands' },
+			{ prefix: 'Final score:', key: 'finalScore' },
+			{ prefix: 'Loppupisteet:', key: 'finalScore' },
+			{ prefix: 'Team name / class:', key: 'teamName' },
+			{ prefix: 'Ryhmän nimi / luokka:', key: 'teamName' },
+			{ prefix: 'Team name:', key: 'teamName' },
+			{ prefix: 'Ryhmän nimi:', key: 'teamName' },
+			{ prefix: 'Player age:', key: 'playerAge' },
+			{ prefix: 'Pelaajan ikä:', key: 'playerAge' },
+			{ prefix: 'Difficulty:', key: 'difficulty' },
+			{ prefix: 'Vaikeustaso:', key: 'difficulty' }
+		];
+
+		if (line.indexOf('Cable ties:') === 0) {
+			parseMaterialsLine(fields, lang, line, 'Cable ties:', 'Tape (cm):');
+			return;
+		}
+
+		if (line.indexOf('Nippusiteet:') === 0) {
+			parseMaterialsLine(fields, lang, line, 'Nippusiteet:', 'Teippi (cm):');
+			return;
+		}
+
+		rules.some(function (rule) {
+			if (line.indexOf(rule.prefix) !== 0) {
+				return false;
+			}
+
+			var value = valueAfterPrefix(line, rule.prefix);
+			setLocalizedField(fields, rule.key, lang, rule.context ? parseContextValue(value, lang) : value);
+			return true;
+		});
+	}
+
+	function parseCreatureComment() {
+		var comment = document.querySelector('.imageComment');
+		var fields = {};
+		if (!comment) {
+			return fields;
+		}
+
+		var spans = Array.prototype.slice.call(comment.querySelectorAll('span[lang]'));
+		if (spans.length) {
+			spans.forEach(function (span) {
+				var lang = (span.getAttribute('lang') || 'en').toLowerCase().indexOf('fi') === 0 ? 'fi' : 'en';
+				parseCommentLine(fields, lang, cleanCommentLine(span.textContent));
+			});
+			return fields;
+		}
+
+		(comment.textContent || '').split(/\n+/).forEach(function (line) {
+			parseCommentLine(fields, 'en', cleanCommentLine(line));
+		});
+		return fields;
+	}
+
+	function displayValue(fields, key) {
+		return localizedValue(fields[key]) || '-';
+	}
+
+	function titleCaseFaction(value) {
+		if (!value || value === '-') {
+			return value;
+		}
+
+		return value.charAt(0).toUpperCase() + value.slice(1);
+	}
+
+	function ageFromDifficulty(fields) {
+		var age = localizedValue(fields.playerAge);
+		if (age) {
+			return age;
+		}
+
+		var difficulty = localizedValue(fields.difficulty).toLowerCase();
+		if (difficulty === 'easy' || difficulty === 'helppo') {
+			return language() === 'fi' ? 'Alle 9 vuotta' : 'Under 9 years';
+		}
+		if (difficulty === 'hard' || difficulty === 'vaikea') {
+			return language() === 'fi' ? 'Yli 9 vuotta' : 'Over 9 years';
+		}
+
+		return '-';
+	}
+
+	function materialsValue(fields) {
+		var parts = [];
+		var rubberBands = localizedValue(fields.rubberBands);
+		var cableTies = localizedValue(fields.cableTies);
+		var tape = localizedValue(fields.tapeCm);
+
+		if (rubberBands) {
+			parts.push(t().rubberBandsLabel + ': ' + rubberBands);
+		}
+		if (cableTies) {
+			parts.push(t().cableTiesLabel + ': ' + cableTies);
+		}
+		if (tape) {
+			parts.push(t().tapeLabel + ': ' + tape + (/\d$/.test(tape) ? ' cm' : ''));
+		}
+
+		return parts.join(', ') || '-';
+	}
+
+	function detailRow(label, value, className) {
+		var row = document.createElement('div');
+		row.className = 'muov-creature-row' + (className ? ' ' + className : '');
+
+		var labelNode = document.createElement('dt');
+		labelNode.className = 'muov-creature-row__label';
+		labelNode.textContent = label;
+
+		var valueNode = document.createElement('dd');
+		valueNode.className = 'muov-creature-row__value';
+		valueNode.textContent = value;
+
+		row.append(labelNode, valueNode);
+		return row;
+	}
+
+	function cloneCreatureImage() {
+		var image = document.getElementById('theMainImage');
+		if (!image) {
+			return null;
+		}
+
+		var clone = image.cloneNode(false);
+		clone.id = 'muovCreatureImage';
+		clone.removeAttribute('usemap');
+		clone.removeAttribute('title');
+
+		var nextArea = document.querySelector('map[name="mapmedium"] area[href*="picture.php?/"]');
+		if (nextArea) {
+			clone.addEventListener('click', function () {
+				window.location.href = nextArea.getAttribute('href').replace('&amp;', '&');
+			});
+		}
+
+		return clone;
+	}
+
+	function buildCreatureDetailPage() {
+		if (document.body.id !== 'thePicturePage' || document.querySelector('.muov-creature-detail')) {
+			return;
+		}
+
+		var fields = parseCreatureComment();
+		var image = cloneCreatureImage();
+		var topBack = document.querySelector('.mm-back-to-gallery:not(.mm-back-to-gallery--bottom)');
+		var content = document.getElementById('content');
+		if (!image || !content) {
+			return;
+		}
+
+		var name = displayValue(fields, 'name');
+		if (name === '-') {
+			var title = document.querySelector('#imageHeaderBar h2') || document.querySelector('title');
+			name = title ? cleanCommentLine(title.textContent) : '';
+		}
+
+		var section = document.createElement('section');
+		section.className = 'muov-creature-detail';
+
+		var logo = document.createElement('img');
+		logo.className = 'muov-creature-detail__logo';
+		logo.src = '/public/assets/textlogo_500x97.png';
+		logo.alt = 'Muoviotuspeli';
+
+		var titleNode = document.createElement('h1');
+		titleNode.className = 'muov-creature-detail__name';
+		titleNode.textContent = name;
+
+		var photo = document.createElement('div');
+		photo.className = 'muov-creature-detail__photo';
+		photo.appendChild(image);
+
+		var facts = document.createElement('dl');
+		facts.className = 'muov-creature-facts';
+		facts.append(
+			detailRow(t().factionLabel, titleCaseFaction(displayValue(fields, 'faction'))),
+			detailRow(t().creatureAbilityLabel, displayValue(fields, 'ability')),
+			detailRow(t().survivalLabel, displayValue(fields, 'survival')),
+			detailRow(t().collectedPartsLabel, displayValue(fields, 'collectedParts'), 'muov-creature-row--group-start'),
+			detailRow(t().partsOnCreatureLabel, displayValue(fields, 'partsOnCreature')),
+			detailRow(t().materialsLabel, materialsValue(fields)),
+			detailRow(t().finalScoreLabel, displayValue(fields, 'finalScore'), 'muov-creature-row--score'),
+			detailRow(t().teamNameLabel, displayValue(fields, 'teamName')),
+			detailRow(t().playerAgeLabel, ageFromDifficulty(fields))
+		);
+
+		if (topBack) {
+			section.append(logo, topBack, titleNode, photo, facts);
+			content.prepend(section);
+		} else {
+			section.append(logo, titleNode, photo, facts);
+			content.prepend(section);
+		}
+
+		document.body.classList.add('muov-creature-enhanced');
+	}
+
 	function metaRow(label, value, className) {
 		var text = localizedValue(value);
 		if (!text) {
@@ -268,6 +545,7 @@
 
 	function init() {
 		applyLanguageLabels();
+		buildCreatureDetailPage();
 		updateThumbnailBadges();
 		document.querySelectorAll('[data-muoviotukset-voting]').forEach(bindVoteCard);
 		if (document.getElementById('thumbnails')) {

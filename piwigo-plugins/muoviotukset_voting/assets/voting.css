@@ -185,6 +185,136 @@ body.category-1 #thumbnails > li > a > img {
 	-webkit-line-clamp: 1;
 }
 
+body#thePicturePage.muov-creature-enhanced .mm-gallery-hero,
+body#thePicturePage.muov-creature-enhanced #imageHeaderBar,
+body#thePicturePage.muov-creature-enhanced #imageToolBar,
+body#thePicturePage.muov-creature-enhanced #theImageAndInfos {
+	display: none !important;
+}
+
+body#thePicturePage .muov-creature-detail {
+	margin: 0 auto;
+	max-width: 760px;
+	width: 100%;
+}
+
+body#thePicturePage .muov-creature-detail__logo {
+	display: block;
+	height: auto;
+	margin: 0 auto 12px;
+	max-width: min(360px, 82vw);
+	width: 100%;
+}
+
+body#thePicturePage .muov-creature-detail__name {
+	color: #fff;
+	font: 800 clamp(2.75rem, 12vw, 5rem)/0.98 "Baloo 2", "Nunito", system-ui, sans-serif;
+	letter-spacing: 0;
+	margin: 0 0 22px;
+	text-align: center;
+	overflow-wrap: anywhere;
+}
+
+body#thePicturePage .muov-creature-detail__photo {
+	background: #fff;
+	border-radius: 8px 8px 0 0;
+	margin: 0;
+	padding: 18px 18px 10px;
+	text-align: center;
+}
+
+body#thePicturePage .muov-creature-detail__photo img {
+	box-shadow: none !important;
+	cursor: pointer;
+	display: block;
+	height: auto !important;
+	margin: 0 auto;
+	max-width: 100% !important;
+	width: auto !important;
+}
+
+body#thePicturePage .muov-creature-facts {
+	background: #fff;
+	border-radius: 0 0 8px 8px;
+	color: #0f3a47;
+	display: grid;
+	font-family: "Nunito", "Montserrat", system-ui, sans-serif;
+	gap: 0;
+	margin: 0;
+	padding: 0 18px 22px;
+}
+
+body#thePicturePage .muov-creature-row {
+	align-items: start;
+	border-top: 2px solid rgba(28, 140, 168, 0.18);
+	display: grid;
+	gap: 14px;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+	margin: 0;
+	padding: 18px 0;
+}
+
+body#thePicturePage .muov-creature-row:first-child {
+	border-top-width: 0;
+}
+
+body#thePicturePage .muov-creature-row--group-start {
+	background: rgba(28, 140, 168, 0.08);
+	border: 2px solid rgba(28, 140, 168, 0.12);
+	border-bottom-width: 0;
+	border-radius: 8px 8px 0 0;
+	margin-top: 8px;
+	padding: 18px;
+}
+
+body#thePicturePage .muov-creature-row--group-start + .muov-creature-row,
+body#thePicturePage .muov-creature-row--group-start + .muov-creature-row + .muov-creature-row {
+	background: rgba(28, 140, 168, 0.08);
+	border-left: 2px solid rgba(28, 140, 168, 0.12);
+	border-right: 2px solid rgba(28, 140, 168, 0.12);
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+body#thePicturePage .muov-creature-row--group-start + .muov-creature-row + .muov-creature-row {
+	border-bottom: 2px solid rgba(28, 140, 168, 0.12);
+	border-radius: 0 0 8px 8px;
+	margin-bottom: 8px;
+}
+
+body#thePicturePage .muov-creature-row__label,
+body#thePicturePage .muov-creature-row__value {
+	margin: 0;
+	min-width: 0;
+}
+
+body#thePicturePage .muov-creature-row__label {
+	color: #0f3a47;
+	font: 900 clamp(1rem, 4.2vw, 1.35rem)/1.12 "Nunito", "Montserrat", system-ui, sans-serif;
+}
+
+body#thePicturePage .muov-creature-row__value {
+	color: #0f3a47;
+	font: 500 clamp(1rem, 4.2vw, 1.3rem)/1.28 "Nunito", "Montserrat", system-ui, sans-serif;
+	text-align: right;
+	overflow-wrap: anywhere;
+}
+
+body#thePicturePage .muov-creature-row--score .muov-creature-row__label {
+	font-size: clamp(1.35rem, 5vw, 1.85rem);
+	font-weight: 900;
+}
+
+body#thePicturePage .muov-creature-row--score .muov-creature-row__value {
+	font-size: clamp(1.35rem, 5vw, 1.85rem);
+	font-weight: 500;
+}
+
+body#thePicturePage .mm-back-to-gallery--bottom {
+	margin: 20px auto 0;
+	max-width: 760px;
+}
+
 @media (max-width: 640px) {
 	.muov-vote-card {
 		align-items: stretch;
@@ -199,5 +329,47 @@ body.category-1 #thumbnails > li > a > img {
 
 	.muov-vote-card button {
 		flex: 1 1 auto;
+	}
+
+	body#thePicturePage .muov-creature-detail__photo {
+		padding: 14px 12px 8px;
+	}
+
+	body#thePicturePage .muov-creature-facts {
+		padding: 0 12px 18px;
+	}
+
+	body#thePicturePage .muov-creature-row,
+	body#thePicturePage .muov-creature-row--group-start,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row + .muov-creature-row {
+		gap: 10px;
+		grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+		padding: 15px 0;
+	}
+
+	body#thePicturePage .muov-creature-row--group-start,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row + .muov-creature-row {
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+
+	body#thePicturePage .muov-creature-row__value {
+		text-align: right;
+	}
+}
+
+@media (max-width: 340px) {
+	body#thePicturePage .muov-creature-row,
+	body#thePicturePage .muov-creature-row--group-start,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row,
+	body#thePicturePage .muov-creature-row--group-start + .muov-creature-row + .muov-creature-row {
+		gap: 8px;
+		grid-template-columns: 1fr;
+	}
+
+	body#thePicturePage .muov-creature-row__value {
+		text-align: left;
 	}
 }

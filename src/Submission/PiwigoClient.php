@@ -75,27 +75,28 @@ final class PiwigoClient{
 		$lines = [
 			$this->localizedCreatureNameLine((string) $submission['name']),
 			$this->localizedLine('Special ability', 'Erikoiskyky', (string) $submission['specialAbility']),
-			$this->localizedLine('Team name / class', 'Ryhmän nimi / luokka', (string) ($submission['teamName'] ?? '')),
+			$this->localizedLine('Faction', 'Heimo', (string) ($state['faction'] ?? '')),
 			$this->localizedContextLine($state),
 			$this->localizedLine(
-				'Difficulty',
-				'Vaikeustaso',
-				(string) ($state['difficulty'] ?? ''),
-				$this->localizedDifficulty((string) ($state['difficulty'] ?? ''))
-			),
-			'',
-			$this->localizedLine('Unlocked parts', 'Avatut osat', $partCount.' - '.$parts),
-			$this->localizedLine('Parts on creature', 'Osia otuksessa', (string) ($submission['partsCount'] ?? '')),
-			$this->localizedLine('Rubber bands', 'Kuminauhat', (string) ($submission['rubberBands'] ?? '')),
-			$this->localizedMaterialsLine($submission),
-			$this->localizedLine(
-				'Efficiency judgement',
-				'Tehokkuusarvio',
+				'Survival style',
+				'Selviytymistapa',
 				$score['efficiencyJudgement'],
 				$this->localizedEfficiencyJudgement($score['efficiencyJudgement'])
 			),
 			'',
+			$this->localizedLine('Collected parts', 'Kerätyt osat', $partCount.' - '.$parts),
+			$this->localizedLine('Parts on creature', 'Osia otuksessa', (string) ($submission['partsCount'] ?? '')),
+			$this->localizedLine('Rubber bands', 'Kuminauhat', (string) ($submission['rubberBands'] ?? '')),
+			$this->localizedMaterialsLine($submission),
+			'',
 			$this->localizedStrongLine('Final score', 'Loppupisteet', $score['finalScore'].' / 100'),
+			$this->localizedLine('Team name', 'Ryhmän nimi', (string) ($submission['teamName'] ?? '')),
+			$this->localizedLine(
+				'Player age',
+				'Pelaajan ikä',
+				$this->playerAgeLabel((string) ($state['difficulty'] ?? ''), 'en'),
+				$this->playerAgeLabel((string) ($state['difficulty'] ?? ''), 'fi')
+			),
 		];
 
 		return implode("\n", $lines);
@@ -124,13 +125,11 @@ final class PiwigoClient{
 
 	private function localizedContextLine(array $state): string{
 
-		$faction = (string) ($state['faction'] ?? '');
 		$box = (string) ($state['activeBoxLabel'] ?? '');
-		$track = (string) ($state['trackId'] ?? '');
 
 		return $this->localizedText(
-			'Faction: '.$faction.' Box: '.$box.' Track: '.$track,
-			'Heimo: '.$faction.' Laatikko: '.$box.' Rata: '.$track
+			'Active box: '.$box,
+			'Aktiivinen laatikko: '.$box
 		);
 	}
 
@@ -156,6 +155,23 @@ final class PiwigoClient{
 		return match($difficulty){
 			'hard' => 'Vaikea',
 			'easy' => 'Helppo',
+			default => $difficulty,
+		};
+	}
+
+	private function playerAgeLabel(string $difficulty, string $language): string{
+
+		if($language === 'fi'){
+			return match($difficulty){
+				'hard' => 'Yli 9 vuotta',
+				'easy' => 'Alle 9 vuotta',
+				default => $difficulty,
+			};
+		}
+
+		return match($difficulty){
+			'hard' => 'Over 9 years',
+			'easy' => 'Under 9 years',
 			default => $difficulty,
 		};
 	}
