@@ -77,9 +77,11 @@
 
     <div class="start-step start-step--track-intro" data-step="intro" hidden>
       <div class="track-intro">
-        <h2 class="track-intro__title" id="track-intro-title">Track 3</h2>
-        <p class="track-intro__belongs" id="track-intro-belongs">belongs to faction</p>
-        <p class="track-intro__faction" id="track-intro-faction">Propellukset.</p>
+        <h2 class="track-intro__title" id="track-intro-title">Find
+track 3</h2>
+        <p class="track-intro__belongs" id="track-intro-belongs">It belongs to
+faction</p>
+        <p class="track-intro__faction" id="track-intro-faction">Propellukset</p>
         <img class="track-intro__creature" id="track-intro-image" src="/public/assets/creatures-small/03_propellukset_no_bkg_760.png" alt="">
         <div class="track-intro__info">
           <div class="track-intro__icon-wrap" aria-hidden="true">

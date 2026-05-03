@@ -918,6 +918,7 @@ body.start-flow-active .page-content{
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1;
+  white-space: pre-line;
   text-shadow: 0 3px 0 rgba(0, 0, 0, 0.16);
 }
 
@@ -1466,10 +1467,11 @@ body.game-active .result--wrong .result-title{
 }
 
 body.game-active .result-subtitle{
-  margin: 0.5rem 0 0;
+  margin: 0.65rem 0 0;
   color: var(--dark-blue);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(1.65rem, 5.8vw, 2.6rem);
+  line-height: 1.22;
 }
 
 body.game-active .result-card{

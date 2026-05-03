@@ -30,8 +30,8 @@
       trackConfirmTitle: 'Onko rata vapaa?',
       trackConfirmYes: 'KYLLÄ',
       trackConfirmNo: 'EI',
-      trackIntroTitle: 'Rata {track}',
-      trackIntroBelongs: 'kuuluu lahkolle',
+      trackIntroTitle: 'Etsi\nrata {track}',
+      trackIntroBelongs: 'Se kuuluu lahkolle',
       trackIntroContinue: 'JATKA',
       back: 'Takaisin',
       easy: 'Helppo',
@@ -140,8 +140,8 @@
       trackConfirmTitle: 'Is the track free?',
       trackConfirmYes: 'YES',
       trackConfirmNo: 'NO',
-      trackIntroTitle: 'Track {track}',
-      trackIntroBelongs: 'belongs to faction',
+      trackIntroTitle: 'Find\ntrack {track}',
+      trackIntroBelongs: 'It belongs to\nfaction',
       trackIntroContinue: 'CONTINUE',
       back: 'Back',
       easy: 'Easy',
@@ -394,7 +394,7 @@
 
       setText('track-intro-title', format(t.trackIntroTitle, {track: track.id}));
       setText('track-intro-belongs', t.trackIntroBelongs);
-      setText('track-intro-faction', faction+'.');
+      setText('track-intro-faction', faction);
 
       if(image){
         image.src = track.introImage || '';
