@@ -801,6 +801,7 @@
     setText('photo-trigger-label', t.photoTake);
     setText('finish-submit', t.submitCreature);
     setText('finish-success-title', t.submissionSuccess);
+    setText('finish-success-home', t.continueHome);
     setText('finish-success-gallery', t.openGallery);
 
     if(!state){
@@ -913,6 +914,9 @@
         if(!response.ok){
           throw new Error(payload.error || t.submissionFailed);
         }
+
+        clearState();
+        renderSessionStrip(null);
 
         const stepSuccess = document.getElementById('finish-step-success');
         if(stepForm){ stepForm.hidden = true; }

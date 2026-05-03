@@ -78,6 +78,7 @@
     <h2 id="finish-success-title">The creature was submitted successfully.</h2>
   </div>
   <div class="button-row">
+    <a class="button button-secondary" href="/" id="finish-success-home">Back to start</a>
     <a class="button button-primary" href="/gallery/index.php?/category/1" id="finish-success-gallery">Open gallery</a>
   </div>
 </section>
