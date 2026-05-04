@@ -1019,6 +1019,37 @@ body.start-flow-active .page-content{
   font-weight: 700;
 }
 
+.track-intro--body-select{
+  gap: 1rem;
+}
+
+.track-intro__creature--body-select{
+  margin-bottom: -0.6rem;
+}
+
+.track-intro__body-card{
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  border: 2px solid rgba(5, 153, 200, 0.45);
+  background: rgba(0, 36, 56, 0.34);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.track-intro__body-instruction{
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.track-intro__body-instruction strong{
+  color: #1ea983;
+  font-weight: 700;
+}
+
 .track-intro__continue{
   width: 100%;
   min-height: 5.8rem;
@@ -1117,6 +1148,14 @@ body.start-flow-active .page-content{
 
   .track-intro__description{
     font-size: 1.1rem;
+  }
+
+  .track-intro__body-card{
+    padding: 1rem;
+  }
+
+  .track-intro__body-instruction{
+    font-size: 1.15rem;
   }
 
   .track-intro__continue{

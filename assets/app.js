@@ -33,6 +33,7 @@
       trackIntroTitle: 'Etsi\nrata {track}',
       trackIntroBelongs: 'Se kuuluu lahkolle',
       trackIntroContinue: 'JATKA',
+      bodySelectInstruction: 'Valitse otuksellesi vartalo laatikosta **{box}** ja laita se koriin.',
       back: 'Takaisin',
       easy: 'Helppo',
       hard: 'Vaikea',
@@ -99,7 +100,7 @@
       photoTake: 'Ota kuva',
       photoRetake: 'Ota uusi kuva',
       submitCreature: 'Lähetä',
-      submissionSuccess: 'Otus lähetettiin onnistuneesti galleriaan.',
+      submissionSuccess: 'Otus on nyt galleriassa!',
       submissionFailed: 'Lähetys epäonnistui.',
       requiredFields: 'Täytä kaikki kentät ja lisää kuva. Osat 0-99, kuminauhat ja nippusiteet 0-999, teippi 0-9999 cm.',
       continueHome: 'Palaa alkuun',
@@ -156,6 +157,7 @@
       trackIntroTitle: 'Find\ntrack {track}',
       trackIntroBelongs: 'It belongs to\nfaction',
       trackIntroContinue: 'CONTINUE',
+      bodySelectInstruction: 'Choose a body for your creature from the box **{box}** and put it in the basket.',
       back: 'Back',
       easy: 'Easy',
       hard: 'Hard',
@@ -323,7 +325,7 @@
     startFlow.hidden = false;
 
     const choices = {language: 'fi', difficulty: null, roll: null, trackId: null};
-    const order = ['language', 'age', 'roll', 'track', 'confirm', 'intro'];
+    const order = ['language', 'age', 'roll', 'track', 'confirm', 'intro', 'body'];
     const steps = {};
     order.forEach(function(name){
       steps[name] = startFlow.querySelector('[data-step="'+name+'"]');
@@ -336,14 +338,17 @@
         steps[other].hidden = (other !== name);
       });
       if(heroEl){
-        heroEl.hidden = (name === 'roll' || name === 'confirm' || name === 'intro');
+        heroEl.hidden = (name === 'roll' || name === 'confirm' || name === 'intro' || name === 'body');
       }
       startFlow.classList.toggle('start-flow--roll', name === 'roll');
       startFlow.classList.toggle('start-flow--confirm', name === 'confirm');
-      startFlow.classList.toggle('start-flow--intro', name === 'intro');
+      startFlow.classList.toggle('start-flow--intro', name === 'intro' || name === 'body');
       applyStartCopy();
       if(name === 'intro'){
         renderTrackIntro();
+      }
+      if(name === 'body'){
+        renderBodySelect();
       }
     }
 
@@ -361,6 +366,7 @@
       setText('track-confirm-yes', t.trackConfirmYes);
       setText('track-confirm-no', t.trackConfirmNo);
       setText('track-intro-continue-label', t.trackIntroContinue);
+      setText('body-select-continue-label', t.trackIntroContinue);
       setText('age-back', t.back);
       setText('roll-back', t.back);
       setText('track-back', t.back);
@@ -432,6 +438,30 @@
       }
     }
 
+    function renderBodySelect(){
+      const lang = choices.language;
+      const t = ui(lang);
+      const track = getTrack(choices.trackId);
+
+      if(!track){
+        return;
+      }
+
+      const faction = capitalizeFirst(localized(track.faction, lang));
+      const box = localized(track.mainBox, lang);
+      const image = document.getElementById('body-select-image');
+      const instruction = document.getElementById('body-select-instruction');
+
+      if(image){
+        image.src = track.introImage || '';
+        image.alt = faction;
+      }
+
+      if(instruction){
+        instruction.innerHTML = renderBoldTemplate(t.bodySelectInstruction, {box});
+      }
+    }
+
     function renderTrackButtons(){
       const lang = choices.language;
       const container = document.getElementById('track-buttons');
@@ -476,6 +506,14 @@
 
     if(introContinue){
       introContinue.addEventListener('click', function(){
+        showStep('body');
+      });
+    }
+
+    const bodySelectContinue = document.getElementById('body-select-continue');
+
+    if(bodySelectContinue){
+      bodySelectContinue.addEventListener('click', function(){
         finishStart();
       });
     }
@@ -1090,11 +1128,11 @@
         ${inputMarkup}
         ${question.tip ? `
           <div class="tip-block stack">
-            <button class="button button-secondary tip-button" id="tip-button" type="button" ${tipAvailable ? '' : 'disabled'}>${escapeHtml(tipAvailable ? t.useTip : format(t.tipsRemaining, {used: state.usedTips, remaining: Math.max(0, MAX_TIPS - state.usedTips)}))}</button>
             <div id="tip-container" class="tip-card" ${state.tipUsage[setKey] ? '' : 'hidden'}>
               <p class="tip-card__title">${escapeHtml(t.tipTitle)}</p>
               <p class="tip-card__body">${escapeHtml(localized(question.tip, lang))}</p>
             </div>
+            <button class="button button-secondary tip-button" id="tip-button" type="button" ${tipAvailable ? '' : 'disabled'}>${escapeHtml(tipAvailable ? t.useTip : format(t.tipsRemaining, {used: state.usedTips, remaining: Math.max(0, MAX_TIPS - state.usedTips)}))}</button>
           </div>
         ` : ''}
         <div class="button-row">
@@ -1420,6 +1458,11 @@
     element.innerHTML = lines.map(function(item){
       return `<p>${escapeHtml(item)}</p>`;
     }).join('');
+  }
+
+  function renderBoldTemplate(template, params){
+    const formatted = format(template, params);
+    return escapeHtml(formatted).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   }
 
   function format(template, params){
