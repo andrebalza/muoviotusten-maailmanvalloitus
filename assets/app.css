@@ -24,6 +24,7 @@
   --radius-sm: 16px;
   --font-display: "Baloo 2", "Montserrat", "Trebuchet MS", sans-serif;
   --font-body: "Montserrat", "Segoe UI", sans-serif;
+  --phone-camera-space: calc(15px + env(safe-area-inset-top, 0px));
 }
 
 *{
@@ -49,7 +50,7 @@ a{
 .page-shell{
   width: min(100%, 46rem);
   margin: 0 auto;
-  padding: 1rem 1rem 3rem;
+  padding: calc(1rem + var(--phone-camera-space)) 1rem 3rem;
 }
 
 .topbar{
@@ -578,7 +579,7 @@ body.start-flow-active .session-strip{
 }
 
 body.start-flow-active .page-shell{
-  padding: 0;
+  padding: var(--phone-camera-space) 0 0;
   width: 100%;
   min-height: 100vh;
 }
@@ -588,7 +589,7 @@ body.start-flow-active .page-content{
 }
 
 .start-flow{
-  min-height: 100vh;
+  min-height: calc(100vh - var(--phone-camera-space));
   background: var(--dark-blue);
   color: #fff;
   display: flex;

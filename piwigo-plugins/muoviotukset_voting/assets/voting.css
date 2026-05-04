@@ -201,9 +201,86 @@ body#thePicturePage .muov-creature-detail {
 body#thePicturePage .muov-creature-detail__logo {
 	display: block;
 	height: auto;
-	margin: 0 auto 12px;
+	margin: 15px auto 12px;
 	max-width: min(360px, 82vw);
 	width: 100%;
+}
+
+body.category-1 .mm-gallery-hero {
+	cursor: pointer;
+	margin-top: calc(1.4rem + 15px + env(safe-area-inset-top, 0px));
+}
+
+body.category-1 .mm-gallery-hero:focus-visible {
+	outline: 3px solid #f6cf3f;
+	outline-offset: 6px;
+}
+
+.muov-restart-open {
+	overflow: hidden;
+}
+
+.muov-restart-prompt {
+	align-items: center;
+	background: rgba(15, 58, 71, 0.72);
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	padding: 24px;
+	position: fixed;
+	z-index: 99999;
+}
+
+.muov-restart-prompt[hidden] {
+	display: none !important;
+}
+
+.muov-restart-prompt__card {
+	background: #fff;
+	border: 3px solid #22190d;
+	border-radius: 8px;
+	box-shadow: 0 8px 0 rgba(0, 0, 0, 0.28);
+	color: #22190d;
+	max-width: min(420px, 100%);
+	padding: 24px;
+	text-align: center;
+}
+
+.muov-restart-prompt__question {
+	color: #0f3a47;
+	font: 800 clamp(1.35rem, 5vw, 1.8rem)/1.12 "Baloo 2", "Nunito", system-ui, sans-serif;
+	margin: 0 0 20px;
+}
+
+.muov-restart-prompt__actions {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.muov-restart-prompt__button {
+	border: 3px solid #22190d;
+	border-radius: 8px;
+	box-shadow: 0 4px 0 #22190d;
+	cursor: pointer;
+	font: 900 17px/1 "Nunito", system-ui, sans-serif;
+	min-height: 52px;
+	padding: 0 18px;
+}
+
+.muov-restart-prompt__button--yes {
+	background: #e7472f;
+	color: #fff8e6;
+}
+
+.muov-restart-prompt__button--no {
+	background: #f7f1dc;
+	color: #22190d;
+}
+
+.muov-restart-prompt__button:focus-visible {
+	outline: 3px solid #1c8ca8;
+	outline-offset: 3px;
 }
 
 body#thePicturePage .muov-creature-detail__name {
@@ -357,6 +434,10 @@ body#thePicturePage .mm-back-to-gallery--bottom {
 
 	body#thePicturePage .muov-creature-row__value {
 		text-align: right;
+	}
+
+	body.category-1 .mm-gallery-hero {
+		margin-top: calc(1rem + 15px + env(safe-area-inset-top, 0px));
 	}
 }
 

@@ -12,7 +12,7 @@ if (!defined('PHPWG_ROOT_PATH')) {
 
 defined('MUOVIOTUKSET_VOTING_ID') || define('MUOVIOTUKSET_VOTING_ID', basename(dirname(__FILE__)));
 defined('MUOVIOTUKSET_VOTING_PATH') || define('MUOVIOTUKSET_VOTING_PATH', PHPWG_PLUGINS_PATH.MUOVIOTUKSET_VOTING_ID.'/');
-defined('MUOVIOTUKSET_VOTING_VERSION') || define('MUOVIOTUKSET_VOTING_VERSION', '20260503r');
+defined('MUOVIOTUKSET_VOTING_VERSION') || define('MUOVIOTUKSET_VOTING_VERSION', '20260504a');
 defined('MUOVIOTUKSET_VOTING_CATEGORY_ID') || define('MUOVIOTUKSET_VOTING_CATEGORY_ID', 1);
 
 add_event_handler('loc_begin_index', 'muoviotukset_voting_sort_index');

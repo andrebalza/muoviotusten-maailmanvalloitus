@@ -1,6 +1,7 @@
 (function () {
 	var apiPath = '/gallery/plugins/muoviotukset_voting/api.php';
 	var tokenKey = 'muoviotukset.galleryVotingToken.v1';
+	var gameStateKey = 'muoviotukset.v1';
 	var pollInterval = 5000;
 
 	var copy = {
@@ -25,6 +26,10 @@
 				return remaining === 1 ? 'You have 1 vote left.' : 'You have ' + remaining + ' votes left.';
 			},
 			already: 'You have already voted for this creature.',
+			restartConfirm: 'Do you want to restart the game?',
+			restartLogoLabel: 'Restart game',
+			restartYes: 'Yes',
+			restartNo: 'No',
 			count: function (count) {
 				return count === 1 ? '1 vote' : count + ' votes';
 			}
@@ -50,6 +55,10 @@
 				return remaining === 1 ? 'Sinulla on 1 ääni jäljellä.' : 'Sinulla on ' + remaining + ' ääntä jäljellä.';
 			},
 			already: 'Olet jo äänestänyt tätä otusta.',
+			restartConfirm: 'Haluatko aloittaa pelin alusta?',
+			restartLogoLabel: 'Aloita peli alusta',
+			restartYes: 'Kyllä',
+			restartNo: 'Ei',
 			count: function (count) {
 				return count === 1 ? '1 ääni' : count + ' ääntä';
 			}
@@ -74,6 +83,126 @@
 		var lang = language();
 		document.querySelectorAll('[data-lang-' + lang + ']').forEach(function (node) {
 			node.textContent = node.getAttribute('data-lang-' + lang);
+		});
+	}
+
+	function closeRestartPrompt(prompt) {
+		if (!prompt) {
+			return;
+		}
+		prompt.hidden = true;
+		document.body.classList.remove('muov-restart-open');
+	}
+
+	function restartGame() {
+		try {
+			localStorage.removeItem(gameStateKey);
+		} catch (error) {}
+
+		window.location.assign('/');
+	}
+
+	function restartPrompt() {
+		var existing = document.querySelector('[data-muov-restart-prompt]');
+		if (existing) {
+			return existing;
+		}
+
+		var labels = t();
+		var prompt = document.createElement('div');
+		prompt.className = 'muov-restart-prompt';
+		prompt.hidden = true;
+		prompt.setAttribute('data-muov-restart-prompt', '');
+		prompt.setAttribute('role', 'dialog');
+		prompt.setAttribute('aria-modal', 'true');
+
+		var card = document.createElement('div');
+		card.className = 'muov-restart-prompt__card';
+
+		var question = document.createElement('p');
+		question.className = 'muov-restart-prompt__question';
+
+		var actions = document.createElement('div');
+		actions.className = 'muov-restart-prompt__actions';
+
+		var yes = document.createElement('button');
+		yes.className = 'muov-restart-prompt__button muov-restart-prompt__button--yes';
+		yes.type = 'button';
+		yes.setAttribute('data-muov-restart-yes', '');
+
+		var no = document.createElement('button');
+		no.className = 'muov-restart-prompt__button muov-restart-prompt__button--no';
+		no.type = 'button';
+		no.setAttribute('data-muov-restart-no', '');
+
+		actions.append(yes, no);
+		card.append(question, actions);
+		prompt.appendChild(card);
+		document.body.appendChild(prompt);
+
+		prompt.addEventListener('click', function (event) {
+			if (event.target === prompt || event.target.hasAttribute('data-muov-restart-no')) {
+				closeRestartPrompt(prompt);
+			}
+		});
+		yes.addEventListener('click', restartGame);
+		document.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape' && !prompt.hidden) {
+				closeRestartPrompt(prompt);
+			}
+		});
+
+		question.textContent = labels.restartConfirm;
+		yes.textContent = labels.restartYes;
+		no.textContent = labels.restartNo;
+
+		return prompt;
+	}
+
+	function openRestartPrompt() {
+		var prompt = restartPrompt();
+		var labels = t();
+		var question = prompt.querySelector('.muov-restart-prompt__question');
+		var yes = prompt.querySelector('[data-muov-restart-yes]');
+		var no = prompt.querySelector('[data-muov-restart-no]');
+		if (question) {
+			question.textContent = labels.restartConfirm;
+		}
+		if (yes) {
+			yes.textContent = labels.restartYes;
+		}
+		if (no) {
+			no.textContent = labels.restartNo;
+		}
+
+		prompt.hidden = false;
+		document.body.classList.add('muov-restart-open');
+		if (no) {
+			no.focus();
+		}
+	}
+
+	function bindRestartLogo() {
+		if (!document.body.classList.contains('category-1')) {
+			return;
+		}
+
+		var hero = document.querySelector('.mm-gallery-hero');
+		if (!hero || hero.hasAttribute('data-muov-restart-logo')) {
+			return;
+		}
+
+		hero.setAttribute('data-muov-restart-logo', '');
+		hero.setAttribute('aria-label', t().restartLogoLabel);
+		hero.setAttribute('role', 'button');
+		hero.setAttribute('tabindex', '0');
+		hero.removeAttribute('aria-hidden');
+		hero.addEventListener('click', openRestartPrompt);
+		hero.addEventListener('keydown', function (event) {
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault();
+				openRestartPrompt();
+			}
 		});
 	}
 
@@ -545,6 +674,7 @@
 
 	function init() {
 		applyLanguageLabels();
+		bindRestartLogo();
 		buildCreatureDetailPage();
 		updateThumbnailBadges();
 		document.querySelectorAll('[data-muoviotukset-voting]').forEach(bindVoteCard);
