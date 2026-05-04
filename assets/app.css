@@ -534,6 +534,30 @@ body.game-active .materials-group{
   line-height: 1.55;
 }
 
+.finish-build-title{
+  color: var(--dark-blue);
+}
+
+.finish-build-intro{
+  display: grid;
+  gap: 0.55rem;
+  color: var(--dark-blue);
+  line-height: 1.45;
+}
+
+.finish-build-intro p{
+  margin: 0;
+}
+
+.finish-build-list{
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-left: 1.35rem;
+  color: var(--dark-blue);
+  line-height: 1.45;
+}
+
 @media (min-width: 42rem){
   .session-strip{
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1580,6 +1604,7 @@ body.game-active .scanner-panel[data-scanner-state="idle"] .scanner-frame{
 
 body.game-active .scanner-panel[data-scanner-state="active"] .scanner-intro,
 body.game-active .scanner-panel[data-scanner-state="requesting"] .scanner-intro,
+body.game-active .scanner-panel[data-scanner-state="native"] .scanner-intro,
 body.game-active .scanner-panel[data-scanner-state="error"] .scanner-intro{
   display: none;
 }

@@ -10,7 +10,9 @@
 
 <section class="panel" id="finish-step-build" hidden>
   <div class="card stack">
-    <p id="finish-build-instructions"></p>
+    <h2 class="finish-build-title" id="finish-build-title">It’s time to build!</h2>
+    <div class="finish-build-intro" id="finish-build-intro"></div>
+    <ul class="finish-build-list" id="finish-build-instructions"></ul>
   </div>
   <div class="button-row">
     <button class="button button-primary" type="button" id="finish-creature-ready">Creature is ready</button>

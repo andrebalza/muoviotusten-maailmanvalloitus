@@ -46,6 +46,7 @@
       scannerIntro2: 'Jos ruudussa on QR-koodi, skannaa se.',
       scannerWaiting: 'Odotetaan kameran käyttöoikeutta…',
       scannerReady: 'Suuntaa kamera QR-koodiin.',
+      scannerNativeWaiting: 'Skannaa QR-koodi avautuvalla lukijalla.',
       scannerRetry: 'Yritä kameraa uudelleen',
       scannerInvalid: 'Tämä QR-koodi ei kuulu tähän peliin.',
       scannerNoCamera: 'Kameraa ei voitu käynnistää. Tarkista selaimen lupa-asetukset.',
@@ -71,9 +72,20 @@
       mutationEyebrow: 'Mutaatio',
       mutationTitle: 'Mutaatio aktivoitui',
       mutationLead: 'Laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
+      mutationProceed: 'Jatka',
       finishTitle: 'Mahtava suoritus!',
       finishContinueBuild: 'Jatka rakentamiseen',
-      finishBuildInstructions: 'Evoluutiossa kaikki osat eivät aina säily. Vie otuksesi rakennuspisteelle ja kokoa se valitsemistasi osista. Palauta loput oikeisiin laatikoihin. Valitse osat pelissä saamiesi osien joukosta. Rakenna otus kuminauhoilla, teipillä ja nippusiteillä. Käytä materiaaleja mahdollisimman vähän.',
+      finishBuildTitle: 'On aika rakentaa!',
+      finishBuildIntro: [
+        'Evoluutiossa kaikki osat eivät aina säily, vaan osa muuttuu tai katoaa.',
+        'Vie otuksesi rakennuspisteelle ja kokoa se valitsemistasi osista.'
+      ],
+      finishBuildInstructions: [
+        'Valitse osat pelissä saamiesi osien joukosta.',
+        'Rakenna otus käyttämällä kuminauhoja, nippusiteitä ja teippiä.',
+        'Käytä materiaaleja mahdollisimman vähän.',
+        'Jätä loput osat pöydällä olevaan laatikkoon.'
+      ],
       finishCreatureReady: 'Otus on valmis',
       creatureName: 'Otuksen nimi',
       specialAbility: 'Millainen erikoiskyky otuksellasi on? Keksi itse!',
@@ -157,6 +169,7 @@
       scannerIntro2: 'If the tile has a QR code, scan it.',
       scannerWaiting: 'Waiting for camera access…',
       scannerReady: 'Point the camera at a QR code.',
+      scannerNativeWaiting: 'Scan the QR code in the reader that opens.',
       scannerRetry: 'Retry camera',
       scannerInvalid: 'That QR code is not part of this game.',
       scannerNoCamera: 'The camera could not be started. Check the browser permission settings.',
@@ -182,9 +195,20 @@
       mutationEyebrow: 'Mutation',
       mutationTitle: 'Mutation activated',
       mutationLead: 'The box changes immediately and stays visible at the top of the app.',
+      mutationProceed: 'Proceed',
       finishTitle: 'Great achievement!',
       finishContinueBuild: 'Continue to building',
-      finishBuildInstructions: 'In evolution, not all parts always remain. Take your creature to the building station and assemble it from the parts you choose. Return the rest to the correct boxes. Choose parts from the ones you received during the game. Build the creature using rubber bands, tape, and cable ties. Use as little material as possible.',
+      finishBuildTitle: 'It’s time to build!',
+      finishBuildIntro: [
+        'In evolution, not all parts always remain; some parts change or disappear.',
+        'Take your creature to the building station and assemble it from the parts you choose.'
+      ],
+      finishBuildInstructions: [
+        'Choose parts from the ones you received during the game.',
+        'Build the creature using rubber bands, cable ties, and tape.',
+        'Use as little material as possible.',
+        'Leave the remaining parts in the box on the table.'
+      ],
       finishCreatureReady: 'Creature is ready',
       creatureName: 'Creature name',
       specialAbility: 'What special ability does your creature have? Make it up!!',
@@ -512,6 +536,12 @@
     let stream = null;
     let frameTimer = null;
     let detecting = false;
+    const fullyScanner = window.fully && typeof window.fully.scanQrCode === 'function'
+      ? window.fully
+      : null;
+    if(fullyScanner && retry){
+      retry.textContent = t.scannerStart;
+    }
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d', {willReadFrequently: true});
     const detector = typeof window.BarcodeDetector === 'function'
@@ -535,6 +565,12 @@
         if(retry){ retry.hidden = true; }
         status.textContent = t.scannerWaiting;
       }
+      else if(next === 'native'){
+        if(frame){ frame.hidden = true; }
+        if(startButton){ startButton.hidden = true; }
+        if(retry){ retry.hidden = false; }
+        status.textContent = t.scannerNativeWaiting;
+      }
       else if(next === 'active'){
         if(frame){ frame.hidden = false; }
         if(startButton){ startButton.hidden = true; }
@@ -549,8 +585,61 @@
       }
     }
 
+    function readFullyScanResult(){
+      const hash = window.location.hash || '';
+      const marker = '#code=';
+
+      if(!hash.startsWith(marker)){
+        return null;
+      }
+
+      try{
+        return decodeURIComponent(hash.slice(marker.length));
+      }
+      catch(error){
+        return hash.slice(marker.length);
+      }
+    }
+
+    function clearFullyScanResult(){
+      if(window.location.hash.startsWith('#code=')){
+        window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      }
+    }
+
+    function handleScannedValue(rawValue){
+      const nextUrl = validateQr(rawValue);
+
+      if(nextUrl){
+        stop();
+        window.location.assign(nextUrl);
+        return true;
+      }
+
+      status.textContent = t.scannerInvalid;
+      return false;
+    }
+
+    function startFullyScanner(){
+      setState('native');
+
+      try{
+        const prompt = t.scannerNativeWaiting;
+        const targetUrl = `${window.location.origin}/scan#code=$code`;
+        fullyScanner.scanQrCode(prompt, targetUrl, -1, 60, true, true);
+      }
+      catch(error){
+        setState('error');
+      }
+    }
+
     async function start(){
       stop();
+
+      if(fullyScanner){
+        startFullyScanner();
+        return;
+      }
 
       if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
         setState('error');
@@ -598,13 +687,9 @@
             }
 
             if(rawValue){
-              const nextUrl = validateQr(rawValue);
-              if(nextUrl){
-                stop();
-                window.location.assign(nextUrl);
+              if(handleScannedValue(rawValue)){
                 return;
               }
-              status.textContent = t.scannerInvalid;
             }
           }
           catch(error){
@@ -652,6 +737,17 @@
     }
 
     window.addEventListener('pagehide', stop);
+
+    const fullyScanResult = readFullyScanResult();
+    if(fullyScanResult){
+      clearFullyScanResult();
+      if(handleScannedValue(fullyScanResult)){
+        return;
+      }
+      setState('idle');
+      status.textContent = t.scannerInvalid;
+      return;
+    }
 
     setState('idle');
   }
@@ -800,7 +896,7 @@
         <p class="muted">${escapeHtml(localized(mutation.description, lang))}</p>
       </div>
       <div class="button-row">
-        <a class="button button-primary" href="/scan">${escapeHtml(t.nextScan)}</a>
+        <a class="button button-primary" href="/scan">${escapeHtml(t.mutationProceed)}</a>
       </div>
     `;
   }
@@ -818,7 +914,9 @@
 
     setText('finish-title', t.finishTitle);
     setText('finish-continue-build', t.finishContinueBuild);
-    setText('finish-build-instructions', t.finishBuildInstructions);
+    setText('finish-build-title', t.finishBuildTitle);
+    renderTextParagraphs('finish-build-intro', t.finishBuildIntro);
+    renderTextList('finish-build-instructions', t.finishBuildInstructions);
     setText('finish-creature-ready', t.finishCreatureReady);
     setText('creature-name-label', t.creatureName);
     setText('ability-label', t.specialAbility);
@@ -1298,6 +1396,30 @@
     if(element){
       element.textContent = value;
     }
+  }
+
+  function renderTextList(id, items){
+    const element = document.getElementById(id);
+    if(!element){
+      return;
+    }
+
+    const lines = Array.isArray(items) ? items : [items];
+    element.innerHTML = lines.map(function(item){
+      return `<li>${escapeHtml(item)}</li>`;
+    }).join('');
+  }
+
+  function renderTextParagraphs(id, items){
+    const element = document.getElementById(id);
+    if(!element){
+      return;
+    }
+
+    const lines = Array.isArray(items) ? items : [items];
+    element.innerHTML = lines.map(function(item){
+      return `<p>${escapeHtml(item)}</p>`;
+    }).join('');
   }
 
   function format(template, params){
