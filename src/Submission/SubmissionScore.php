@@ -19,13 +19,14 @@ final class SubmissionScore{
 		$cableTies = max(0, (int) ($submission['cableTies'] ?? 0));
 		$tapeCm = max(0, (int) ($submission['tapeCm'] ?? 0));
 		$usedTips = max(0, (int) ($state['usedTips'] ?? 0));
+		$correctAnswers = self::correctAnswerCount($state, $collectedParts);
 
 		$materialUnits = $rubberBands + $cableTies + ($tapeCm / self::TAPE_CM_PER_UNIT);
 		$effectivePartDenominator = $collectedParts > 0 ? min($usedParts, $collectedParts) : $usedParts;
 		$unitsPerPart = $effectivePartDenominator > 0 ? $materialUnits / $effectivePartDenominator : null;
 		$efficiencyJudgement = self::efficiencyJudgement($usedParts, $materialUnits, $unitsPerPart);
 		$efficiencyFactor = self::efficiencyFactor($usedParts, $unitsPerPart);
-		$knowledgeFactor = min(1.0, $collectedParts / self::TOTAL_QUESTIONS);
+		$knowledgeFactor = min(1.0, $correctAnswers / self::TOTAL_QUESTIONS);
 		$partsUsageFactor = self::partsUsageFactor($usedParts, $collectedParts);
 		$tipFactor = max(0.0, 1.0 - (min($usedTips, self::MAX_TIPS) / self::MAX_TIPS));
 
@@ -52,6 +53,23 @@ final class SubmissionScore{
 		}
 
 		return 0;
+	}
+
+	private static function correctAnswerCount(array $state, int $fallbackPartCount): int{
+
+		if(isset($state['answeredSets']) && is_array($state['answeredSets'])){
+			$count = 0;
+
+			foreach($state['answeredSets'] as $answer){
+				if(is_array($answer) && ($answer['correct'] ?? false) === true){
+					$count++;
+				}
+			}
+
+			return $count;
+		}
+
+		return $fallbackPartCount;
 	}
 
 	private static function efficiencyJudgement(int $usedParts, float $materialUnits, ?float $unitsPerPart): string{

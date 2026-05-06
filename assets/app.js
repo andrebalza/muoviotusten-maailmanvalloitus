@@ -67,6 +67,7 @@
       correctAnswer: 'Oikea vastaus',
       explanation: 'Selitys',
       unlockedPart: 'Avasitte ruumiinosan',
+      unlockedParts: 'Avasitte ruumiinosat',
       missedPart: 'Menetitte tämän ruumiinosan',
       noSession: 'Aloita peli ensin aloitussivulta.',
       mutationEyebrow: 'Mutaatio',
@@ -192,6 +193,7 @@
       correctAnswer: 'Correct answer',
       explanation: 'Explanation',
       unlockedPart: 'You unlocked a body part',
+      unlockedParts: 'You unlocked body parts',
       missedPart: 'You permanently missed this body part',
       noSession: 'Start the game from the home page first.',
       mutationEyebrow: 'Mutation',
@@ -854,23 +856,29 @@
     form.addEventListener('submit', function(event){
       event.preventDefault();
       const result = evaluateQuestion(question, form, lang);
-      const part = app.parts[state.currentPartIndex] || null;
+      const awardCount = questionPartAdvanceCount(questionSet, result);
+      const parts = app.parts.slice(state.currentPartIndex, state.currentPartIndex + awardCount);
 
       state.answeredSets[setKey] = {
         questionId: question.id,
         correct: result.correct,
-        partId: part ? part.id : null,
+        partId: parts[0] ? parts[0].id : null,
+        partIds: parts.map(function(part){
+          return part.id;
+        }),
       };
 
-      if(part && result.correct){
-        state.unlockedPartIds.push(part.id);
+      if(result.correct){
+        parts.forEach(function(part){
+          state.unlockedPartIds.push(part.id);
+        });
       }
 
-      state.currentPartIndex = Math.min(state.currentPartIndex + 1, app.parts.length);
+      state.currentPartIndex = Math.min(state.currentPartIndex + awardCount, app.parts.length);
       saveState(state);
       renderSessionStrip(state);
 
-      panel.innerHTML = renderQuestionResult(question, result, part, state, lang);
+      panel.innerHTML = renderQuestionResult(question, result, parts, state, lang);
     });
   }
 
@@ -1111,8 +1119,9 @@
     `;
   }
 
-  function renderQuestionResult(question, result, part, state, lang){
+  function renderQuestionResult(question, result, parts, state, lang){
     const t = ui(lang);
+    parts = parts || [];
     const isText = question.type === 'text';
     let correctLetter = '';
     let correctText = '';
@@ -1137,8 +1146,13 @@
     const resultModifier = result.correct ? 'result--correct' : 'result--wrong';
     const cardModifier = result.correct ? 'is-correct' : 'is-wrong';
 
-    const partLine = (part && result.correct)
-      ? `<p class="result-subtitle">${renderInlineMarkdown(partUnlockText(part, state, lang))}</p>`
+    const partLine = (parts.length && result.correct)
+      ? `<div class="result-subtitle">
+          <strong>${escapeHtml(parts.length > 1 ? t.unlockedParts : t.unlockedPart)}</strong>
+          ${parts.map(function(part){
+            return `<p>${renderInlineMarkdown(partUnlockText(part, state, lang))}</p>`;
+          }).join('')}
+        </div>`
       : '';
 
     const answerBlock = !result.correct
@@ -1174,6 +1188,15 @@
     return format(template, {
       BoxName: activeBoxLabel(state, lang),
     });
+  }
+
+  function questionPartAdvanceCount(questionSet, result){
+    if(!result.correct){
+      return 1;
+    }
+
+    const imageQuestionSetIds = (settings.imageQuestionSetIds || []).map(Number);
+    return imageQuestionSetIds.includes(Number(questionSet.setId)) ? 2 : 1;
   }
 
   function renderSessionStrip(state){

@@ -2,13 +2,20 @@
     "meta": {
         "contentVersion": "2026-05-03",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-06T07:10:20+00:00",
+        "generatedAt": "2026-05-06T07:38:41+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
         "domain": "https://otus.muoviamo.fi",
         "storageKey": "muoviotukset.v1",
-        "maxTips": 5
+        "maxTips": 5,
+        "imageQuestionSetIds": [
+            4,
+            6,
+            10,
+            12,
+            13
+        ]
     },
     "tracks": [
         {

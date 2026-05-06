@@ -11,6 +11,7 @@ return [
 		'domain' => 'https://otus.muoviamo.fi',
 		'storageKey' => 'muoviotukset.v1',
 		'maxTips' => 5,
+		'imageQuestionSetIds' => [4, 6, 10, 12, 13],
 	],
 	'tracks' => [
 		[
