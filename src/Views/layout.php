@@ -10,7 +10,14 @@ $assetVersion = static function(string $path): string{
 };
 $page = $boot['page'] ?? '';
 $gamePages = ['scan', 'question', 'mutation', 'finish'];
-$bodyClass = in_array($page, $gamePages, true) ? 'game-active' : '';
+$bodyClasses = [];
+if(in_array($page, $gamePages, true)){
+	$bodyClasses[] = 'game-active';
+}
+if($page === 'about'){
+	$bodyClasses[] = 'about-active';
+}
+$bodyClass = implode(' ', $bodyClasses);
 ?>
 <!DOCTYPE html>
 <html lang="fi">

@@ -118,21 +118,52 @@
       progressLabel: 'Edistyminen',
       progressSummary: 'Kysymykset: {answered} / {total}',
       aboutEyebrow: 'Tietoa pelistä',
-      aboutTitle: 'Ohjeet ja yhteystiedot',
-      aboutLead: 'Tälle sivulle kootaan pelin ohjeet, tukitiedot ja projektin yhteystiedot.',
-      aboutInstructionsTitle: 'Ohjeet',
-      aboutInstructionsCopy: 'Sisältö tarkentuu myöhemmin.',
-      aboutInstructionsStep1: 'Aloita peli aloitus-QR-koodista.',
-      aboutInstructionsStep2: 'Yksi laite tarkoittaa yhtä ryhmää.',
-      aboutInstructionsStep3: 'Skannaa kysymys-, mutaatio- ja maali-QR-koodit tämän sovelluksen sisällä.',
-      aboutContactsTitle: 'Yhteystiedot',
-      aboutContactsCopy: 'Yhteystiedot lisätään myöhemmin.',
-      aboutContactSupportTitle: 'Pelin tuki',
-      aboutContactSupportCopy: 'TBD',
-      aboutContactProjectTitle: 'Projektin yhteyshenkilö',
-      aboutContactProjectCopy: 'TBD',
-      aboutPracticalTitle: 'Käytännön tiedot',
-      aboutPracticalCopy: 'Tähän voidaan koota saavutettavuus-, turvallisuus-, tietosuoja- ja galleriatiedot.',
+      aboutTitle: 'Muoviotusten maailmanvalloitus',
+      aboutLead: 'Pedagoginen jättilautapeli ja yhteisötaideteos, jossa muoviotukset syntyvät kierrätysmuovista.',
+      aboutNavStory: 'Tarina',
+      aboutNavWhat: 'Mistä on kyse?',
+      aboutNavPlay: 'Peliohjeet',
+      aboutNavVote: 'Äänestä',
+      aboutNavCreators: 'Tekijät',
+      aboutStoryTitle: 'Tarina',
+      aboutStoryBody: [
+        'On vuosi 2442. Tyynenmeren jätepyörre on kasvanut valtavaksi muovimantereeksi. Jokin sen syvyyksissä alkaa väreillä ja myllertää. Pinta kohoilee ja kuplii. Kaaoksesta alkaa hahmottua järjestys muovinkappaleiden tarrautuessa toisiinsa, aivan kuin ne olisivat elossa. Muovin ja mikro-organismien vuorovaikutus on alkanut synnyttää uudenlaista elämää: muoviotuksia!',
+        'Näyttelykauden lopuksi selviää, mikä lahkoista on kasvanut hallitsevaksi lajiksi, ja yleisö äänestää nerokkaimman otuksen. Nerokkain ei ole suurin tai kaunein, vaan se, joka selviytyy niukimmilla resursseilla. Sama pätee luonnossa kaikkiin lajeihin, myös ihmiseen.',
+        'Tule mukaan kilpailemaan siitä, kehittyykö juuri sinun luomuksesi muovimantereen nerokkaimmaksi otukseksi!'
+      ],
+      aboutWhatTitle: 'Mistä on kyse?',
+      aboutWhatBody: [
+        'Muoviotusten maailmanvalloitus on pedagoginen jättilautapeli ja yhteisötaideteos, joka yhdistää tieteellisen ajattelun, taiteellisen työskentelyn, ympäristökasvatuksen ja yhdessä tekemisen.',
+        'Pelissä kuljetaan lattiaan merkittyjä ratoja pitkin, heitetään jättinoppaa, ratkaistaan kysymyksiä ja rakennetaan oma muoviotus kierrätysmuovista.',
+        'Pelin aikana otus kehittyy vaihe vaiheelta. Ryhmät keräävät erilaisia ruumiinosia ja rakentavat niistä oman lajinsa edustajan.',
+        'Valmiit muoviotukset valokuvataan verkkogalleriaan ja jätetään osaksi jatkuvasti kasvavaa installaatiota.'
+      ],
+      aboutPlayTitle: 'Peliohjeet',
+      aboutPlayBody: [
+        'Peliä pelataan 2-5 hengen ryhmissä, ja jokaisella ryhmällä tulee olla käytössä älypuhelin. Muoviamolla on neljä puhelinta lainattavissa. Koululuokat voivat halutessaan muodostaa ryhmät jo ennen paikalle saapumista.',
+        'Pelin aikana tarvitaan monenlaisia tehtäviä: ohjeiden ja tarinatekstien lukemista ääneen, nopan heittämistä, pelinappulan siirtämistä, korin kantamista, osien keräämistä ja otuksen rakentamista. Tehtäviä voi vaihtaa pelin aikana, jotta jokainen pääsee osallistumaan eri tavoin.'
+      ],
+      aboutFlowTitle: 'Pelin kulku',
+      aboutFlowSteps: [
+        'Jakaannutaan ryhmiin, valitaan pelinappula ja otetaan kori.',
+        'Heitetään noppaa ja arvotaan pelirata.',
+        'Siirrytään radalle ja aloitetaan peli.',
+        'Kerätään osia ja rakennetaan oma muoviotus.',
+        'Siirrytään valokuvauspisteelle ja otetaan otuksesta kuva.',
+        'Otus tuodaan lopuksi ohjaajalle ripustettavaksi installaatioon.'
+      ],
+      aboutVoteTitle: 'Äänestä suosikkia!',
+      aboutVoteBody: [
+        'Puhelimella voi myös äänestää omaa suosikkimuoviotusta verkkogalleriassa.'
+      ],
+      aboutCreatorsTitle: 'Tekijät',
+      aboutCreatorTitle: 'Tekijä',
+      aboutCreatorName: 'Maaria Klemetti',
+      aboutPartnersTitle: 'Yhteistyökumppanit',
+      aboutPartnersCopy: 'Tiedettä kaikille, Kulttuuriaitta ja Suomen Kulttuurirahaston Keski-Suomen rahasto.',
+      aboutFundingBody: [
+        'Hankkeen on rahoittanut Keski-Suomen kulttuurirahasto, Muoviamo ry ja Raylab Oy.'
+      ],
     },
     en: {
       navScan: 'Scan',
@@ -244,21 +275,52 @@
       progressLabel: 'Progress',
       progressSummary: 'Questions: {answered} / {total}',
       aboutEyebrow: 'About the game',
-      aboutTitle: 'Instructions and contacts',
-      aboutLead: 'This page will collect game instructions, support details, and project contacts.',
-      aboutInstructionsTitle: 'Instructions',
-      aboutInstructionsCopy: 'Content to be added.',
-      aboutInstructionsStep1: 'Start the game from the begin-game QR code.',
-      aboutInstructionsStep2: 'One device equals one group.',
-      aboutInstructionsStep3: 'Scan question, mutation, and finish QR codes inside this app.',
-      aboutContactsTitle: 'Contacts',
-      aboutContactsCopy: 'Contact details will be added later.',
-      aboutContactSupportTitle: 'Game support',
-      aboutContactSupportCopy: 'TBD',
-      aboutContactProjectTitle: 'Project contact',
-      aboutContactProjectCopy: 'TBD',
-      aboutPracticalTitle: 'Practical notes',
-      aboutPracticalCopy: 'Accessibility, safety, privacy, and gallery notes can be collected here.',
+      aboutTitle: 'The Rise of Plastic Creatures',
+      aboutLead: 'A pedagogical giant board game and community artwork where plastic creatures evolve from recycled plastic.',
+      aboutNavStory: 'Story',
+      aboutNavWhat: 'What is it about?',
+      aboutNavPlay: 'How to play',
+      aboutNavVote: 'Vote',
+      aboutNavCreators: 'Creators',
+      aboutStoryTitle: 'Story',
+      aboutStoryBody: [
+        'It is the year 2442. The Great Pacific Garbage Patch has grown into a vast plastic continent. Something stirs deep within its depths, churning and pulsing. The surface heaves and bubbles. Out of the chaos, order begins to emerge as pieces of plastic cling to one another, as if alive. The interaction between plastic and microorganisms has begun to generate a new form of life: plastic creatures!',
+        'At the end of the exhibition season, it will be revealed which group has grown into the dominant species, and the audience votes for the most ingenious creature. The most ingenious is not the largest or the most beautiful, but the one that survives on the fewest resources. The same applies in nature to all species, including humans.',
+        'Come and compete to see whether your very own creation will evolve into the most ingenious creature on the plastic continent!'
+      ],
+      aboutWhatTitle: 'What is it about?',
+      aboutWhatBody: [
+        'The Rise of Plastic Creatures is a pedagogical giant board game and community artwork that combines scientific thinking, artistic practice, environmental education, and collaborative making.',
+        'Players follow routes marked on the floor, roll a giant die, solve questions, and build their own plastic creature from recycled plastic.',
+        'The creature evolves step by step as groups collect different body parts and assemble their own species representative.',
+        'Finished plastic creatures are photographed into an online gallery and become part of a continuously growing installation.'
+      ],
+      aboutPlayTitle: 'How to play',
+      aboutPlayBody: [
+        'The game is played in groups of 2-5 people, and each group needs access to a smartphone. Four phones are available to borrow at the Muoviamo. School classes may form their groups before arriving if they wish.',
+        'During the game, various tasks are needed: reading instructions and story texts aloud, rolling the die, moving the game piece, carrying the basket, collecting parts, and building the creature. Tasks can be swapped during the game so that everyone gets to participate in different ways.'
+      ],
+      aboutFlowTitle: 'How the game proceeds',
+      aboutFlowSteps: [
+        'Split into groups, choose a game piece, and take a basket.',
+        'Roll the die to determine your route.',
+        'Move to the route and start the game.',
+        'Collect parts and build your own plastic creature.',
+        'Move to the photo point and take a picture of your creature.',
+        'Finally, bring your creature to the guide to be hung in the installation.'
+      ],
+      aboutVoteTitle: 'Vote for your favourite!',
+      aboutVoteBody: [
+        'You can also use your phone to vote for your favourite plastic creature in the online gallery.'
+      ],
+      aboutCreatorsTitle: 'Creators',
+      aboutCreatorTitle: 'Creator',
+      aboutCreatorName: 'Maaria Klemetti',
+      aboutPartnersTitle: 'Collaboration partners',
+      aboutPartnersCopy: 'Tiedettä kaikille, Kulttuuriaitta, and the Central Finland Regional Fund of the Finnish Cultural Foundation.',
+      aboutFundingBody: [
+        'Funded by the Central Finland Cultural Foundation, Muoviamo ry and Raylab Oy.'
+      ],
     },
   };
 
@@ -760,26 +822,75 @@
   }
 
   function initAboutPage(state){
-    const lang = currentLanguage(state);
-    const t = ui(lang);
-    setText('about-eyebrow', t.aboutEyebrow);
-    setText('about-title', t.aboutTitle);
-    setText('about-lead', t.aboutLead);
-    setText('about-instructions-title', t.aboutInstructionsTitle);
-    setText('about-instructions-copy', t.aboutInstructionsCopy);
-    setText('about-instructions-step-1', t.aboutInstructionsStep1);
-    setText('about-instructions-step-2', t.aboutInstructionsStep2);
-    setText('about-instructions-step-3', t.aboutInstructionsStep3);
-    setText('about-contacts-title', t.aboutContactsTitle);
-    setText('about-contacts-copy', t.aboutContactsCopy);
-    setText('about-contact-support-title', t.aboutContactSupportTitle);
-    setText('about-contact-support-copy', t.aboutContactSupportCopy);
-    setText('about-contact-project-title', t.aboutContactProjectTitle);
-    setText('about-contact-project-copy', t.aboutContactProjectCopy);
-    setText('about-practical-title', t.aboutPracticalTitle);
-    setText('about-practical-copy', t.aboutPracticalCopy);
-    setText('about-scan-button', t.navScan);
-    setText('about-gallery-button', t.navGallery);
+    let lang = currentLanguage(state);
+    const languageButtons = document.querySelectorAll('[data-about-language]');
+    const tabButtons = document.querySelectorAll('[data-about-tab]');
+    const tabPanels = document.querySelectorAll('[data-about-panel]');
+    let activeTab = 'story';
+
+    function showAboutTab(tabId){
+      activeTab = tabId || 'story';
+      tabButtons.forEach(function(button){
+        const isCurrent = button.getAttribute('data-about-tab') === activeTab;
+        button.classList.toggle('is-active', isCurrent);
+        button.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        button.setAttribute('tabindex', isCurrent ? '0' : '-1');
+      });
+      tabPanels.forEach(function(panel){
+        panel.hidden = panel.getAttribute('data-about-panel') !== activeTab;
+      });
+    }
+
+    function renderAbout(){
+      const t = ui(lang);
+      document.documentElement.lang = lang;
+      applyGlobalCopy({language: lang});
+      if(state){
+        renderSessionStrip(Object.assign({}, state, {language: lang}));
+      }
+      setText('about-eyebrow', t.aboutEyebrow);
+      setText('about-title', t.aboutTitle);
+      setText('about-lead', t.aboutLead);
+      setText('about-nav-story', t.aboutNavStory);
+      setText('about-nav-what', t.aboutNavWhat);
+      setText('about-nav-play', t.aboutNavPlay);
+      setText('about-nav-vote', t.aboutNavVote);
+      setText('about-nav-creators', t.aboutNavCreators);
+      setText('about-story-title', t.aboutStoryTitle);
+      setText('about-what-title', t.aboutWhatTitle);
+      setText('about-play-title', t.aboutPlayTitle);
+      setText('about-flow-title', t.aboutFlowTitle);
+      setText('about-vote-title', t.aboutVoteTitle);
+      setText('about-creators-title', t.aboutCreatorsTitle);
+      setText('about-gallery-button', t.navGallery);
+      renderAboutCards('about-story-body', t.aboutStoryBody, {boldFirst: true});
+      renderAboutCards('about-what-body', t.aboutWhatBody);
+      renderAboutCards('about-play-body', t.aboutPlayBody);
+      renderAboutCards('about-vote-body', t.aboutVoteBody);
+      renderAboutCards('about-funding-body', t.aboutFundingBody);
+      renderAboutSteps('about-flow-list', t.aboutFlowSteps);
+      languageButtons.forEach(function(button){
+        const isCurrent = button.getAttribute('data-about-language') === lang;
+        button.classList.toggle('is-active', isCurrent);
+        button.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+      });
+      showAboutTab(activeTab);
+    }
+
+    languageButtons.forEach(function(button){
+      button.addEventListener('click', function(){
+        lang = button.getAttribute('data-about-language') === 'en' ? 'en' : 'fi';
+        renderAbout();
+      });
+    });
+
+    tabButtons.forEach(function(button){
+      button.addEventListener('click', function(){
+        showAboutTab(button.getAttribute('data-about-tab'));
+      });
+    });
+
+    renderAbout();
   }
 
   function initQuestionPage(state){
@@ -1577,6 +1688,35 @@
     const lines = Array.isArray(items) ? items : [items];
     element.innerHTML = lines.map(function(item){
       return `<p>${escapeHtml(item)}</p>`;
+    }).join('');
+  }
+
+  function renderAboutCards(id, items, options){
+    const element = document.getElementById(id);
+    if(!element){
+      return;
+    }
+
+    const settings = options || {};
+    const lines = Array.isArray(items) ? items : [items];
+    element.innerHTML = lines.map(function(item, index){
+      const classes = ['about-text-card'];
+      if(settings.boldFirst && index === 0){
+        classes.push('about-text-card--strong');
+      }
+      return `<p class="${classes.join(' ')}">${escapeHtml(item)}</p>`;
+    }).join('');
+  }
+
+  function renderAboutSteps(id, items){
+    const element = document.getElementById(id);
+    if(!element){
+      return;
+    }
+
+    const lines = Array.isArray(items) ? items : [items];
+    element.innerHTML = lines.map(function(item){
+      return `<li><span>${escapeHtml(item)}</span></li>`;
     }).join('');
   }
 

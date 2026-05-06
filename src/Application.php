@@ -37,7 +37,7 @@ final class Application{
 			]),
 			['GET', '/about'] => $this->renderPage('about', [
 				'page' => 'about',
-				'title' => 'About',
+				'title' => 'Muoviotusten maailmanvalloitus',
 				'app' => $this->contentRepository->clientConfig(),
 			]),
 			['GET', '/question'] => $this->handleQuestionPage($request),

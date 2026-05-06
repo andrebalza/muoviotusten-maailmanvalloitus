@@ -541,6 +541,335 @@ body.game-active .materials-group{
   line-height: 1.55;
 }
 
+.about-page{
+  display: grid;
+  gap: 1.25rem;
+}
+
+.about-hero{
+  display: grid;
+  gap: 0.9rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.about-hero__logo{
+  display: block;
+  width: min(100%, 500px);
+  height: auto;
+}
+
+.about-hero__logo-link{
+  display: inline-flex;
+  justify-self: center;
+  margin: 0.1rem 0 0.35rem;
+  text-decoration: none;
+}
+
+.about-language{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.2rem;
+  width: 100%;
+  justify-self: center;
+}
+
+.about-language__button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3rem;
+  border: 2px solid rgba(28, 140, 168, 0.5);
+  border-radius: 999px;
+  background: #e6e6e6;
+  color: var(--dark-blue);
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.about-language__button.is-active{
+  background: var(--beige);
+  border-color: var(--beige);
+  color: var(--dark-blue);
+}
+
+.about-jump-nav{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.about-jump{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  padding: 0.85rem 0.8rem;
+  border-radius: 999px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.15;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.22), 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.about-jump[aria-selected="true"]{
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.55), 0 10px 24px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+.about-jump--green{
+  background: #2a9c7e;
+}
+
+.about-jump--coral{
+  background: #f15f6b;
+}
+
+.about-jump--blue{
+  background: #0095c2;
+}
+
+.about-jump--beige{
+  background: #c2b59c;
+  color: var(--dark-blue);
+}
+
+.about-jump--navy{
+  background: #1a4f72;
+}
+
+.about-section{
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.35rem;
+  border-radius: var(--radius);
+  background: #dedede;
+  border: 0;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  scroll-margin-top: 1rem;
+}
+
+.about-section h2{
+  font-family: "Baloo 2", var(--font-body);
+  font-size: clamp(1.6rem, 5vw, 2.15rem);
+  color: var(--dark-blue);
+}
+
+.about-section h3{
+  margin-top: 0.35rem;
+  color: var(--dark-blue);
+}
+
+.about-text-stack{
+  display: grid;
+  gap: 0.75rem;
+}
+
+.about-text-card,
+.about-step-list li,
+.about-credit-card{
+  margin: 0;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #eeeeee;
+  border: 1px solid #d5d5d5;
+  color: var(--dark-blue);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.about-text-card--strong{
+  font-weight: 700;
+}
+
+.about-step-list{
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: about-step;
+}
+
+.about-step-list li{
+  display: grid;
+  grid-template-columns: 2.35rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  counter-increment: about-step;
+}
+
+.about-step-list li::before{
+  content: counter(about-step);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 12px;
+  background: var(--turquoise);
+  color: #fff;
+  font-weight: 800;
+}
+
+.about-section--vote{
+  border-top: 6px solid var(--green);
+}
+
+.button-gallery{
+  width: 100%;
+  color: #fff;
+  background: #2a9c7e;
+}
+
+.button-gallery:hover{
+  background: #23886e;
+}
+
+.about-credit-grid{
+  display: grid;
+  gap: 0.75rem;
+}
+
+.about-credit-card{
+  display: grid;
+  gap: 0.35rem;
+}
+
+.about-credit-card p{
+  margin: 0;
+}
+
+.about-logo-stack{
+  display: grid;
+  gap: 1rem;
+}
+
+.about-logo-group{
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #eeeeee;
+  border: 1px solid #d5d5d5;
+}
+
+.about-logo-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.about-logo-row--creator{
+  justify-content: flex-start;
+}
+
+.about-logo-row--partners{
+  justify-content: center;
+  background: var(--dark-blue);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.about-logo{
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.about-logo-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.about-logo--muoviamo{
+  width: 9.67rem;
+  height: 9.67rem;
+}
+
+.about-logo--maaria{
+  width: min(100%, 18.29rem);
+  height: auto;
+}
+
+.about-logo--tiedetta{
+  width: 9.3rem;
+  height: auto;
+}
+
+.about-logo--kulttuuriaitta{
+  width: min(100%, 15.97rem);
+  height: auto;
+}
+
+.about-logo--skr{
+  width: min(100%, 11.03rem);
+  height: auto;
+}
+
+body.about-active{
+  background: var(--dark-blue);
+  color: #fff;
+}
+
+body.about-active .topbar,
+body.about-active .session-strip{
+  display: none;
+}
+
+body.about-active .page-shell{
+  width: min(100%, 62rem);
+  padding: calc(0.75rem + var(--phone-camera-space)) 0.75rem 3rem;
+}
+
+body.about-active .page-content{
+  gap: 0;
+}
+
+body.about-active .about-hero__logo{
+  width: min(100%, 500px);
+}
+
+body.about-active .about-hero .eyebrow,
+body.about-active .about-hero h1,
+body.about-active .about-hero .lead{
+  color: #fff;
+}
+
+body.about-active .about-hero .eyebrow,
+body.about-active .about-hero h1,
+body.about-active .about-hero .lead,
+body.about-active .about-language{
+  padding-inline: 0.4rem;
+}
+
+body.about-active .about-language__button{
+  background: #e6e6e6;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.about-active .about-language__button.is-active{
+  background: var(--beige);
+  border-color: var(--beige);
+  color: var(--dark-blue);
+}
+
 .finish-build-title{
   color: var(--dark-blue);
 }
@@ -577,6 +906,29 @@ body.game-active .materials-group{
   }
 
   .info-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-jump-nav{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .about-jump{
+    min-height: 6.8rem;
+    font-size: 1.45rem;
+    border-radius: 3.5rem;
+  }
+
+  body.about-active .about-hero__logo{
+    width: min(100%, 500px);
+  }
+
+  .about-section{
+    padding: 3.25rem;
+    border-radius: 2.5rem;
+  }
+
+  .about-credit-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
