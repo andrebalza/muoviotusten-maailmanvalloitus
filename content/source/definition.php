@@ -190,104 +190,104 @@ return [
 			'id' => 'sensory-cells',
 			'name' => ['fi' => 'tuntosolut', 'en' => 'sensory cells'],
 			'unlockText' => [
-				'fi' => 'Otuksesi alkaa aistia ympäristöään. Valitse 1–3 tuntosolua laatikosta {BoxName}',
-				'en' => 'Your creature begins to sense its surroundings. Select 1–3 sensory cells from the box {BoxName}',
+				'fi' => 'Otukselle muodostuu vartalo. *Valitse vartalo* laatikosta {BoxName}.',
+				'en' => 'A body forms for your creature. **Select a body** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'sensory-hairs',
 			'name' => ['fi' => 'tuntokarvat', 'en' => 'sensory hairs'],
 			'unlockText' => [
-				'fi' => 'Ympäristön aistiminen tarkentuu. Valitse tuntokarvat laatikosta {BoxName}.',
-				'en' => 'Environmental sensing becomes more precise. Select sensory hairs.',
+				'fi' => 'Ympäristön aistiminen tarkentuu. *Valitse tuntokarvat* laatikosta {BoxName}.',
+				'en' => 'Environmental sensing becomes more precise. **Select sensory hairs** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'sensory-scales',
 			'name' => ['fi' => 'tuntosuomut', 'en' => 'sensory scales'],
 			'unlockText' => [
-				'fi' => 'Kosketusaisti kehittyy. Valitse 3 tuntosuomua laatikosta {BoxName}',
-				'en' => 'The sense of touch develops. Select 3 sensory scales.',
+				'fi' => 'Kosketusaisti kehittyy. *Valitse kaksi tuntosuomua* laatikosta {BoxName}.',
+				'en' => 'The sense of touch develops. **Select two sensory scales** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'head',
 			'name' => ['fi' => 'pää', 'en' => 'head'],
 			'unlockText' => [
-				'fi' => 'Otukselle muodostuu pää. Valitse pää laatikosta {BoxName}',
-				'en' => 'A head begins to form. Select a head.',
+				'fi' => 'Otukselle muodostuu pää. **Valitse pää** laatikosta {BoxName}.',
+				'en' => 'A head begins to form. **Select a head** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'mouth',
 			'name' => ['fi' => 'suu', 'en' => 'mouth'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa syödä. Valitse suu laatikosta {BoxName}',
-				'en' => 'Your creature begins to eat. Select a mouth.',
+				'fi' => 'Otus alkaa syödä. **Valitse suu** laatikosta {BoxName}.',
+				'en' => 'Your creature begins to eat. **Select a mouth** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'fin',
 			'name' => ['fi' => 'evä', 'en' => 'fin'],
 			'unlockText' => [
-				'fi' => 'Liikkumiskyky kehittyy. Valitse evä laatikosta {BoxName}',
-				'en' => 'Mobility develops. Select a fin.',
+				'fi' => 'Liikkumiskyky kehittyy. **Valitse evä** laatikosta {BoxName}.',
+				'en' => 'Mobility develops. **Select a fin** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'tail',
 			'name' => ['fi' => 'häntä', 'en' => 'tail'],
 			'unlockText' => [
-				'fi' => 'Liikkuminen tehostuu. Valitse häntä laatikosta {BoxName}',
-				'en' => 'Movement becomes more efficient. Select a tail.',
+				'fi' => 'Liikkuminen tehostuu. **Valitse häntä** laatikosta {BoxName}.',
+				'en' => 'Movement becomes more efficient. **Select a tail** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'grasping-appendage',
 			'name' => ['fi' => 'tarttumisuloke', 'en' => 'grasping appendage'],
 			'unlockText' => [
-				'fi' => 'Tarttumiskyky kehittyy. Valitse tarttumisuloke laatikosta {BoxName}',
-				'en' => 'Grasping ability develops. Select a grasping appendage.',
+				'fi' => 'Tarttumiskyky kehittyy. **Valitse tarttumisuloke** laatikosta {BoxName}.',
+				'en' => 'Grasping ability develops. **Select a grasping appendage** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'eyes',
 			'name' => ['fi' => 'silmät', 'en' => 'eyes'],
 			'unlockText' => [
-				'fi' => 'Näköaisti kehittyy. Valitse silmät laatikosta {BoxName}',
-				'en' => 'Vision develops. Select eyes.',
+				'fi' => 'Näköaisti kehittyy. **Valitse silmät** laatikosta {BoxName}.',
+				'en' => 'Vision develops. **Select eyes** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'ears',
 			'name' => ['fi' => 'korvat', 'en' => 'ears'],
 			'unlockText' => [
-				'fi' => 'Kuuloaisti kehittyy. Valitse korvat laatikosta {BoxName}',
-				'en' => 'Hearing develops. Select ears.',
+				'fi' => 'Kuuloaisti kehittyy. **Valitse korvat** laatikosta {BoxName}.',
+				'en' => 'Hearing develops. **Select ears** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'brain',
 			'name' => ['fi' => 'aivot', 'en' => 'brain'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa ohjata toimintaansa. Valitse aivot laatikosta {BoxName}',
-				'en' => 'Your creature begins to control its actions. Select a brain.',
+				'fi' => 'Otus alkaa ohjata toimintaansa. **Valitse aivot** laatikosta {BoxName}.',
+				'en' => 'Your creature begins to control its actions. **Select a brain** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'limbs',
 			'name' => ['fi' => 'raajat', 'en' => 'limbs'],
 			'unlockText' => [
-				'fi' => 'Otus alkaa liikkua myös maalla. Valitse kaksi raajaa laatikosta {BoxName}',
-				'en' => 'Your creature begins to move on land. Select two limbs.',
+				'fi' => 'Otus alkaa liikkua myös maalla. **Valitse kaksi raajaa** laatikosta {BoxName}.',
+				'en' => 'Your creature begins to move on land. **Select two limbs** from the box {BoxName}.',
 			],
 		],
 		[
 			'id' => 'wings',
 			'name' => ['fi' => 'siivet', 'en' => 'wings'],
 			'unlockText' => [
-				'fi' => 'Otus pystyy liikkumaan ilmassa. Valitse siivet laatikosta {BoxName}',
-				'en' => 'Your creature can move in the air. Select wings.',
+				'fi' => 'Otus pystyy liikkumaan ilmassa. **Valitse siivet** laatikosta {BoxName}.',
+				'en' => 'Your creature can move in the air. **Select wings** from the box {BoxName}.',
 			],
 		],
 	],

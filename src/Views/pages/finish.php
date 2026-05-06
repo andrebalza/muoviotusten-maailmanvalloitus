@@ -1,6 +1,6 @@
 <section class="panel" id="finish-step-achievement">
   <div class="card stack">
-    <h1 id="finish-title">Great achievement!</h1>
+    <h1 id="finish-title">Amazing evolution!</h1>
     <p id="finish-achievement-text"></p>
   </div>
   <div class="button-row">
@@ -15,6 +15,7 @@
     <ul class="finish-build-list" id="finish-build-instructions"></ul>
   </div>
   <div class="button-row">
+    <p class="finish-ready-note"><strong id="finish-ready-note">When your creature is ready, click the button below.</strong></p>
     <button class="button button-primary" type="button" id="finish-creature-ready">Creature is ready</button>
   </div>
 </section>
@@ -42,7 +43,8 @@
     </div>
 
     <fieldset class="materials-group stack">
-      <legend class="materials-group__title" id="materials-label">Building materials</legend>
+      <legend class="materials-group__title" id="materials-title">Building materials</legend>
+      <p class="materials-group__instruction" id="materials-label">How much fastening material did you use? Enter the amount.</p>
       <div class="field">
         <label class="field-label" for="rubber_bands" id="rubber-bands-label">Rubber bands</label>
         <input class="input" type="number" inputmode="numeric" id="rubber_bands" name="rubber_bands" min="0" max="999" step="1" required>
@@ -58,7 +60,7 @@
     </fieldset>
 
     <div class="field photo-field">
-      <span class="field-label" id="photo-label">Take a photo of the creature</span>
+      <span class="field-label" id="photo-label">Take your creature to the photo area and take a photo</span>
       <label class="photo-trigger" for="photo" id="photo-trigger">
         <svg class="photo-trigger__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path fill="currentColor" d="M9 4l-1.5 2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.5L15 4H9zm3 4.5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>

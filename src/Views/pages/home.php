@@ -58,7 +58,7 @@
     </div>
 
     <div class="start-step start-step--confirm" data-step="confirm" hidden>
-      <p class="track-confirm__eyebrow" id="track-confirm-eyebrow">You got:</p>
+      <p class="track-confirm__eyebrow" id="track-confirm-eyebrow">You got track 1.</p>
       <div class="track-confirm__burst" aria-hidden="true">
         <span class="track-confirm__ray track-confirm__ray--green track-confirm__ray--left-top"></span>
         <span class="track-confirm__ray track-confirm__ray--blue track-confirm__ray--left-mid"></span>
@@ -77,7 +77,7 @@
 
     <div class="start-step start-step--track-intro" data-step="intro" hidden>
       <div class="track-intro">
-        <h2 class="track-intro__title" id="track-intro-title">Find
+        <h2 class="track-intro__title" id="track-intro-title">Go to
 track 3</h2>
         <p class="track-intro__belongs" id="track-intro-belongs">It belongs to
 faction</p>
@@ -91,18 +91,6 @@ faction</p>
         </div>
         <button class="track-intro__continue" type="button" id="track-intro-continue">
           <span id="track-intro-continue-label">Continue</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="start-step start-step--track-intro" data-step="body" hidden>
-      <div class="track-intro track-intro--body-select">
-        <img class="track-intro__creature track-intro__creature--body-select" id="body-select-image" src="/public/assets/creatures-small/03_propellukset_no_bkg_760.png" alt="">
-        <div class="track-intro__body-card">
-          <p class="track-intro__body-instruction" id="body-select-instruction">Choose a body for your creature from the box <strong>PP5</strong> and put it in the basket.</p>
-        </div>
-        <button class="track-intro__continue" type="button" id="body-select-continue">
-          <span id="body-select-continue-label">Continue</span>
         </button>
       </div>
     </div>

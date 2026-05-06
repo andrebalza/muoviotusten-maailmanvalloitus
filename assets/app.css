@@ -254,6 +254,12 @@ h3{
   margin-bottom: 0.6rem;
 }
 
+.materials-group__instruction{
+  margin: 0;
+  color: var(--dark-blue);
+  line-height: 1.35;
+}
+
 body.game-active .materials-group{
   border-color: rgba(28, 140, 168, 0.35);
   background: rgba(255, 255, 255, 0.7);
@@ -416,9 +422,9 @@ body.game-active .materials-group{
 
 .resume-status-card__icon{
   display: block;
-  width: 2.35rem;
-  height: 2.35rem;
-  flex: 0 0 2.35rem;
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 3rem;
 }
 
 .resume-status-card__icon--dot{
@@ -557,6 +563,12 @@ body.game-active .materials-group{
   padding-left: 1.35rem;
   color: var(--dark-blue);
   line-height: 1.45;
+}
+
+.finish-ready-note{
+  margin: 0;
+  color: var(--dark-blue);
+  line-height: 1.35;
 }
 
 @media (min-width: 42rem){
@@ -1020,37 +1032,6 @@ body.start-flow-active .page-content{
   font-weight: 700;
 }
 
-.track-intro--body-select{
-  gap: 1rem;
-}
-
-.track-intro__creature--body-select{
-  margin-bottom: -0.6rem;
-}
-
-.track-intro__body-card{
-  width: 100%;
-  padding: 1.25rem;
-  border-radius: 1.25rem;
-  border: 2px solid rgba(5, 153, 200, 0.45);
-  background: rgba(0, 36, 56, 0.34);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.track-intro__body-instruction{
-  margin: 0;
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1.45;
-}
-
-.track-intro__body-instruction strong{
-  color: #1ea983;
-  font-weight: 700;
-}
-
 .track-intro__continue{
   width: 100%;
   min-height: 5.8rem;
@@ -1149,14 +1130,6 @@ body.start-flow-active .page-content{
 
   .track-intro__description{
     font-size: 1.1rem;
-  }
-
-  .track-intro__body-card{
-    padding: 1rem;
-  }
-
-  .track-intro__body-instruction{
-    font-size: 1.15rem;
   }
 
   .track-intro__continue{
@@ -1534,7 +1507,7 @@ body.game-active .result--wrong .result-title{
 }
 
 body.game-active .result-subtitle{
-  margin: 0.65rem 0 0;
+  margin: 0.2rem 0 0;
   color: var(--dark-blue);
   font-weight: 600;
   font-size: clamp(1.65rem, 5.8vw, 2.6rem);
@@ -1625,7 +1598,7 @@ body.game-active .scanner-intro{
 body.game-active .scanner-intro__line{
   margin: 0;
   font-weight: 700;
-  font-size: clamp(1.2rem, 4.6vw, 1.5rem);
+  font-size: clamp(1.55rem, 6vw, 2rem);
   color: #fff;
   line-height: 1.3;
 }

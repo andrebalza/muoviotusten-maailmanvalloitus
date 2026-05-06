@@ -26,14 +26,13 @@
       stepRoll: 'Heitä noppaa',
       stepRollPrompt: 'Minkä luvun sait?',
       stepTrack: 'Valitse rata',
-      trackConfirmEyebrow: 'Sait:',
+      trackConfirmEyebrow: 'Sait radan {track}',
       trackConfirmTitle: 'Onko rata vapaa?',
       trackConfirmYes: 'KYLLÄ',
       trackConfirmNo: 'EI',
-      trackIntroTitle: 'Etsi\nrata {track}',
+      trackIntroTitle: 'Mene\nradalle {track}',
       trackIntroBelongs: 'Se kuuluu lahkolle',
       trackIntroContinue: 'JATKA',
-      bodySelectInstruction: 'Valitse otuksellesi vartalo laatikosta **{box}** ja laita se koriin.',
       back: 'Takaisin',
       easy: 'Helppo',
       hard: 'Vaikea',
@@ -74,7 +73,7 @@
       mutationTitle: 'Mutaatio aktivoitui',
       mutationLead: 'Laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
       mutationProceed: 'Jatka',
-      finishTitle: 'Mahtava suoritus!',
+      finishTitle: 'Otuksesi kehittyi upeasti!',
       finishContinueBuild: 'Jatka rakentamiseen',
       finishBuildTitle: 'On aika rakentaa!',
       finishBuildIntro: [
@@ -87,16 +86,18 @@
         'Käytä materiaaleja mahdollisimman vähän.',
         'Jätä loput osat pöydällä olevaan laatikkoon.'
       ],
+      finishReadyNote: 'Kun otuksesi on valmis, klikkaa alla olevaa painiketta.',
       finishCreatureReady: 'Otus on valmis',
       creatureName: 'Otuksen nimi',
       specialAbility: 'Millainen erikoiskyky otuksellasi on? Keksi itse!',
       teamName: 'Ryhmänne nimi / luokka',
       partsCountLabel: 'Kuinka monta otuksen osaa käytitte? Kirjoita numero.',
+      materialsTitle: 'Rakennusmateriaalit',
       materialsLabel: 'Kuinka paljon kiinnitysmateriaaleja käytitte? Kirjoita määrä numeroin.',
       rubberBands: 'Kuminauhat',
       cableTies: 'Nippusiteet',
       tapeCm: 'Teippi (cm)',
-      photo: 'Ota kuva otuksesta',
+      photo: 'Mene valokuvauspisteelle ja ota otuksestasi kuva',
       photoTake: 'Ota kuva',
       photoRetake: 'Ota uusi kuva',
       submitCreature: 'Lähetä',
@@ -150,14 +151,13 @@
       stepRoll: 'Roll the dice',
       stepRollPrompt: 'What number did you get?',
       stepTrack: 'Choose your track',
-      trackConfirmEyebrow: 'You got:',
+      trackConfirmEyebrow: 'You got track {track}.',
       trackConfirmTitle: 'Is the track free?',
       trackConfirmYes: 'YES',
       trackConfirmNo: 'NO',
-      trackIntroTitle: 'Find\ntrack {track}',
+      trackIntroTitle: 'Go to\ntrack {track}',
       trackIntroBelongs: 'It belongs to\nfaction',
       trackIntroContinue: 'CONTINUE',
-      bodySelectInstruction: 'Choose a body for your creature from the box **{box}** and put it in the basket.',
       back: 'Back',
       easy: 'Easy',
       hard: 'Hard',
@@ -198,7 +198,7 @@
       mutationTitle: 'Mutation activated',
       mutationLead: 'The box changes immediately and stays visible at the top of the app.',
       mutationProceed: 'Proceed',
-      finishTitle: 'Great achievement!',
+      finishTitle: 'Amazing evolution!',
       finishContinueBuild: 'Continue to building',
       finishBuildTitle: 'It’s time to build!',
       finishBuildIntro: [
@@ -211,16 +211,18 @@
         'Use as little material as possible.',
         'Leave the remaining parts in the box on the table.'
       ],
+      finishReadyNote: 'When your creature is ready, click the button below.',
       finishCreatureReady: 'Creature is ready',
       creatureName: 'Creature name',
       specialAbility: 'What special ability does your creature have? Make it up!!',
       teamName: 'Your team name / class',
       partsCountLabel: 'How many parts did you use? Enter a number.',
+      materialsTitle: 'Building materials',
       materialsLabel: 'How much fastening material did you use? Enter the amount.',
       rubberBands: 'Rubber bands',
       cableTies: 'Cable ties',
       tapeCm: 'Tape (cm)',
-      photo: 'Take a photo of the creature',
+      photo: 'Take your creature to the photo area and take a photo',
       photoTake: 'Take photo',
       photoRetake: 'Retake photo',
       submitCreature: 'Submit',
@@ -302,9 +304,9 @@
       const track = getTrack(state.trackId);
       const answeredCount = Object.keys(state.answeredSets || {}).length;
       resumeSummary.innerHTML = [
-        renderResumeStatusCard('/assets/icons/dice.svg', t.trackLabel, track ? `${state.trackId}: ${track.faction[lang]}` : '-'),
-        renderResumeStatusCard('/assets/icons/box.svg', t.activeBoxLabel, activeBoxLabel(state, lang), true),
-        renderResumeStatusCard('/assets/icons/puzzle.svg', t.partsLabel, format(t.partsCount, {count: state.unlockedPartIds.length, total: app.parts.length})),
+        renderResumeStatusCard('/assets/icons/track_icon.svg', t.trackLabel, track ? `${state.trackId}: ${track.faction[lang]}` : '-'),
+        renderResumeStatusCard('/assets/icons/box.svg', t.activeBoxLabel, activeBoxLabel(state, lang)),
+        renderResumeStatusCard('/assets/icons/creature_part_icon.svg', t.partsLabel, format(t.partsCount, {count: state.unlockedPartIds.length, total: app.parts.length})),
         renderResumeStatusCard('/assets/icons/bulb.svg', t.tipsLabel, format(t.tipsCount, {used: state.usedTips, max: MAX_TIPS})),
         renderResumeStatusCard('', t.difficultyLabel, state.difficulty === 'hard' ? t.difficultyHard : t.difficultyEasy),
         renderResumeStatusCard('', t.progressLabel, format(t.progressSummary, {answered: answeredCount, total: app.parts.length})),
@@ -325,7 +327,7 @@
     startFlow.hidden = false;
 
     const choices = {language: 'fi', difficulty: null, roll: null, trackId: null};
-    const order = ['language', 'age', 'roll', 'track', 'confirm', 'intro', 'body'];
+    const order = ['language', 'age', 'roll', 'track', 'confirm', 'intro'];
     const steps = {};
     order.forEach(function(name){
       steps[name] = startFlow.querySelector('[data-step="'+name+'"]');
@@ -338,17 +340,14 @@
         steps[other].hidden = (other !== name);
       });
       if(heroEl){
-        heroEl.hidden = (name === 'roll' || name === 'confirm' || name === 'intro' || name === 'body');
+        heroEl.hidden = (name === 'roll' || name === 'confirm' || name === 'intro');
       }
       startFlow.classList.toggle('start-flow--roll', name === 'roll');
       startFlow.classList.toggle('start-flow--confirm', name === 'confirm');
-      startFlow.classList.toggle('start-flow--intro', name === 'intro' || name === 'body');
+      startFlow.classList.toggle('start-flow--intro', name === 'intro');
       applyStartCopy();
       if(name === 'intro'){
         renderTrackIntro();
-      }
-      if(name === 'body'){
-        renderBodySelect();
       }
     }
 
@@ -361,12 +360,10 @@
       setText('step-roll-title', t.stepRoll);
       setText('step-roll-prompt', t.stepRollPrompt);
       setText('step-track-title', t.stepTrack);
-      setText('track-confirm-eyebrow', t.trackConfirmEyebrow);
       setText('track-confirm-title', t.trackConfirmTitle);
       setText('track-confirm-yes', t.trackConfirmYes);
       setText('track-confirm-no', t.trackConfirmNo);
       setText('track-intro-continue-label', t.trackIntroContinue);
-      setText('body-select-continue-label', t.trackIntroContinue);
       setText('age-back', t.back);
       setText('roll-back', t.back);
       setText('track-back', t.back);
@@ -404,6 +401,8 @@
     });
 
     function renderTrackConfirmationNumber(){
+      const t = ui(choices.language);
+      setText('track-confirm-eyebrow', format(t.trackConfirmEyebrow, {track: choices.trackId ? String(choices.trackId) : ''}));
       setText('track-confirm-number', choices.trackId ? String(choices.trackId) : '');
     }
 
@@ -435,30 +434,6 @@
 
       if(descriptionEl){
         descriptionEl.innerHTML = `<strong>${escapeHtml(faction)}</strong> ${escapeHtml(descriptionBody)}`;
-      }
-    }
-
-    function renderBodySelect(){
-      const lang = choices.language;
-      const t = ui(lang);
-      const track = getTrack(choices.trackId);
-
-      if(!track){
-        return;
-      }
-
-      const faction = capitalizeFirst(localized(track.faction, lang));
-      const box = localized(track.mainBox, lang);
-      const image = document.getElementById('body-select-image');
-      const instruction = document.getElementById('body-select-instruction');
-
-      if(image){
-        image.src = track.introImage || '';
-        image.alt = faction;
-      }
-
-      if(instruction){
-        instruction.innerHTML = renderBoldTemplate(t.bodySelectInstruction, {box});
       }
     }
 
@@ -506,14 +481,6 @@
 
     if(introContinue){
       introContinue.addEventListener('click', function(){
-        showStep('body');
-      });
-    }
-
-    const bodySelectContinue = document.getElementById('body-select-continue');
-
-    if(bodySelectContinue){
-      bodySelectContinue.addEventListener('click', function(){
         finishStart();
       });
     }
@@ -955,11 +922,13 @@
     setText('finish-build-title', t.finishBuildTitle);
     renderTextParagraphs('finish-build-intro', t.finishBuildIntro);
     renderTextList('finish-build-instructions', t.finishBuildInstructions);
+    setText('finish-ready-note', t.finishReadyNote);
     setText('finish-creature-ready', t.finishCreatureReady);
     setText('creature-name-label', t.creatureName);
     setText('ability-label', t.specialAbility);
     setText('team-name-label', t.teamName);
     setText('parts-count-label', t.partsCountLabel);
+    setText('materials-title', t.materialsTitle);
     setText('materials-label', t.materialsLabel);
     setText('rubber-bands-label', t.rubberBands);
     setText('cable-ties-label', t.cableTies);
@@ -1169,7 +1138,7 @@
     const cardModifier = result.correct ? 'is-correct' : 'is-wrong';
 
     const partLine = (part && result.correct)
-      ? `<p class="result-subtitle">${escapeHtml(partUnlockText(part, state, lang))}</p>`
+      ? `<p class="result-subtitle">${renderInlineMarkdown(partUnlockText(part, state, lang))}</p>`
       : '';
 
     const answerBlock = !result.correct
@@ -1183,7 +1152,6 @@
     return `
       <div class="result ${resultModifier}">
         <h2 class="result-title">${escapeHtml(outcomeTitle)}</h2>
-        ${partLine}
       </div>
       <div class="result-card ${cardModifier}">
         ${answerBlock}
@@ -1192,6 +1160,7 @@
           <p class="result-section__body">${escapeHtml(localized(question.explanation, lang))}</p>
         </div>
       </div>
+      ${partLine}
       <div class="button-row">
         <a class="button button-primary" href="/scan">${escapeHtml(t.continueAction)}</a>
       </div>
@@ -1462,7 +1431,13 @@
 
   function renderBoldTemplate(template, params){
     const formatted = format(template, params);
-    return escapeHtml(formatted).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return renderInlineMarkdown(formatted);
+  }
+
+  function renderInlineMarkdown(value){
+    return escapeHtml(value)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<strong>$1</strong>');
   }
 
   function format(template, params){

@@ -38,7 +38,7 @@ $bodyClass = in_array($page, $gamePages, true) ? 'game-active' : '';
 
     <section class="session-strip" id="session-strip" hidden>
       <div class="session-stat">
-        <img class="session-icon" src="/assets/icons/dice.svg" alt="">
+        <img class="session-icon" src="/assets/icons/track_icon.svg" alt="">
         <div class="session-stat__body">
           <span class="session-label" id="status-track-label">Track</span>
           <strong id="status-track">-</strong>
@@ -52,7 +52,7 @@ $bodyClass = in_array($page, $gamePages, true) ? 'game-active' : '';
         </div>
       </div>
       <div class="session-stat">
-        <img class="session-icon" src="/assets/icons/puzzle.svg" alt="">
+        <img class="session-icon" src="/assets/icons/creature_part_icon.svg" alt="">
         <div class="session-stat__body">
           <span class="session-label" id="status-parts-label">Parts</span>
           <strong id="status-parts">-</strong>
