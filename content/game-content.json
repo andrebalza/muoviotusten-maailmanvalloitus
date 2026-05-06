@@ -2,7 +2,7 @@
     "meta": {
         "contentVersion": "2026-05-03",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-06T11:48:15+00:00",
+        "generatedAt": "2026-05-06T12:16:32+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -383,7 +383,7 @@
                 "en": "ears"
             },
             "shortName": {
-                "fi": "**ears**",
+                "fi": "**korvat**",
                 "en": "**ears**"
             },
             "unlockText": {

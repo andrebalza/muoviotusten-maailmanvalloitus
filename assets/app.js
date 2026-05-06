@@ -73,6 +73,7 @@
       mutationLead: 'Saat kaksi seuraavaa otuksen osaa, ja laatikko vaihtuu heti.',
       mutationProceed: 'Jatka',
       noMutationParts: 'Kaikki otuksen osat on jo avattu.',
+      mutationAlreadyAwarded: 'Tämä mutaatio on jo aktivoitu. Et saa siitä uusia osia, mutta laatikkosääntö pysyy voimassa.',
       finishTitle: 'Otuksesi kehittyi upeasti!',
       finishContinueBuild: 'Jatka rakentamiseen',
       finishBuildTitle: 'On aika rakentaa!',
@@ -198,6 +199,7 @@
       mutationLead: 'You receive the next two creature parts, and the box changes immediately.',
       mutationProceed: 'Proceed',
       noMutationParts: 'All creature parts are already unlocked.',
+      mutationAlreadyAwarded: 'This mutation has already been activated. It does not give new parts again, but the box rule remains active.',
       finishTitle: 'Amazing evolution!',
       finishContinueBuild: 'Continue to building',
       finishBuildTitle: 'It’s time to build!',
@@ -855,7 +857,7 @@
       event.preventDefault();
       const result = evaluateQuestion(question, form, lang);
       const awardCount = questionPartAdvanceCount(questionSet, result);
-      const parts = app.parts.slice(state.currentPartIndex, state.currentPartIndex + awardCount);
+      const parts = nextAvailableParts(state, awardCount);
 
       state.answeredSets[setKey] = {
         questionId: question.id,
@@ -872,7 +874,7 @@
         });
       }
 
-      state.currentPartIndex = Math.min(state.currentPartIndex + awardCount, app.parts.length);
+      state.currentPartIndex = nextPartIndex(state);
       saveState(state);
       renderSessionStrip(state);
 
@@ -901,7 +903,7 @@
     renderSessionStrip(state);
 
     const resultTitle = localized(mutation.resultTitle, lang) || localized(mutation.name, lang);
-    const description = mutationDescription(mutation, mutationAward.parts, state, lang);
+    const description = mutationDescription(mutation, mutationAward, state, lang);
 
     panel.innerHTML = `
       <div class="feedback feedback-success">
@@ -1208,7 +1210,7 @@
       };
     }
 
-    const parts = app.parts.slice(state.currentPartIndex, state.currentPartIndex + 2);
+    const parts = nextAvailableParts(state, 2);
     const partIds = parts.map(function(part){
       return part.id;
     });
@@ -1219,11 +1221,11 @@
       }
     });
 
-    state.currentPartIndex = Math.min(state.currentPartIndex + 2, app.parts.length);
     state.mutationAwards[mutation.slug] = {
       partIds: partIds,
       awardedAt: new Date().toISOString(),
     };
+    state.currentPartIndex = nextPartIndex(state);
 
     return {
       alreadyAwarded: false,
@@ -1231,8 +1233,14 @@
     };
   }
 
-  function mutationDescription(mutation, parts, state, lang){
+  function mutationDescription(mutation, award, state, lang){
     const t = ui(lang);
+    const parts = award.parts || [];
+
+    if(award.alreadyAwarded){
+      return escapeHtml(t.mutationAlreadyAwarded);
+    }
+
     const first = mutationPartLabel(parts[0], lang);
     const second = mutationPartLabel(parts[1], lang);
 
@@ -1262,6 +1270,55 @@
     return partIds.map(function(partId){
       return findPart(partId);
     }).filter(Boolean);
+  }
+
+  function nextAvailableParts(state, count){
+    const consumedIds = consumedPartIds(state);
+
+    return (app.parts || []).filter(function(part){
+      return !consumedIds.has(part.id);
+    }).slice(0, count);
+  }
+
+  function nextPartIndex(state){
+    const consumedIds = consumedPartIds(state);
+    const firstAvailableIndex = (app.parts || []).findIndex(function(part){
+      return !consumedIds.has(part.id);
+    });
+
+    return firstAvailableIndex >= 0 ? firstAvailableIndex : (app.parts || []).length;
+  }
+
+  function consumedPartIds(state){
+    const ids = new Set();
+
+    addPartIds(ids, state.unlockedPartIds);
+
+    Object.keys(state.answeredSets || {}).forEach(function(setKey){
+      const answer = state.answeredSets[setKey];
+      addPartIds(ids, answer && answer.partIds);
+      addPartIds(ids, answer && answer.partId);
+    });
+
+    Object.keys(state.mutationAwards || {}).forEach(function(slug){
+      const award = state.mutationAwards[slug];
+      addPartIds(ids, award && award.partIds);
+    });
+
+    return ids;
+  }
+
+  function addPartIds(ids, value){
+    if(Array.isArray(value)){
+      value.forEach(function(item){
+        addPartIds(ids, item);
+      });
+      return;
+    }
+
+    if(typeof value === 'string' && findPart(value)){
+      ids.add(value);
+    }
   }
 
   function renderSessionStrip(state){

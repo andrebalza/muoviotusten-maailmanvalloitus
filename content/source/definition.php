@@ -279,7 +279,7 @@ return [
 		[
 			'id' => 'ears',
 			'name' => ['fi' => 'korvat', 'en' => 'ears'],
-			'shortName' => ['fi' => '**ears**', 'en' => '**ears**'],
+			'shortName' => ['fi' => '**korvat**', 'en' => '**ears**'],
 			'unlockText' => [
 				'fi' => 'Kuuloaisti kehittyy. **Valitse korvat** laatikosta {BoxName}.',
 				'en' => 'Hearing develops. **Select ears** from the box {BoxName}.',
