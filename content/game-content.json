@@ -1,8 +1,8 @@
 {
     "meta": {
-        "contentVersion": "2026-05-03",
+        "contentVersion": "2026-05-06",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-06T12:16:32+00:00",
+        "generatedAt": "2026-05-06T12:29:35+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -1040,15 +1040,15 @@
                             {
                                 "id": "b",
                                 "text": {
-                                    "fi": "Muovi on elävää ainetta, joka kehittyy ajan kuluessa",
-                                    "en": "Evolution means that plastic can use plants as food"
+                                    "fi": "Muovi on elollista materiaalia, joka kehittyy ajan kuluessa",
+                                    "en": "Plastic is a living material that develops over time"
                                 }
                             },
                             {
                                 "id": "c",
                                 "text": {
                                     "fi": "Evoluution seurauksena muovit ovat oppineet syömään kasveja",
-                                    "en": "Plastic is a living material that develops by itself in nature"
+                                    "en": "Through evolution, plastics have learned to eat plants"
                                 }
                             },
                             {
@@ -1065,12 +1065,12 @@
                             "en": "Some bacteria have evolved to use plastic as food."
                         },
                         "tip": {
-                            "fi": "Muovi on elotonta ainetta.",
-                            "en": "Plastic itself is not alive, but living things can change."
+                            "fi": "Muovi on elotonta materiaalia.",
+                            "en": "Plastic itself is non-living material."
                         },
                         "explanation": {
-                            "fi": "Muovi ei ole elävää eikä se kehity itsestään. Mutta tietyt bakteerit ovat evoluution myötä oppineet hajottamaan muovia ja saamaan siitä energiaa.",
-                            "en": "Plastic does not evolve by itself, but some bacteria have evolved ways to break plastic down and get energy from it."
+                            "fi": "Muovi ei ole elollista eikä se kehity itsestään. Jotkut bakteerit ovat kuitenkin evoluution myötä oppineet hajottamaan muovia ja käyttämään sitä energianlähteenä.",
+                            "en": "Plastic is not living and does not evolve by itself. However, some bacteria have evolved to break plastic down and use it as an energy source."
                         }
                     }
                 ]

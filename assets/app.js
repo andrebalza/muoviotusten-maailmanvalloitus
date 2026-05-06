@@ -25,7 +25,7 @@
       ageUnder: 'Alle 9-vuotias',
       stepRoll: 'Heitä noppaa',
       stepRollPrompt: 'Minkä luvun sait?',
-      stepTrack: 'Valitse rata',
+      stepTrack: 'Valitse mikä tahansa rata',
       trackConfirmEyebrow: 'Sait radan {track}',
       trackConfirmTitle: 'Onko rata vapaa?',
       trackConfirmYes: 'KYLLÄ',
@@ -151,7 +151,7 @@
       ageUnder: 'Under 9 years',
       stepRoll: 'Roll the dice',
       stepRollPrompt: 'What number did you get?',
-      stepTrack: 'Choose your track',
+      stepTrack: 'Choose any track',
       trackConfirmEyebrow: 'You got track {track}.',
       trackConfirmTitle: 'Is the track free?',
       trackConfirmYes: 'YES',
@@ -444,7 +444,7 @@
       const container = document.getElementById('track-buttons');
       container.innerHTML = (app.tracks || []).map(function(track){
         return '<button class="big-button" type="button" data-track="'+track.id+'">'
-          +'<span class="big-button__title">'+escapeHtml(track.faction[lang])+'</span>'
+          +'<span class="big-button__title">'+escapeHtml(track.id+' '+track.faction[lang])+'</span>'
           +'<span class="big-button__sub">'+escapeHtml(track.mainBox[lang])+'</span>'
           +'</button>';
       }).join('');
