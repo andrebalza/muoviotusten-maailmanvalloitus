@@ -66,8 +66,6 @@
       continueAction: 'Jatka',
       correctAnswer: 'Oikea vastaus',
       explanation: 'Selitys',
-      unlockedPart: 'Avasitte ruumiinosan',
-      unlockedParts: 'Avasitte ruumiinosat',
       missedPart: 'Menetitte tämän ruumiinosan',
       noSession: 'Aloita peli ensin aloitussivulta.',
       mutationEyebrow: 'Mutaatio',
@@ -193,8 +191,6 @@
       continueAction: 'Continue',
       correctAnswer: 'Correct answer',
       explanation: 'Explanation',
-      unlockedPart: 'You unlocked a body part',
-      unlockedParts: 'You unlocked body parts',
       missedPart: 'You permanently missed this body part',
       noSession: 'Start the game from the home page first.',
       mutationEyebrow: 'Mutation',
@@ -1152,7 +1148,6 @@
 
     const partLine = (parts.length && result.correct)
       ? `<div class="result-subtitle">
-          <strong>${escapeHtml(parts.length > 1 ? t.unlockedParts : t.unlockedPart)}</strong>
           ${parts.map(function(part){
             return `<p>${renderInlineMarkdown(partUnlockText(part, state, lang))}</p>`;
           }).join('')}
@@ -1186,7 +1181,7 @@
   }
 
   function partUnlockText(part, state, lang){
-    const fallback = `${ui(lang).unlockedPart}: ${localized(part.name, lang)}`;
+    const fallback = localized(part.name, lang);
     const template = localized(part.unlockText, lang) || fallback;
 
     return format(template, {
