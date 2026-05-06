@@ -72,8 +72,9 @@
       noSession: 'Aloita peli ensin aloitussivulta.',
       mutationEyebrow: 'Mutaatio',
       mutationTitle: 'Mutaatio aktivoitui',
-      mutationLead: 'Laatikko vaihtuu heti ja pysyy näkyvissä sovelluksen yläosassa.',
+      mutationLead: 'Saat kaksi seuraavaa otuksen osaa, ja laatikko vaihtuu heti.',
       mutationProceed: 'Jatka',
+      noMutationParts: 'Kaikki otuksen osat on jo avattu.',
       finishTitle: 'Otuksesi kehittyi upeasti!',
       finishContinueBuild: 'Jatka rakentamiseen',
       finishBuildTitle: 'On aika rakentaa!',
@@ -198,8 +199,9 @@
       noSession: 'Start the game from the home page first.',
       mutationEyebrow: 'Mutation',
       mutationTitle: 'Mutation activated',
-      mutationLead: 'The box changes immediately and stays visible at the top of the app.',
+      mutationLead: 'You receive the next two creature parts, and the box changes immediately.',
       mutationProceed: 'Proceed',
+      noMutationParts: 'All creature parts are already unlocked.',
       finishTitle: 'Amazing evolution!',
       finishContinueBuild: 'Continue to building',
       finishBuildTitle: 'It’s time to build!',
@@ -897,16 +899,18 @@
       return;
     }
 
+    const mutationAward = applyMutationAward(state, mutation);
     state.mutation = mutation.slug;
     saveState(state);
     renderSessionStrip(state);
 
     const resultTitle = localized(mutation.resultTitle, lang) || localized(mutation.name, lang);
+    const description = mutationDescription(mutation, mutationAward.parts, state, lang);
 
     panel.innerHTML = `
       <div class="feedback feedback-success">
         <h2>${escapeHtml(resultTitle)}</h2>
-        <p class="muted">${escapeHtml(localized(mutation.description, lang))}</p>
+        <p class="muted">${description}</p>
       </div>
       <div class="button-row">
         <a class="button button-primary" href="/scan">${escapeHtml(t.mutationProceed)}</a>
@@ -1199,6 +1203,72 @@
     return imageQuestionSetIds.includes(Number(questionSet.setId)) ? 2 : 1;
   }
 
+  function applyMutationAward(state, mutation){
+    state.mutationAwards = state.mutationAwards && typeof state.mutationAwards === 'object' ? state.mutationAwards : {};
+
+    if(state.mutationAwards[mutation.slug]){
+      return {
+        alreadyAwarded: true,
+        parts: partsByIds(state.mutationAwards[mutation.slug].partIds || []),
+      };
+    }
+
+    const parts = app.parts.slice(state.currentPartIndex, state.currentPartIndex + 2);
+    const partIds = parts.map(function(part){
+      return part.id;
+    });
+
+    parts.forEach(function(part){
+      if(!state.unlockedPartIds.includes(part.id)){
+        state.unlockedPartIds.push(part.id);
+      }
+    });
+
+    state.currentPartIndex = Math.min(state.currentPartIndex + 2, app.parts.length);
+    state.mutationAwards[mutation.slug] = {
+      partIds: partIds,
+      awardedAt: new Date().toISOString(),
+    };
+
+    return {
+      alreadyAwarded: false,
+      parts: parts,
+    };
+  }
+
+  function mutationDescription(mutation, parts, state, lang){
+    const t = ui(lang);
+    const first = mutationPartLabel(parts[0], lang);
+    const second = mutationPartLabel(parts[1], lang);
+
+    if(!first){
+      return escapeHtml(t.noMutationParts);
+    }
+
+    const template = second
+      ? localized(mutation.description, lang)
+      : localized(mutation.descriptionOnePart, lang);
+    return renderInlineMarkdown(format(template, {
+      NextPart1: first,
+      NextPart2: second,
+      BoxName: activeBoxLabel(state, lang),
+    }));
+  }
+
+  function mutationPartLabel(part, lang){
+    if(!part){
+      return '';
+    }
+
+    return localized(part.shortName, lang) || localized(part.name, lang);
+  }
+
+  function partsByIds(partIds){
+    return partIds.map(function(partId){
+      return findPart(partId);
+    }).filter(Boolean);
+  }
+
   function renderSessionStrip(state){
     const strip = document.getElementById('session-strip');
 
@@ -1324,6 +1394,7 @@
       mutation: null,
       currentPartIndex: 0,
       unlockedPartIds: [],
+      mutationAwards: {},
       answeredSets: {},
       selectedQuestionBySet: {},
       tipUsage: {},
@@ -1339,7 +1410,12 @@
         return null;
       }
       const state = JSON.parse(raw);
-      return typeof state === 'object' && state ? state : null;
+      if(typeof state !== 'object' || !state){
+        return null;
+      }
+      state.unlockedPartIds = Array.isArray(state.unlockedPartIds) ? state.unlockedPartIds : [];
+      state.mutationAwards = state.mutationAwards && typeof state.mutationAwards === 'object' ? state.mutationAwards : {};
+      return state;
     }
     catch(error){
       return null;
@@ -1465,7 +1541,7 @@
 
   function format(template, params){
     return Object.keys(params).reduce(function(output, key){
-      return output.replace(`{${key}}`, params[key]);
+      return output.split(`{${key}}`).join(params[key]);
     }, template);
   }
 

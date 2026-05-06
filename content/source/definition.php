@@ -110,21 +110,29 @@ return [
 				'en' => 'Mutation! Your creature transforms into a Hypervintti.',
 			],
 			'description' => [
-				'fi' => 'Voit nyt valita muovia mistä tahansa laatikosta.',
-				'en' => 'From now on, you can choose plastic from any box.',
+				'fi' => 'Otuksesi ottaa suuren harppauksen kehityksessä. Ota otuksellesi {NextPart1} ja {NextPart2}. Tästä eteenpäin voit ottaa muovia mistä tahansa laatikosta.',
+				'en' => 'Your creature makes a big leap in its development. Now take {NextPart1} and {NextPart2} for your creature. From now on, you can take plastic from any box.',
+			],
+			'descriptionOnePart' => [
+				'fi' => 'Otuksesi ottaa suuren harppauksen kehityksessä. Ota otuksellesi {NextPart1}. Tästä eteenpäin voit ottaa muovia mistä tahansa laatikosta.',
+				'en' => 'Your creature makes a big leap in its development. Now take {NextPart1} for your creature. From now on, you can take plastic from any box.',
 			],
 		],
 		'mysteerio' => [
 			'slug' => 'mysteerio',
-			'name' => ['fi' => 'Mysteeriöt', 'en' => 'mysteeriöt'],
-			'activeBox' => ['fi' => 'Mysteeriöt (leimattomat muovit)', 'en' => 'mysteeriöt (unlabeled plastics)'],
+			'name' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
+			'activeBox' => ['fi' => 'Mysteeriö (leimattomat muovit)', 'en' => 'Mysteeriö (unlabeled plastics)'],
 			'resultTitle' => [
-				'fi' => 'Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriöt.',
-				'en' => 'Mutation! Your creature’s DNA changes, and it becomes mysteeriöt.',
+				'fi' => 'Mutaatio! Otuksesi muuttuu Mysteeriöksi.',
+				'en' => 'Mutation! Your creature transforms into a Mysteeriö.',
 			],
 			'description' => [
-				'fi' => 'Valitse tästä eteenpäin vain muovia ilman kierrätyssymbolia.',
-				'en' => 'From now on, choose only plastic without a recycling symbol.',
+				'fi' => 'Otuksesi ottaa suuren harppauksen kehityksessä. Ota otuksellesi {NextPart1} ja {NextPart2}. Tästä eteenpäin voit ottaa muovia laatikosta {BoxName}.',
+				'en' => 'Your creature makes a big leap in its development. Take now {NextPart1} and {NextPart2} for your creature. From now on, you can take plastic from the box {BoxName}.',
+			],
+			'descriptionOnePart' => [
+				'fi' => 'Otuksesi ottaa suuren harppauksen kehityksessä. Ota otuksellesi {NextPart1}. Tästä eteenpäin voit ottaa muovia laatikosta {BoxName}.',
+				'en' => 'Your creature makes a big leap in its development. Take now {NextPart1} for your creature. From now on, you can take plastic from the box {BoxName}.',
 			],
 		],
 	],
@@ -190,6 +198,7 @@ return [
 		[
 			'id' => 'sensory-cells',
 			'name' => ['fi' => 'tuntosolut', 'en' => 'sensory cells'],
+			'shortName' => ['fi' => '**vartalo**', 'en' => '**body**'],
 			'unlockText' => [
 				'fi' => 'Otukselle muodostuu vartalo. *Valitse vartalo* laatikosta {BoxName}.',
 				'en' => 'A body forms for your creature. **Select a body** from the box {BoxName}.',
@@ -198,6 +207,7 @@ return [
 		[
 			'id' => 'sensory-hairs',
 			'name' => ['fi' => 'tuntokarvat', 'en' => 'sensory hairs'],
+			'shortName' => ['fi' => '**tuntokarvat**', 'en' => '**sensory hairs**'],
 			'unlockText' => [
 				'fi' => 'Ympäristön aistiminen tarkentuu. *Valitse tuntokarvat* laatikosta {BoxName}.',
 				'en' => 'Environmental sensing becomes more precise. **Select sensory hairs** from the box {BoxName}.',
@@ -206,6 +216,7 @@ return [
 		[
 			'id' => 'sensory-scales',
 			'name' => ['fi' => 'tuntosuomut', 'en' => 'sensory scales'],
+			'shortName' => ['fi' => '**kaksi tuntosuomua**', 'en' => '**two sensory scales**'],
 			'unlockText' => [
 				'fi' => 'Kosketusaisti kehittyy. *Valitse kaksi tuntosuomua* laatikosta {BoxName}.',
 				'en' => 'The sense of touch develops. **Select two sensory scales** from the box {BoxName}.',
@@ -214,6 +225,7 @@ return [
 		[
 			'id' => 'head',
 			'name' => ['fi' => 'pää', 'en' => 'head'],
+			'shortName' => ['fi' => '**pää**', 'en' => '**head**'],
 			'unlockText' => [
 				'fi' => 'Otukselle muodostuu pää. **Valitse pää** laatikosta {BoxName}.',
 				'en' => 'A head begins to form. **Select a head** from the box {BoxName}.',
@@ -222,6 +234,7 @@ return [
 		[
 			'id' => 'mouth',
 			'name' => ['fi' => 'suu', 'en' => 'mouth'],
+			'shortName' => ['fi' => '**suu**', 'en' => '**mouth**'],
 			'unlockText' => [
 				'fi' => 'Otus alkaa syödä. **Valitse suu** laatikosta {BoxName}.',
 				'en' => 'Your creature begins to eat. **Select a mouth** from the box {BoxName}.',
@@ -230,6 +243,7 @@ return [
 		[
 			'id' => 'fin',
 			'name' => ['fi' => 'evä', 'en' => 'fin'],
+			'shortName' => ['fi' => '**evä**', 'en' => '**fin**'],
 			'unlockText' => [
 				'fi' => 'Liikkumiskyky kehittyy. **Valitse evä** laatikosta {BoxName}.',
 				'en' => 'Mobility develops. **Select a fin** from the box {BoxName}.',
@@ -238,6 +252,7 @@ return [
 		[
 			'id' => 'tail',
 			'name' => ['fi' => 'häntä', 'en' => 'tail'],
+			'shortName' => ['fi' => '**häntä**', 'en' => '**tail**'],
 			'unlockText' => [
 				'fi' => 'Liikkuminen tehostuu. **Valitse häntä** laatikosta {BoxName}.',
 				'en' => 'Movement becomes more efficient. **Select a tail** from the box {BoxName}.',
@@ -246,6 +261,7 @@ return [
 		[
 			'id' => 'grasping-appendage',
 			'name' => ['fi' => 'tarttumisuloke', 'en' => 'grasping appendage'],
+			'shortName' => ['fi' => '**tarttumisuloke**', 'en' => '**grasping appendage**'],
 			'unlockText' => [
 				'fi' => 'Tarttumiskyky kehittyy. **Valitse tarttumisuloke** laatikosta {BoxName}.',
 				'en' => 'Grasping ability develops. **Select a grasping appendage** from the box {BoxName}.',
@@ -254,6 +270,7 @@ return [
 		[
 			'id' => 'eyes',
 			'name' => ['fi' => 'silmät', 'en' => 'eyes'],
+			'shortName' => ['fi' => '**silmät**', 'en' => '**eyes**'],
 			'unlockText' => [
 				'fi' => 'Näköaisti kehittyy. **Valitse silmät** laatikosta {BoxName}.',
 				'en' => 'Vision develops. **Select eyes** from the box {BoxName}.',
@@ -262,6 +279,7 @@ return [
 		[
 			'id' => 'ears',
 			'name' => ['fi' => 'korvat', 'en' => 'ears'],
+			'shortName' => ['fi' => '**ears**', 'en' => '**ears**'],
 			'unlockText' => [
 				'fi' => 'Kuuloaisti kehittyy. **Valitse korvat** laatikosta {BoxName}.',
 				'en' => 'Hearing develops. **Select ears** from the box {BoxName}.',
@@ -270,6 +288,7 @@ return [
 		[
 			'id' => 'brain',
 			'name' => ['fi' => 'aivot', 'en' => 'brain'],
+			'shortName' => ['fi' => '**aivot**', 'en' => '**brain**'],
 			'unlockText' => [
 				'fi' => 'Otus alkaa ohjata toimintaansa. **Valitse aivot** laatikosta {BoxName}.',
 				'en' => 'Your creature begins to control its actions. **Select a brain** from the box {BoxName}.',
@@ -278,6 +297,7 @@ return [
 		[
 			'id' => 'limbs',
 			'name' => ['fi' => 'raajat', 'en' => 'limbs'],
+			'shortName' => ['fi' => '**kaksi raajaa**', 'en' => '**two limbs**'],
 			'unlockText' => [
 				'fi' => 'Otus alkaa liikkua myös maalla. **Valitse kaksi raajaa** laatikosta {BoxName}.',
 				'en' => 'Your creature begins to move on land. **Select two limbs** from the box {BoxName}.',
@@ -286,6 +306,7 @@ return [
 		[
 			'id' => 'wings',
 			'name' => ['fi' => 'siivet', 'en' => 'wings'],
+			'shortName' => ['fi' => '**siivet**', 'en' => '**wings**'],
 			'unlockText' => [
 				'fi' => 'Otus pystyy liikkumaan ilmassa. **Valitse siivet** laatikosta {BoxName}.',
 				'en' => 'Your creature can move in the air. **Select wings** from the box {BoxName}.',
