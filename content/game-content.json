@@ -2,7 +2,7 @@
     "meta": {
         "contentVersion": "2026-05-03",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-05T11:30:54+00:00",
+        "generatedAt": "2026-05-06T06:43:18+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -580,14 +580,14 @@
                                 }
                             },
                             {
-                                "id": "c",
+                                "id": "d",
                                 "text": {
                                     "fi": "10 vuotta",
                                     "en": "10 years"
                                 }
                             },
                             {
-                                "id": "d",
+                                "id": "c",
                                 "text": {
                                     "fi": "450 vuotta",
                                     "en": "450 years"
@@ -663,7 +663,7 @@
                         },
                         "explanation": {
                             "fi": "Mikromuovi tarkoittaa hyvin pieniä muovin palasia, jotka ovat pienempiä kuin riisinjyvä. Niitä syntyy, kun jokin muovista valmistettu esine, kuten muovipullo tai muovipussi, hajoaa pieniksi paloiksi. Niitä löytyy ympäristöstä lähes kaikkialta.",
-                            "en": "Microplastic means very small pieces of plastic. They can form when larger plastic objects wear down and break apart in the environment."
+                            "en": "Microplastic means very small pieces of plastic, smaller than a grain of rice. They form when plastic objects, such as a plastic bottle or plastic bag, break into small pieces. They can be found almost everywhere in the environment."
                         }
                     }
                 ],
@@ -716,7 +716,7 @@
                         },
                         "explanation": {
                             "fi": "Mikromuovi tarkoittaa hyvin pieniä muovin palasia, jotka ovat pienempiä kuin riisinjyvä. Niitä syntyy, kun jokin muovista valmistettu esine, kuten muovipullo tai muovipussi, hajoaa pieniksi paloiksi. Niitä löytyy ympäristöstä lähes kaikkialta.",
-                            "en": "In science, microplastic usually means plastic particles smaller than 5 millimetres. Today they can be found almost everywhere in the environment."
+                            "en": "Microplastic means very small pieces of plastic, smaller than a grain of rice. They form when plastic objects, such as a plastic bottle or plastic bag, break into small pieces. They can be found almost everywhere in the environment."
                         }
                     }
                 ]
@@ -774,7 +774,7 @@
                         },
                         "explanation": {
                             "fi": "Valtamerissä kulkee jättimäisiä vesivirtoja, jotka ovat kuin merten valtateitä. Kun ne kohtaavat, ne voivat alkaa pyöriä ympyrää kuin vesi kylpyammeen viemärissä. Tällainen pyörre nappaa muoviroskat mukaansa ja kerää ne yhteen paikkaan. Näin syntyy jätepyörre, joka on kuin valtava, vellova muovisoppa keskellä merta. Tunnetuin niistä on Tyynenmeren jätepyörre.",
-                            "en": "Huge rotating currents move through the oceans and gather plastic waste together. The best-known accumulation area is the Great Pacific Garbage Patch."
+                            "en": "Huge ocean currents move through the seas like highways. When they meet, they can begin to spin in circles like water going down a bathtub drain. This kind of gyre catches plastic litter and gathers it into one place, creating a waste gyre like a huge swirling plastic soup in the middle of the sea. The best known one is the Great Pacific Garbage Patch."
                         }
                     }
                 ],
@@ -827,7 +827,7 @@
                         },
                         "explanation": {
                             "fi": "Valtamerissä kulkee jättimäisiä vesivirtoja, jotka ovat kuin merten valtateitä. Kun ne kohtaavat, ne voivat alkaa pyöriä ympyrää kuin vesi kylpyammeen viemärissä. Tällainen pyörre nappaa muoviroskat mukaansa ja kerää ne yhteen paikkaan. Näin syntyy jätepyörre, joka on kuin valtava, vellova muovisoppa keskellä merta. Tunnetuin niistä on Tyynenmeren jätepyörre.",
-                            "en": "When ocean currents circulate in large loops, they can trap plastic waste in the same area. The best-known example is the Great Pacific Garbage Patch."
+                            "en": "Huge ocean currents move through the seas like highways. When they meet, they can begin to spin in circles like water going down a bathtub drain. This kind of gyre catches plastic litter and gathers it into one place, creating a waste gyre like a huge swirling plastic soup in the middle of the sea. The best known one is the Great Pacific Garbage Patch."
                         }
                     }
                 ]
@@ -841,12 +841,12 @@
                         "id": "set-4-easy-ideonella",
                         "type": "text",
                         "prompt": {
-                            "fi": "Kuvakysymys: Mikä otus syö PET-muovia?",
-                            "en": "Image question: which organism can eat PET plastic?"
+                            "fi": "Kuvakysymys: Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "Image question: which creature eats PET plastic? The answer is hidden in this space. Go and look!"
                         },
                         "note": {
-                            "fi": "Kirjoita lajin nimi. Nykyinen sisältösheet merkitsee tämän kuvakysymykseksi.",
-                            "en": "Write the species name. The current content sheet marks this as an image question."
+                            "fi": "Kirjoita lajin nimi.",
+                            "en": "Write the species name."
                         },
                         "acceptedAnswers": [
                             "ideonella sakaiensis",
@@ -858,11 +858,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "It is a bacterium discovered in Japan."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Vielä vähän aikaa sitten luultiin, ettei mikään elävä olento pysty syömään muovia ravinnokseen. Vuonna 2016 tutkijat kuitenkin löysivät Japanista, muovinkierrätyslaitoksen läheltä, pienen pienen bakteerin, joka oli oppinut hyödyntämään muovia ruokana.",
-                            "en": "In 2016, researchers in Japan found a bacterium called Ideonella sakaiensis. It can break down PET plastic and use it as food."
+                            "en": "Until quite recently, people thought that no living thing could eat plastic as food. In 2016, researchers found a tiny bacterium near a plastic recycling plant in Japan that had learned to use plastic as food."
                         }
                     }
                 ],
@@ -871,12 +871,12 @@
                         "id": "set-4-hard-ideonella",
                         "type": "text",
                         "prompt": {
-                            "fi": "Kuvakysymys: Mikä otus syö PET-muovia?",
-                            "en": "Image question: which organism can eat PET plastic?"
+                            "fi": "Kuvakysymys: Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "Image question: which creature eats PET plastic? The answer is hidden in this space. Go and look!"
                         },
                         "note": {
-                            "fi": "Kirjoita lajin nimi. Nykyinen sisältösheet merkitsee tämän kuvakysymykseksi.",
-                            "en": "Write the species name. The current content sheet marks this as an image question."
+                            "fi": "Kirjoita lajin nimi.",
+                            "en": "Write the species name."
                         },
                         "acceptedAnswers": [
                             "ideonella sakaiensis",
@@ -888,11 +888,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "It is a bacterium discovered in Japan."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Vielä vähän aikaa sitten luultiin, ettei mikään elävä olento pysty syömään muovia ravinnokseen. Vuonna 2016 tutkijat kuitenkin löysivät Japanista, muovinkierrätyslaitoksen läheltä, pienen pienen bakteerin, joka oli oppinut hyödyntämään muovia ruokana.",
-                            "en": "For a long time, scientists thought no living thing could use plastic as food. Ideonella sakaiensis showed that evolution can still produce surprising adaptations."
+                            "en": "Until quite recently, people thought that no living thing could eat plastic as food. In 2016, researchers found a tiny bacterium near a plastic recycling plant in Japan that had learned to use plastic as food."
                         }
                     }
                 ]
@@ -1017,11 +1017,12 @@
                         "id": "set-6-easy-ivory",
                         "type": "text",
                         "prompt": {
-                            "fi": "Mitä arvokasta materiaalia biljardipalloihin käytettiin ennen muovin keksimistä?",
-                            "en": "What valuable material was used for billiard balls before plastic was invented?"
+                            "fi": "Mitä arvokasta materiaalia biljardipalloihin käytettiin ennen muovin keksimistä? Vastaus piileskelee tässä tilassa. Etsi pyöreä sokkelo.",
+                            "en": "What valuable material was used for billiard balls before plastic was invented? The answer is hidden in this space. Find the round maze."
                         },
                         "acceptedAnswers": [
                             "norsunluuta",
+                            "norsunluu",
                             "norsun luuta",
                             "ivory"
                         ],
@@ -1031,7 +1032,7 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "This material came from elephant tusks."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Ennen kuin muovi keksittiin, biljardipallot valmistettiin norsunluusta. Norsunluu on norsun syöksyhampaista saatavaa luuta, joka on kovaa, kaunista ja kallista.",
@@ -1044,11 +1045,12 @@
                         "id": "set-6-hard-celluloid-ivory",
                         "type": "text",
                         "prompt": {
-                            "fi": "1860-luvulla kehitetty selluloidi oli yksi ensimmäisistä muoveista. Mitä arvokasta materiaalia sillä pyrittiin korvaamaan?",
-                            "en": "Celluloid, developed in the 1860s, was one of the first plastics. What valuable material was it meant to replace?"
+                            "fi": "1860-luvulla kehitetty selluloidi oli yksi ensimmäisistä muoveista. Mitä arvokasta materiaalia sillä pyrittiin korvaamaan? Vastaus piileskelee tässä tilassa. Etsi pyöreä sokkelo.",
+                            "en": "Celluloid, developed in the 1860s, was one of the first plastics. What valuable material was it meant to replace? The answer is hidden in this space. Find the round maze."
                         },
                         "acceptedAnswers": [
                             "norsunluuta",
+                            "norsunluu",
                             "norsun luuta",
                             "ivory"
                         ],
@@ -1058,7 +1060,7 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "The material comes from elephant tusks."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Ennen selluloidimuovin keksimistä monet kauniit ja kalliit esineet valmistettiin norsunluusta. Norsunluu on norsun syöksyhammasta, ja se on kovaa, kestävää ja sileää materiaalia.",
@@ -1105,14 +1107,14 @@
                                 "id": "d",
                                 "text": {
                                     "fi": "Tuuli",
-                                    "en": "The Moon"
+                                    "en": "Wind"
                                 }
                             }
                         ],
                         "correctOptionId": "d",
                         "answerSummary": {
                             "fi": "Tuuli.",
-                            "en": "The Moon."
+                            "en": "Wind."
                         },
                         "tip": {
                             "fi": "Mistä vaihtoehdosta ei voi rakentaa esineitä?",
@@ -1120,7 +1122,7 @@
                         },
                         "explanation": {
                             "fi": "Materiaali on sitä ”tavaraa”, josta jokin esine on tehty. Kun katsot ympärillesi, kaikki tavarat on valmistettu jostakin materiaalista. Esimerkiksi lusikka on esine, mutta se voi olla tehty muovista, metallista tai puusta. Silloin muovi, metalli ja puu ovat materiaaleja.",
-                            "en": "A material is a substance from which an object can be made. Plastic, wood, and metal are materials, but the Moon is not the name of a material."
+                            "en": "A material is the stuff an object is made from. When you look around, every object is made from some material. For example, a spoon is an object, but it can be made from plastic, metal, or wood. In that case, plastic, metal, and wood are materials. Wind is not a material you can build an object from."
                         }
                     }
                 ],
@@ -1173,7 +1175,7 @@
                         },
                         "explanation": {
                             "fi": "Sana synteettinen tarkoittaa, että jokin on ihmisen tekemää eli keinotekoista.\nMaailmassa on kahdenlaisia materiaaleja: 1. Luonnonmateriaalit: Näitä saadaan suoraan luonnosta, kuten puu metsästä tai villa lampaasta.\n2) Synteettiset materiaalit: Näitä ei löydy luonnosta valmiina. Ihminen valmistaa ne tehtaissa kemikaalien ja raaka-aineiden (kuten öljyn) avulla. Esimerkiksi muovi on tunnetuin synteettinen materiaali.",
-                            "en": "Synthetic means human-made or artificial. Plastic is one of the best-known synthetic materials."
+                            "en": "Synthetic means that something is made by humans, or artificial. There are two kinds of materials: natural materials, which come directly from nature, such as wood from a forest or wool from sheep; and synthetic materials, which are not found ready-made in nature. People make them in factories using chemicals and raw materials such as oil. Plastic is the best-known synthetic material."
                         }
                     },
                     {
@@ -1220,7 +1222,7 @@
                         },
                         "explanation": {
                             "fi": "Raaka-aine on luonnosta saatava aine, jota ei ole vielä käsitelty tai muutettu tavaraksi. Se on ikään kuin \"perusaines\", josta tehtaat alkavat valmistaa jotain uutta.\nEsimerkiksi:\nÖljy on raaka-aine, josta tehdään muovia.\nPuu on raaka-aine, josta tehdään paperia.\nRauta on raaka-aine, josta tehdään autoja.\n\nPaine, lämpö ja aika ovat tärkeitä voimia, jotka auttavat raaka-aineiden syntymisessä (kuten öljyn syntymisessä fossiileista), mutta ne eivät itsessään ole aineita, joita voisi laittaa purkkiin.",
-                            "en": "Oil is a raw material from which plastic can be made. Pressure, heat, and time can matter in nature, but they are not raw materials themselves."
+                            "en": "A raw material is a substance from nature that has not yet been processed or turned into a product. It is the basic material factories start from when making something new. Oil is a raw material used to make plastic. Wood is a raw material used to make paper. Iron is a raw material used to make cars. Pressure, heat, and time help raw materials form in nature, but they are not substances you could put in a jar."
                         }
                     }
                 ]
@@ -1331,7 +1333,7 @@
                         },
                         "explanation": {
                             "fi": "Evoluutio tarkoittaa sitä, miten eläinlajit muuttuvat ja sopeutuvat ympäristöönsä pitkän ajan kuluessa. Luonto muuttuu yleensä hyvin hitaasti, ja eläimillä on tuhansia vuosia aikaa tottua muutoksiin. Muoviroskaa on kuitenkin tullut meriin niin valtavasti lyhyessä ajassa, etteivät eläimet ehdi sopeutua uuteen tilanteeseen.",
-                            "en": "Evolution is about how species adapt to their environment over time. Plastic pollution changes marine environments so quickly that some species may cope better while others do worse."
+                            "en": "Evolution means how animal species change and adapt to their environment over a long time. Nature usually changes very slowly, and animals have thousands of years to get used to changes. But so much plastic litter has entered the seas in such a short time that animals cannot adapt to the new situation fast enough."
                         }
                     }
                 ]
@@ -1389,7 +1391,7 @@
                         },
                         "explanation": {
                             "fi": "Muovi on kevyttä, joten muoviin pakatut tavarat ovat helpompi kuljettaa paikasta toiseen. Mitä kevyempi kuorma, sitä vähemmän polttoainetta kuluu ja sitä vähemmän saastutetaan!",
-                            "en": "Light packaging can reduce fuel use and emissions in transport. That is one reason plastic can sometimes have a useful side as well."
+                            "en": "Plastic is light, so goods packed in plastic are easier to transport from one place to another. The lighter the load, the less fuel is used and the less pollution is produced!"
                         }
                     }
                 ],
@@ -1442,7 +1444,7 @@
                         },
                         "explanation": {
                             "fi": "Muovi on kevyttä, joten muoviin pakatut tavarat ovat helpompi kuljettaa paikasta toiseen. Mitä kevyempi kuorma, sitä vähemmän polttoainetta kuluu ja sitä vähemmän saastutetaan!",
-                            "en": "When packaging is light, moving goods often needs less energy. That does not erase plastic’s problems, but it explains why plastic is used in some situations."
+                            "en": "Plastic is light, so goods packed in plastic are easier to transport from one place to another. The lighter the load, the less fuel is used and the less pollution is produced!"
                         }
                     }
                 ]
@@ -1456,8 +1458,8 @@
                         "id": "set-10-easy-film",
                         "type": "text",
                         "prompt": {
-                            "fi": "Minkä taidelajin kehityksen muovi on mahdollistanut?",
-                            "en": "Which art form did plastic help make possible on a breakthrough scale?"
+                            "fi": "Minkä taidelajin kehityksen muovi on mahdollistanut? Vastaus piileskelee tässä tilassa. Etsi kuusikulmio.",
+                            "en": "Which art form did plastic help make possible? The answer is hidden in this space. Find the hexagon."
                         },
                         "acceptedAnswers": [
                             "elokuvan",
@@ -1472,11 +1474,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "Think about moving images."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Ilman muovia meillä ei olisi elokuvia! Ensimmäiset elokuvat tallennettiin selluloidille, joka on eräänlaista taipuisaa muovia.",
-                            "en": "The first films were recorded on celluloid, which is a kind of plastic. That gave plastic an important role in the history of film."
+                            "en": "Without plastic, we would not have films! The first films were recorded on celluloid, which is a kind of flexible plastic."
                         }
                     }
                 ],
@@ -1485,8 +1487,8 @@
                         "id": "set-10-hard-celluloid-film",
                         "type": "text",
                         "prompt": {
-                            "fi": "Minkä taidemuodon läpimurron mahdollisti selluloidimuovi?",
-                            "en": "Which art form had its breakthrough enabled by celluloid plastic?"
+                            "fi": "Minkä taidemuodon läpimurron mahdollisti selluloidimuovi? Vastaus piileskelee tässä tilassa. Etsi kuusikulmio.",
+                            "en": "Which art form had its breakthrough enabled by celluloid plastic? The answer is hidden in this space. Find the hexagon."
                         },
                         "acceptedAnswers": [
                             "elokuvan",
@@ -1501,11 +1503,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "Think about early visual entertainment."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Ilman muovia meillä ei olisi elokuvia! Ensimmäiset elokuvat tallennettiin selluloidille, joka on eräänlaista taipuisaa muovia.",
-                            "en": "Celluloid was a flexible, transparent material that could hold images. That made early film technology possible."
+                            "en": "Without plastic, we would not have films! The first films were recorded on celluloid, which is a kind of flexible plastic."
                         }
                     }
                 ]
@@ -1538,21 +1540,21 @@
                                 }
                             },
                             {
-                                "id": "c",
+                                "id": "d",
                                 "text": {
                                     "fi": "Kuumemittarissa",
                                     "en": "In a thermometer"
                                 }
                             },
                             {
-                                "id": "d",
+                                "id": "e",
                                 "text": {
                                     "fi": "Purukumissa",
                                     "en": "In chewing gum"
                                 }
                             },
                             {
-                                "id": "e",
+                                "id": "h",
                                 "text": {
                                     "fi": "Vesiputkissa",
                                     "en": "In water pipes"
@@ -1566,7 +1568,7 @@
                         },
                         "tip": {
                             "fi": "Muovi ei sovi nieltäväksi.",
-                            "en": "Think about which option is meant to be completely eaten."
+                            "en": "Plastic is not suitable for eating."
                         },
                         "explanation": {
                             "fi": "Muovia käytetään monissa asioissa, kuten vaatteissa, autojen osissa, vesiputkissa ja jopa purukumissa. Mutta sitä ei käytetä sitkeissä hedelmäkarkeissa, vaikka karkit voivat tuntua ja näyttää muovisilta.",
@@ -1633,11 +1635,11 @@
                         },
                         "tip": {
                             "fi": "Muovi ei sovi nieltäväksi.",
-                            "en": "Think about which option is not an object or structure but a medicine."
+                            "en": "Plastic is not suitable for eating."
                         },
                         "explanation": {
-                            "fi": "Muovia käytetään monissa asioissa, kuten vaatteissa, auton osissa, sairaaloiden laitteissa, sydänimplanteissa ja vesiputkissa. Jopa purukumi on eräänlaista muovia. Muovi ei kuitenkaan sovi syötäväksi, koska elimistö ei pysty käyttämään sitä ravinnoksi.",
-                            "en": "Plastic is widely used in things like clothes, devices, pipes, and implants. It is not, however, a healing medicine."
+                            "fi": "Muovia käytetään monissa asioissa, kuten vaatteissa, auton osissa, sairaaloiden laitteissa, sydänimplanteissa ja vesiputkissa. Jopa purukumi on eräänlaista muovia. Muovi ei kuitenkaan sovi syötäväksi, koska elimistö ei pysty käyttämään sitä ravinnoksi. Parantavia vaikutuksia muovilla ei ole.",
+                            "en": "Plastic is used in many things, such as clothes, car parts, hospital devices, heart implants, and water pipes. Even chewing gum is a kind of plastic. Plastic is not suitable for eating because the body cannot use it as nutrition. Plastic has no healing effects."
                         }
                     }
                 ]
@@ -1651,8 +1653,8 @@
                         "id": "set-12-easy-bioplastic-corn",
                         "type": "text",
                         "prompt": {
-                            "fi": "Mistä kasvista voidaan valmistaa biomuovia?",
-                            "en": "From which plant can bioplastic be made?"
+                            "fi": "Mistä kasvista voidaan valmistaa biomuovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "From which plant can bioplastic be made? The answer is hidden in this space. Go and look!"
                         },
                         "acceptedAnswers": [
                             "maissista",
@@ -1665,11 +1667,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "It is a common yellow crop plant."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Suurin osa maailman muovista tehdään öljystä, mutta muovia voidaan valmistaa myös kasveista. Tällaista muovia kutsutaan biomuoviksi.\nYleisin kasvi, jota tähän käytetään, on maissi.",
-                            "en": "Most plastic is made from oil, but bioplastics can also be made from plant-based raw materials such as corn."
+                            "en": "Most of the world’s plastic is made from oil, but plastic can also be made from plants. This kind of plastic is called bioplastic. The most common plant used for this is corn."
                         }
                     }
                 ],
@@ -1678,8 +1680,8 @@
                         "id": "set-12-hard-bioplastic-corn",
                         "type": "text",
                         "prompt": {
-                            "fi": "Mistä kasvista voidaan valmistaa biomuovia?",
-                            "en": "From which plant can bioplastic be made?"
+                            "fi": "Mistä kasvista voidaan valmistaa biomuovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "From which plant can bioplastic be made? The answer is hidden in this space. Go and look!"
                         },
                         "acceptedAnswers": [
                             "maissista",
@@ -1692,11 +1694,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "It is a common yellow crop plant."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Suurin osa maailman muovista tehdään öljystä, mutta muovia voidaan valmistaa myös kasveista. Tällaista muovia kutsutaan biomuoviksi.\nYleisin kasvi, jota tähän käytetään, on maissi.",
-                            "en": "Bioplastic does not automatically mean harmless plastic, but it does mean that the raw material can come from plants. One common example is corn."
+                            "en": "Most of the world’s plastic is made from oil, but plastic can also be made from plants. This kind of plastic is called bioplastic. The most common plant used for this is corn."
                         }
                     }
                 ]
@@ -1710,8 +1712,8 @@
                         "id": "set-13-easy-plastiglomerate",
                         "type": "text",
                         "prompt": {
-                            "fi": "Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin?",
-                            "en": "What is the phenomenon called when plastic has fused with rock and other natural materials?"
+                            "fi": "Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "What is the phenomenon called when plastic has fused with rock and other natural materials? The answer is hidden in this space. Go and look!"
                         },
                         "acceptedAnswers": [
                             "plastiglomerate",
@@ -1723,11 +1725,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "The beginning of the word points to plastic."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Yleensä ajattelemme muovia ja kiveä aivan eri asioina, mutta nykyään rannoilta on löydetty uudenlaisia möykkyjä, joissa nämä kaksi ovat menneet sekaisin. Kun muoviroska (kuten köydet, pullot tai verkot) sulaa esimerkiksi nuotion lämmössä rannalla, se muuttuu tahmeaksi ja tarttuu kiinni hiekkaan, kiviin, simpukankuoriin ja puunpalasiin. Kun seos jäähtyy, se kovettuu kivenkovaksi möykyksi. Tätä kutsutaan nimellä plastiglomerate.",
-                            "en": "When plastic waste melts and sticks to sand, stones, or shells, it can form a rock-hard mixture. That kind of formation is called plastiglomerate."
+                            "en": "We usually think of plastic and stone as completely different things, but new kinds of lumps have been found on beaches where the two have mixed together. When plastic litter such as ropes, bottles, or nets melts in the heat of a campfire on a beach, it becomes sticky and attaches to sand, stones, shells, and pieces of wood. When the mixture cools, it hardens into a rock-hard lump. This is called plastiglomerate."
                         }
                     }
                 ],
@@ -1736,8 +1738,8 @@
                         "id": "set-13-hard-plastiglomerate",
                         "type": "text",
                         "prompt": {
-                            "fi": "Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin?",
-                            "en": "What is the phenomenon called when plastic has fused with rock and other natural materials?"
+                            "fi": "Miksi kutsutaan ilmiötä, jossa muovi on sulautunut kiveen ja muihin luonnonmateriaaleihin? Vastaus piileskelee tässä tilassa. Lähde etsimään!",
+                            "en": "What is the phenomenon called when plastic has fused with rock and other natural materials? The answer is hidden in this space. Go and look!"
                         },
                         "acceptedAnswers": [
                             "plastiglomerate",
@@ -1749,11 +1751,11 @@
                         },
                         "tip": {
                             "fi": "Kysy vinkki ohjaajalta!",
-                            "en": "The beginning of the word points to plastic."
+                            "en": "Ask the instructor for a hint!"
                         },
                         "explanation": {
                             "fi": "Yleensä ajattelemme muovia ja kiveä aivan eri asioina, mutta nykyään rannoilta on löydetty uudenlaisia möykkyjä, joissa nämä kaksi ovat menneet sekaisin. Kun muoviroska (kuten köydet, pullot tai verkot) sulaa esimerkiksi nuotion lämmössä rannalla, se muuttuu tahmeaksi ja tarttuu kiinni hiekkaan, kiviin, simpukankuoriin ja puunpalasiin. Kun seos jäähtyy, se kovettuu kivenkovaksi möykyksi. Tätä kutsutaan nimellä plastiglomerate.",
-                            "en": "Researchers have found strange lumps on beaches where melted plastic has mixed with natural materials. These are called plastiglomerates."
+                            "en": "We usually think of plastic and stone as completely different things, but new kinds of lumps have been found on beaches where the two have mixed together. When plastic litter such as ropes, bottles, or nets melts in the heat of a campfire on a beach, it becomes sticky and attaches to sand, stones, shells, and pieces of wood. When the mixture cools, it hardens into a rock-hard lump. This is called plastiglomerate."
                         }
                     }
                 ]
