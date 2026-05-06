@@ -2,7 +2,7 @@
     "meta": {
         "contentVersion": "2026-05-03",
         "sourceSheetUrl": "https://docs.google.com/spreadsheets/d/1vst0i_fzylp4462cTh9v1eJpSopa4SBLTDa7aKeCabs/edit?usp=sharing",
-        "generatedAt": "2026-05-06T06:43:18+00:00",
+        "generatedAt": "2026-05-06T07:10:20+00:00",
         "generatedBy": "bin/build-content.php"
     },
     "settings": {
@@ -150,16 +150,16 @@
         "mysteerio": {
             "slug": "mysteerio",
             "name": {
-                "fi": "Mysteeriö",
-                "en": "Mysteeriö"
+                "fi": "Mysteeriöt",
+                "en": "mysteeriöt"
             },
             "activeBox": {
-                "fi": "Mysteeriö",
-                "en": "Mysteeriö"
+                "fi": "Mysteeriöt (leimattomat muovit)",
+                "en": "mysteeriöt (unlabeled plastics)"
             },
             "resultTitle": {
-                "fi": "Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriö.",
-                "en": "Mutation! Your creature’s DNA changes, and it becomes Mysteeriö."
+                "fi": "Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriöt.",
+                "en": "Mutation! Your creature’s DNA changes, and it becomes mysteeriöt."
             },
             "description": {
                 "fi": "Valitse tästä eteenpäin vain muovia ilman kierrätyssymbolia.",

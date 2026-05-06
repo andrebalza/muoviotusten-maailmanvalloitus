@@ -115,11 +115,11 @@ return [
 		],
 		'mysteerio' => [
 			'slug' => 'mysteerio',
-			'name' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
-			'activeBox' => ['fi' => 'Mysteeriö', 'en' => 'Mysteeriö'],
+			'name' => ['fi' => 'Mysteeriöt', 'en' => 'mysteeriöt'],
+			'activeBox' => ['fi' => 'Mysteeriöt (leimattomat muovit)', 'en' => 'mysteeriöt (unlabeled plastics)'],
 			'resultTitle' => [
-				'fi' => 'Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriö.',
-				'en' => 'Mutation! Your creature’s DNA changes, and it becomes Mysteeriö.',
+				'fi' => 'Mutaatio! Otuksesi DNA muuttuu, ja siitä tulee Mysteeriöt.',
+				'en' => 'Mutation! Your creature’s DNA changes, and it becomes mysteeriöt.',
 			],
 			'description' => [
 				'fi' => 'Valitse tästä eteenpäin vain muovia ilman kierrätyssymbolia.',
