@@ -685,8 +685,8 @@ return [
 						'id' => 'set-4-easy-ideonella',
 						'type' => 'text',
 						'prompt' => [
-							'fi' => 'Kuvakysymys: Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!',
-							'en' => 'Image question: which creature eats PET plastic? The answer is hidden in this space. Go and look!',
+							'fi' => 'Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!',
+							'en' => 'Which creature eats PET plastic? The answer is hidden in this space. Go and look!',
 						],
 						'note' => [
 							'fi' => 'Kirjoita lajin nimi.',
@@ -715,8 +715,8 @@ return [
 						'id' => 'set-4-hard-ideonella',
 						'type' => 'text',
 						'prompt' => [
-							'fi' => 'Kuvakysymys: Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!',
-							'en' => 'Image question: which creature eats PET plastic? The answer is hidden in this space. Go and look!',
+							'fi' => 'Mikä otus syö PET-muovia? Vastaus piileskelee tässä tilassa. Lähde etsimään!',
+							'en' => 'Which creature eats PET plastic? The answer is hidden in this space. Go and look!',
 						],
 						'note' => [
 							'fi' => 'Kirjoita lajin nimi.',
