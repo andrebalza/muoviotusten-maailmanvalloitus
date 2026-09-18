@@ -1,6 +1,14 @@
 (function(){
   'use strict';
 
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/service-worker.js').catch(function(error){
+        console.warn('Service worker registration failed.', error);
+      });
+    });
+  }
+
   const boot = window.__APP_BOOT__ || {};
   const app = boot.app || {};
   const settings = app.settings || {};
@@ -11,6 +19,7 @@
     fi: {
       navScan: 'Skannaa',
       navAbout: 'Peliohje',
+      navAndroid: 'Android',
       navGallery: 'Galleria',
       trackLabel: 'Rata',
       activeBoxLabel: 'Laatikko',
@@ -168,6 +177,7 @@
     en: {
       navScan: 'Scan',
       navAbout: 'About',
+      navAndroid: 'Android',
       navGallery: 'Gallery',
       trackLabel: 'Track',
       activeBoxLabel: 'Box',
@@ -1467,6 +1477,7 @@
     const t = ui(lang);
     setText('nav-scan', t.navScan);
     setText('nav-about', t.navAbout);
+    setText('nav-android', t.navAndroid);
     setText('nav-gallery', t.navGallery);
   }
 

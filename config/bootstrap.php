@@ -19,6 +19,10 @@ $config = [
 		'base_url' => Env::get('APP_BASE_URL', 'https://otus.muoviamo.fi'),
 		'storage_key' => Env::get('APP_STORAGE_KEY', 'muoviotukset.v1'),
 	],
+	'android_release' => [
+		'enabled' => filter_var(Env::get('ANDROID_RELEASE_ENABLED', 'false'), FILTER_VALIDATE_BOOL),
+		'url' => Env::get('ANDROID_RELEASE_URL', 'https://github.com/andrebalza/muoviotusten-maailmanvalloitus/releases/latest'),
+	],
 	'content' => [
 		'file' => $root.'/content/game-content.json',
 	],

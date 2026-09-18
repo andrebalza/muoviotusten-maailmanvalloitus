@@ -40,6 +40,21 @@ final class Application{
 				'title' => 'Muoviotusten maailmanvalloitus',
 				'app' => $this->contentRepository->clientConfig(),
 			]),
+			['GET', '/android'] => $this->renderPage('android', [
+				'page' => 'android',
+				'title' => 'Muoviotukset for Android',
+				'app' => $this->contentRepository->clientConfig(),
+			]),
+			['GET', '/privacy'] => $this->renderPage('privacy', [
+				'page' => 'privacy',
+				'title' => 'Muoviotukset privacy notice',
+				'app' => $this->contentRepository->clientConfig(),
+			]),
+			['GET', '/support'] => $this->renderPage('support', [
+				'page' => 'support',
+				'title' => 'Muoviotukset support',
+				'app' => $this->contentRepository->clientConfig(),
+			]),
 			['GET', '/question'] => $this->handleQuestionPage($request),
 			['GET', '/mutation'] => $this->handleMutationPage($request),
 			['GET', '/finish'] => $this->renderPage('finish', [
@@ -194,6 +209,10 @@ final class Application{
 	}
 
 	private function renderPage(string $page, array $boot): Response{
+		$boot['androidRelease'] = $this->config['android_release'] ?? [
+			'enabled' => false,
+			'url' => '',
+		];
 
 		return Response::html($this->renderer->render($page, [
 			'meta' => [

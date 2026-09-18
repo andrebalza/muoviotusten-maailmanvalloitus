@@ -142,7 +142,7 @@ SELECT id, name, file, comment
 			$name = preg_replace('/\.[^.]+$/', '', (string)$row['file']);
 		}
 
-		$commentDetails = muoviotukset_voting_api_comment_details((string)($row['comment'] ?? ''));
+		$commentDetails = muoviotukset_voting_comment_details((string)($row['comment'] ?? ''));
 		if (($commentDetails['name'] ?? '') !== '') {
 			$name = $commentDetails['name'];
 		}
@@ -150,74 +150,12 @@ SELECT id, name, file, comment
 		$details[(string)$row['id']] = [
 			'name' => $name,
 			'ability' => $commentDetails['ability'] ?? ['en' => '', 'fi' => ''],
+			'faction' => $commentDetails['faction'] ?? ['en' => '', 'fi' => ''],
 			'survival' => $commentDetails['survival'] ?? ['en' => '', 'fi' => ''],
 		];
 	}
 
 	return $details;
-}
-
-function muoviotukset_voting_api_comment_details(string $comment): array
-{
-	$details = [
-		'name' => '',
-		'ability' => ['en' => '', 'fi' => ''],
-		'survival' => ['en' => '', 'fi' => ''],
-	];
-
-	if (preg_match_all('/<span\b[^>]*\blang="(en|fi)"[^>]*>(.*?)<\/span>/is', $comment, $matches, PREG_SET_ORDER)) {
-		foreach ($matches as $match) {
-			$lang = $match[1];
-			$text = muoviotukset_voting_api_clean_comment_text($match[2]);
-			muoviotukset_voting_api_apply_comment_line($details, $lang, $text);
-		}
-		return $details;
-	}
-
-	foreach (preg_split('/\R+/', $comment) ?: [] as $line) {
-		muoviotukset_voting_api_apply_comment_line($details, 'en', muoviotukset_voting_api_clean_comment_text($line));
-	}
-
-	return $details;
-}
-
-function muoviotukset_voting_api_apply_comment_line(array &$details, string $lang, string $line): void
-{
-	$pairs = [
-		'Creature name:' => ['name', null],
-		'Otuksen nimi:' => ['name', null],
-		'Special ability:' => ['ability', 'en'],
-		'Erikoiskyky:' => ['ability', 'fi'],
-		'Survival style:' => ['survival', 'en'],
-		'Selviytymistapa:' => ['survival', 'fi'],
-		'Efficiency judgement:' => ['survival', 'en'],
-		'Tehokkuusarvio:' => ['survival', 'fi'],
-	];
-
-	foreach ($pairs as $prefix => $target) {
-		if (stripos($line, $prefix) !== 0) {
-			continue;
-		}
-
-		$value = trim(substr($line, strlen($prefix)));
-		if ($value === '') {
-			return;
-		}
-
-		if ($target[0] === 'name') {
-			$details['name'] = $value;
-			return;
-		}
-
-		$targetLang = $target[1] ?? $lang;
-		$details[$target[0]][$targetLang] = $value;
-		return;
-	}
-}
-
-function muoviotukset_voting_api_clean_comment_text(string $text): string
-{
-	return trim(html_entity_decode(strip_tags($text), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
 
 function muoviotukset_voting_api_remaining_votes(string $voterHash): int

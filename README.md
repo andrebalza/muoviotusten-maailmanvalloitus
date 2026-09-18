@@ -1,95 +1,77 @@
-# otus.muoviamo.fi
+# Muoviotukset for Android
 
-Standalone PHP 8.3 implementation for the `Muoviotusten maailmanvalloitus` floor game.
+Muoviotukset is the Android companion app for *Muoviotusten maailmanvalloitus*, a physical floor game in which groups answer questions, collect creature parts, build a plastic creature, and share the result in a public gallery.
 
-The gameplay source of truth remains:
+[Read about the game and its public voting](https://muoviamo.fi/muoviotuspelin-yleisoaanestys/) for background and real-world context.
 
-- [muoviotusten-maailmanvalloitus-game-rules.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/muoviotusten-maailmanvalloitus-game-rules.md)
+The Android app opens the live game at [otus.muoviamo.fi](https://otus.muoviamo.fi/) as a Bubblewrap Trusted Web Activity (TWA). The same application also works directly in a browser.
 
-## What Is In The Repo
+## About
 
-- `index.php`: front controller for the standalone app
-- `src/`: PHP application code, rendering, content loading, and the Piwigo submission bridge
-- `content/source/definition.php`: normalized bilingual gameplay content source
-- `content/game-content.json`: generated runtime content consumed by the app
-- `assets/`: CSS, browser JS, and the vendored `jsQR` scanner fallback
-- `bin/build-content.php`: validates and generates `content/game-content.json`
-- `bin/generate-qr.php`: generates printable QR bundles for production and Tailscale under `print/qr/`
-- `config/nginx-site.example.conf`: example root-web-root Nginx configuration with deny rules
-- `print/qr/`: generated printable QR bundle
+*Muoviotusten maailmanvalloitus* combines a large physical game board with QR-assisted play. One Android device is used by each group. Players scan the printed start, question, mutation, and finish codes while moving through the physical game.
 
-## Local Development
+The app keeps the group's progress on the device, unlocks creature parts, shows the active material box, and guides the final creature submission. Submitted creatures appear in a Piwigo gallery where visitors can vote for their favourites.
 
-1. Install PHP dependencies:
+Version 1 is online-only. Its printed QR set is already in use and is immutable: existing URLs must remain backward-compatible, and the QR assets under `print/qr/` must not be regenerated or changed during normal development.
+
+## Android App
+
+| Property | Value |
+| --- | --- |
+| Application ID | `fi.muoviamo.otus` |
+| Version | `1.0.0` (`versionCode` 1) |
+| Minimum Android version | Android 5.0 / API 21 |
+| Target and compile SDK | API 36 |
+| Orientation | Portrait |
+| Web origin | `https://otus.muoviamo.fi/` |
+| Wrapper | Bubblewrap Trusted Web Activity |
+| Browser fallback | Custom Tab |
+
+The Android package is deliberately thin: it contains the launcher, splash assets, trusted-origin configuration, and browser integration, while gameplay and content are served by the production PHP application. Most gameplay fixes can therefore be deployed to the website without publishing a new APK.
+
+Digital Asset Links bind the Android package and its permanent release certificate to `otus.muoviamo.fi`. When that verification succeeds, the site opens full-screen without a Custom Tab toolbar.
+
+## Android Project Layout
+
+- `android/`: generated and maintained Bubblewrap/Gradle Android project
+- `android/twa-manifest.json`: TWA identity, origin, version, colours, icons, and signing-key location
+- `android/app/`: Android manifest, launcher activity, resources, and Gradle application configuration
+- `.well-known/assetlinks.json`: production Android-to-web trust declaration
+- `manifest.webmanifest`: installable web-app identity and icon declarations
+- `public/assets/icons/`: launcher and maskable web icons
+- `bin/build-assetlinks.php`: generates Digital Asset Links from release certificate fingerprints
+- `bin/build-pwa-icons.php`: rebuilds launcher icons from the source artwork
+- `service-worker.js` and `offline.html`: minimal network-error fallback for the live app
+
+## Web Application
+
+The trusted web origin is a standalone PHP 8.3 application with no framework and no SPA build step. Gameplay state is stored in the browser under the versioned `localStorage` key `muoviotukset.v1`.
+
+Important paths:
+
+- `index.php`: web front controller
+- `src/`: application code, rendering, content loading, and submission logic
+- `assets/`: CSS, browser JavaScript, and the vendored `jsQR` scanner fallback
+- `content/source/definition.php`: normalized bilingual gameplay source
+- `content/game-content.json`: generated runtime content
+- `config/`: application bootstrap and example Nginx configuration
+- `piwigo-plugins/`: custom public-gallery voting integration
+- `print/qr/`: fixed printable QR bundle
+
+### Local Web Development
 
 ```bash
 composer install
-```
-
-2. Build runtime content:
-
-```bash
 php bin/build-content.php
-```
-
-3. Generate printable QR assets:
-
-```bash
-php bin/generate-qr.php
-```
-
-4. Start the local server:
-
-```bash
+php bin/build-pwa-icons.php
 php -S 127.0.0.1:8090 index.php
 ```
 
-Then open [http://127.0.0.1:8090](http://127.0.0.1:8090).
+Open [http://127.0.0.1:8090](http://127.0.0.1:8090) and check the health endpoint at [http://127.0.0.1:8090/health](http://127.0.0.1:8090/health).
 
-### External Testing With Tailscale
+### Submission and Gallery Configuration
 
-If you have Tailscale installed locally, you can start the PHP server and publish it through Tailscale Funnel with:
-
-```bash
-bin/tailscale-test-server.sh start
-```
-
-Useful companion commands:
-
-```bash
-bin/tailscale-test-server.sh status
-bin/tailscale-test-server.sh qr
-bin/tailscale-test-server.sh stop
-```
-
-Notes:
-
-- `start` runs the app locally on `http://127.0.0.1:8090` and exposes it through Tailscale Funnel.
-- `php bin/generate-qr.php` always generates a production bundle in `print/qr/prod/`.
-- If a Tailscale Funnel URL is available, `php bin/generate-qr.php` also generates a Tailscale bundle in `print/qr/tailscale/`.
-- `bin/tailscale-test-server.sh qr` regenerates both bundles and forces the Tailscale bundle to use the current Funnel URL.
-- The in-app scanner only accepts same-origin gameplay URLs, so use the Tailscale bundle when testing the full QR flow through Funnel.
-- `stop` resets Funnel on the current node, so if you already use Funnel for something else, reapply that config afterward.
-
-## Piwigo Configuration
-
-The finish form posts to `/api/submissions`, and the server forwards the payload and uploaded photo to Piwigo through `ws.php`.
-
-The multipart submission payload includes:
-
-- `creature_name`
-- `special_ability`
-- `team_name`
-- `photo`
-- `game_state`
-- `parts_count`: required integer, `0` to `99`
-- `rubber_bands`: required integer, `0` to `999`
-- `cable_ties`: required integer, `0` to `999`
-- `tape_cm`: required integer, `0` to `9999`
-
-In production, Piwigo is installed inside the same WordOps site at `/gallery`. Keep that layout if you redeploy or rebuild the gallery. See [docs/piwigo-wordops-rollout.md](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/docs/piwigo-wordops-rollout.md).
-
-Copy `.env.example` to `.env` and set:
+The finish form posts a creature photo and game details to `/api/submissions`. The server forwards the submission to Piwigo through `ws.php`. Copy `.env.example` to `.env` and configure:
 
 - `PIWIGO_BASE_URL`
 - `PIWIGO_USERNAME`
@@ -97,37 +79,31 @@ Copy `.env.example` to `.env` and set:
 - `PIWIGO_CATEGORY_ID`
 - optional `PIWIGO_TAGS`
 
-Without those values, the app keeps working for gameplay, but submission returns a clear `502` JSON error explaining that Piwigo is not configured yet.
+Without those values, gameplay remains available, but submission returns a descriptive `502` JSON response.
 
-Notes:
+### Content Workflow
 
-- The live site uses a dedicated uploader account plus a dedicated Piwigo album for game submissions.
-- [src/Submission/PiwigoClient.php](/Users/andrea/Sites/muoviotusten-maailmanvalloitus/src/Submission/PiwigoClient.php) forces `format=json` in the `ws.php` query string because the live Piwigo install does not reliably return JSON when that flag is sent only in the POST body.
-- The additional part and material counts are stored in the uploaded image comment sent to Piwigo, so no Piwigo schema, plugin, or admin-side field changes are required for this payload change.
-- If you rotate Piwigo credentials or recreate the target album, update the app `.env` on the server as part of the same change.
+The editorial source is maintained separately from the runtime application. When gameplay content changes, update `content/source/definition.php` and regenerate the committed runtime file:
 
-## Content Workflow
+```bash
+php bin/build-content.php
+```
 
-- The Google Sheet remains the editorial source.
-- The app does not read the sheet at runtime.
-- Runtime content comes from the committed `content/game-content.json`.
-- Update `content/source/definition.php` and rebuild with `php bin/build-content.php` when gameplay content changes.
+Do not hand-edit `content/game-content.json` unless there is a specific reason to bypass the generator.
 
-## Verification Commands
+## Verification
+
+Run the core checks after meaningful changes:
 
 ```bash
 find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 php bin/build-content.php
-php bin/generate-qr.php
 php -S 127.0.0.1:8090 index.php
 curl http://127.0.0.1:8090/health
 ```
 
-If you change the Piwigo bridge or production submission wiring, also verify:
+Frontend changes should also receive a real-browser check. Changes to submission or gallery wiring should be verified against the production Piwigo flow and protected gallery paths.
 
-```bash
-curl -I https://otus.muoviamo.fi/gallery/
-curl -I https://otus.muoviamo.fi/gallery/install.php
-curl -I https://otus.muoviamo.fi/gallery/local/config/database.inc.php
-curl -I https://otus.muoviamo.fi/gallery/_data/
-```
+## License
+
+See [LICENSE](LICENSE) for source-code licensing and [NOTICE.md](NOTICE.md) for third-party and artwork notices.

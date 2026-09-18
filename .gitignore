@@ -1,0 +1,41 @@
+.env
+.env.*
+!.env.example
+.secrets/
+
+# Android signing material must remain outside Git.
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+android/keystore.properties
+android/signing.properties
+
+# Android and Bubblewrap local/build output.
+android/.gradle/
+android/.idea/
+android/build/
+android/app/build/
+android/local.properties
+android/*.apk
+android/*.aab
+android/*.idsig
+android/app-release-*.apk
+android/app-release-*.aab
+
+# Local tooling and operating-system metadata.
+.DS_Store
+node_modules/
+npm-debug.log*
+
+# private files, dev
+docs/
+print/qr/tailscale
+AGENTS.md
+muoviotusten-maailmanvalloitus-game-rules.md
+plan.md
+docs/android-release.md
+docs/secret-scan-2026-09-18.md
+CLAUDE.md
+technical-implementation-plan.md

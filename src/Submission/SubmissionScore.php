@@ -8,7 +8,7 @@ final class SubmissionScore{
 
 	private const TOTAL_QUESTIONS = 13;
 	private const MAX_TIPS = 5;
-	private const TAPE_CM_PER_UNIT = 5.0;
+	private const TAPE_CM_PER_UNIT = 1.0;
 
 	public static function evaluate(array $submission): array{
 

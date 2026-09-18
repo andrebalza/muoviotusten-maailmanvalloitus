@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "fi.muoviamo.otus",
+            "sha256_cert_fingerprints": [
+                "68:39:F5:66:FB:8E:6B:9B:44:49:D8:34:2D:5A:8E:1E:A2:44:48:A1:62:9D:D9:29:DF:B7:54:CE:9C:9F:56:98"
+            ]
+        }
+    }
+]

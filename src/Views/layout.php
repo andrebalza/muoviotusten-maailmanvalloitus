@@ -24,7 +24,13 @@ $bodyClass = implode(' ', $bodyClasses);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F3A47">
+  <meta name="application-name" content="Muoviotukset">
+  <meta name="mobile-web-app-capable" content="yes">
   <title><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="/public/assets/icons/app-icon-192.png">
+  <link rel="apple-touch-icon" href="/public/assets/icons/app-icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,6 +45,9 @@ $bodyClass = implode(' ', $bodyClasses);
       <nav class="topnav">
         <a href="/scan" id="nav-scan">Scan</a>
         <a href="/about" id="nav-about">About</a>
+        <?php if(($boot['androidRelease']['enabled'] ?? false) === true): ?>
+          <a href="/android" id="nav-android">Android</a>
+        <?php endif; ?>
         <a href="/gallery/index.php?/category/1" id="nav-gallery">Gallery</a>
       </nav>
     </header>
