@@ -12,7 +12,7 @@ $androidReleaseUrl = (string) ($boot['androidRelease']['url'] ?? '');
   <h2>Asennus</h2>
   <ol>
     <li>Avaa uusin julkaisu Android-laitteella.</li>
-    <li>Lataa tiedosto <code>muoviotukset-1.0.0.apk</code>.</li>
+    <li>Lataa tiedosto <code>muoviotukset-1.0.0-universal.apk</code>.</li>
     <li>Salli pyydettäessä sovellusten asentaminen selaimesta tai tiedostonhallinnasta.</li>
     <li>Avaa ladattu APK ja valitse <strong>Asenna</strong>.</li>
   </ol>
@@ -30,7 +30,7 @@ $androidReleaseUrl = (string) ($boot['androidRelease']['url'] ?? '');
   <h2>Install in English</h2>
   <ol>
     <li>Open the latest release on the Android device.</li>
-    <li>Download <code>muoviotukset-1.0.0.apk</code>.</li>
+    <li>Download <code>muoviotukset-1.0.0-universal.apk</code>.</li>
     <li>If prompted, allow app installation from the browser or file manager.</li>
     <li>Open the downloaded APK and choose <strong>Install</strong>.</li>
   </ol>
